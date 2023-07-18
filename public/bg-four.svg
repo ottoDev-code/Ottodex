@@ -1,0 +1,66 @@
+<svg width="350" height="364" viewBox="0 0 350 364" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_354_2015)">
+<rect x="-34.5" y="-55.5" width="69" height="69" fill="#FFEDA6" stroke="#FFEDA6"/>
+<rect x="35.5" y="-55.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="105.5" y="-55.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="175.5" y="-55.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="245.5" y="-55.5" width="69" height="69" fill="#FFEDA6" stroke="#FFEDA6"/>
+<rect x="315.5" y="-55.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="-34.5" y="14.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="35.5" y="14.5" width="69" height="69" fill="#FFEDA6" stroke="#FFEDA6"/>
+<rect x="105.5" y="14.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="175.5" y="14.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="245.5" y="14.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="315.5" y="14.5" width="69" height="69" fill="#FFEDA6" stroke="#FFEDA6"/>
+<rect x="-34.5" y="84.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="35.5" y="84.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="105.5" y="84.5" width="69" height="69" fill="#FFEDA6" stroke="#FFEDA6"/>
+<rect x="175.5" y="84.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="245.5" y="84.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="315.5" y="84.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="-34.5" y="154.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="35.5" y="154.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="105.5" y="154.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="175.5" y="154.5" width="69" height="69" fill="#FFEDA6" stroke="#FFEDA6"/>
+<rect x="245.5" y="154.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="315.5" y="154.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="-34.5" y="224.5" width="69" height="69" fill="#FFEDA6" stroke="#FFEDA6"/>
+<rect x="35.5" y="224.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="105.5" y="224.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="175.5" y="224.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="245.5" y="224.5" width="69" height="69" fill="#FFEDA6" stroke="#FFEDA6"/>
+<rect x="315.5" y="224.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="-34.5" y="294.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="35.5" y="294.5" width="69" height="69" fill="#FFEDA6" stroke="#FFEDA6"/>
+<rect x="105.5" y="294.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="175.5" y="294.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="245.5" y="294.5" width="69" height="69" fill="white" stroke="#FFEDA6"/>
+<rect x="315.5" y="294.5" width="69" height="69" fill="#FFEDA6" stroke="#FFEDA6"/>
+<circle cx="175" cy="182" r="287" fill="url(#paint0_radial_354_2015)"/>
+<g filter="url(#filter0_d_354_2015)">
+<rect x="175" y="84" width="70" height="70" rx="5" transform="rotate(90 175 84)" fill="#FFCC00"/>
+<rect x="174.5" y="84.5" width="69" height="69" rx="4.5" transform="rotate(90 174.5 84.5)" stroke="#FFCC00"/>
+</g>
+<path d="M122 119C119.8 119 118 117.2 118 115V105C118 102.8 119.8 101 122 101H138C140.2 101 142 102.8 142 105V115C142 117.2 140.2 119 138 119H134V125L128 119H122ZM158 131C160.2 131 162 129.2 162 127V117C162 114.8 160.2 113 158 113H146V115C146 119.4 142.4 123 138 123V127C138 129.2 139.8 131 142 131H146V137L152 131H158Z" fill="white"/>
+</g>
+<defs>
+<filter id="filter0_d_354_2015" x="85" y="64" width="110" height="110" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="5" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_354_2015"/>
+<feOffset/>
+<feGaussianBlur stdDeviation="7.5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.421667 0 0 0 0 0.421667 0 0 0 0 0.421667 0 0 0 0.15 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_354_2015"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_354_2015" result="shape"/>
+</filter>
+<radialGradient id="paint0_radial_354_2015" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(175 182) rotate(90) scale(287)">
+<stop stop-color="#FFEDA6" stop-opacity="0"/>
+<stop offset="0.598958" stop-color="#FFEDA6"/>
+</radialGradient>
+<clipPath id="clip0_354_2015">
+<rect width="364" height="364" fill="white" transform="translate(-7)"/>
+</clipPath>
+</defs>
+</svg>
