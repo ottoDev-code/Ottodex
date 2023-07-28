@@ -1,9 +1,9 @@
 import React from 'react'
-import ChatEngangers from './chat-engagers'
+import ChatEngagers from './chat-engagers'
 
 const Page = () => {
   return (
-    <><ChatEngangers /></>
+    <><ChatEngagers /></>
   )
 }
 export const metadata = {
