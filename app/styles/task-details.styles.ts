@@ -218,4 +218,19 @@ export const ScreenshotContainer = styled.div`
     }
 `;
 
-export const Username = styled.div``;
+export const Username = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.625rem;
+    p {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    button {
+        color: ${colors.primaryColor};
+        border: transparent;
+        font: inherit;
+        font-weight: 600;
+    }
+`;

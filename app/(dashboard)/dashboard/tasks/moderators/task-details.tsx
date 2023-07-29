@@ -19,6 +19,7 @@ import {
     ColoredButton,
     UploadedDocContainer,
     ScreenshotContainer,
+    Username,
 } from "../../../../styles/task-details.styles";
 import TaskBox from "../../../../components/taskbox/TaskBox";
 import Image from "next/image";
@@ -29,7 +30,17 @@ import closeIcon from "../../../../../public/close-icon.svg";
 const TaskDetails: React.FC = () => {
     const [startTask, setStartTask] = useState<boolean>(false);
     const [uploadedProofs, setUploadedProofs] = useState<File[]>([]);
-    const [uploadedUsermames, setUploadedUsermames] = useState<[]>([]);
+    const [username, setUsername] = useState<string>("");
+    const [uploadedUsernames, setUploadedUsernames] = useState<string[]>([]);
+
+    const addUsername = () => {
+        if (username === "") {
+            return;
+        }
+        setUploadedUsernames([...uploadedUsernames, username]);
+
+        setUsername("");
+    };
 
     const handleDragOver: (event: Event) => void = (event) => {
         event.preventDefault();
@@ -49,8 +60,6 @@ const TaskDetails: React.FC = () => {
             setUploadedProofs([...uploadedProofs, file]);
         }
     };
-
-    console.log(uploadedProofs);
 
     return (
         <Wrapper>
@@ -157,41 +166,70 @@ const TaskDetails: React.FC = () => {
                         <div>
                             <h4>Report Username</h4>
                             <TextInput>
-                                <input type="text" placeholder="Add Username" />
-                                <button>Add</button>
+                                <form
+                                    onSubmit={(event) => event.preventDefault()}
+                                >
+                                    <input
+                                        type="text"
+                                        placeholder="Add Username"
+                                        value={username}
+                                        onChange={(event) =>
+                                            setUsername(event.target.value)
+                                        }
+                                    />
+                                </form>
+                                <button onClick={() => addUsername()}>
+                                    Add
+                                </button>
                             </TextInput>
                         </div>
 
                         <UploadedDocContainer>
-                            <div>
-                                <h4>Uploaded Proofs</h4>
-                                <ScreenshotContainer>
-                                    {uploadedProofs?.map((item) => (
-                                        <div key={uploadedProofs.indexOf(item)}>
-                                            <Image
-                                                src={imageDocIcon}
-                                                alt="Image document icon"
-                                            />{" "}
-                                            <p>
-                                                Screenshot{" "}
-                                                {uploadedProofs.indexOf(item) +
-                                                    1}
-                                            </p>
-                                            <Image
-                                                src={closeIcon}
-                                                alt="Close"
-                                            />
-                                        </div>
-                                    ))}
-                                </ScreenshotContainer>
-                            </div>
-
-                            <div>
-                                <h4>Username</h4>
+                            {uploadedProofs.length !== 0 && (
                                 <div>
-                                    <p></p>
+                                    <h4>Uploaded Proofs</h4>
+                                    <ScreenshotContainer>
+                                        {uploadedProofs?.map((item) => (
+                                            <div
+                                                key={uploadedProofs.indexOf(
+                                                    item
+                                                )}
+                                            >
+                                                <Image
+                                                    src={imageDocIcon}
+                                                    alt="Image document icon"
+                                                />{" "}
+                                                <p>
+                                                    Screenshot{" "}
+                                                    {uploadedProofs.indexOf(
+                                                        item
+                                                    ) + 1}
+                                                </p>
+                                                <Image
+                                                    src={closeIcon}
+                                                    alt="Close"
+                                                />
+                                            </div>
+                                        ))}
+                                    </ScreenshotContainer>
                                 </div>
-                            </div>
+                            )}
+
+                            {uploadedUsernames.length !== 0 && (
+                                <div>
+                                    <h4>Username</h4>
+                                    {uploadedUsernames.map((item) => (
+                                        <Username
+                                            key={uploadedUsernames.indexOf(
+                                                item
+                                            )}
+                                        >
+                                            <p>{item}</p>
+                                            <button>Remove</button>
+                                        </Username>
+                                    ))}
+                                </div>
+                            )}
                         </UploadedDocContainer>
 
                         <Buttons>
