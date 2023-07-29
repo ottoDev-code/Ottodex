@@ -1,13 +1,13 @@
 import React from 'react'
-import ChatEngagers from './chat-engagers'
+import Wallet from './wallet'
 
 const Page = () => {
   return (
-    <><ChatEngagers /></>
+    <><Wallet /></>
   )
 }
 export const metadata = {
-    title: "BM DAO | Chat Engagers"
+    title: "BM DAO | Wallet"
 }
 
 export default Page

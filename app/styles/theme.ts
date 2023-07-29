@@ -8,6 +8,7 @@ const theme = {
         darkGrey: "#818181",
         midGrey: "#C4C4C4",
         bgGrey: "#FBFBFB",
+        cardBg: " #F2F2F2",
     },
     sizes: {
         wrapperWidth: "1080px"
