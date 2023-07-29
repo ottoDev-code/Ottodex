@@ -6,7 +6,9 @@ interface IBoxProps {
 const { colors } = theme;
 
 export const Container = styled.div`
-    padding: 30px 0;
+    padding: 80px 0 30px 0;
+    position: relative;
+    max-width: calc(100vw - 290px)
 `;
 export const CardWrapper = styled.div`
     display: flex;

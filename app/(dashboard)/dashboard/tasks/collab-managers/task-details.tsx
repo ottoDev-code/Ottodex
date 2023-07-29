@@ -107,50 +107,56 @@ const TaskDetails: React.FC = () => {
                     </div>
                 </Details>
                 {startTask || (
-                    <Instructions>
-                        <h4>Task Instruction</h4>
-                        <p>
-                            1. Join the Client’s Discord Community using the
-                            provided invite link.
-                        </p>
-                        <p>
-                            2. Engage in conversations and contribute at least
-                            25 meaningful messages within the allocated time.
-                        </p>
-                        <p>
-                            3. Ensure that your messages are relevant,
-                            respectful, and add value to the community
-                            discussions.
-                        </p>
-                        <p>
-                            4. Be active and responsive during the task duration
-                            to encourage interactions and build connections.
-                        </p>
-                        <p>
-                            5. Take screenshots as proof of completing the
-                            tasks.
-                        </p>
-                    </Instructions>
+                    <>
+                        <Instructions>
+                            <h4>Task Instruction</h4>
+                            <p>
+                                1. Join the Client’s Discord Community using the
+                                provided invite link.
+                            </p>
+                            <p>
+                                2. Engage in conversations and contribute at
+                                least 25 meaningful messages within the
+                                allocated time.
+                            </p>
+                            <p>
+                                3. Ensure that your messages are relevant,
+                                respectful, and add value to the community
+                                discussions.
+                            </p>
+                            <p>
+                                4. Be active and responsive during the task
+                                duration to encourage interactions and build
+                                connections.
+                            </p>
+                            <p>
+                                5. Take screenshots as proof of completing the
+                                tasks.
+                            </p>
+                        </Instructions>
+
+                        <div>
+                            <TemplateHeading>Collab Template</TemplateHeading>
+                            <TemplateBox>
+                                <p>
+                                    In this task you are to engage in tweets and
+                                    blah blah blah. In this task you are to
+                                    engage in tweets and blah blah blah. In this
+                                    task you are to engage in tweets and blah
+                                    blah blah. In this task you are to engage in
+                                    tweets and blah blah blah. In this task you
+                                    are to engage in tweets and blah blah blah.
+                                </p>
+
+                                <Copy>
+                                    <CopyIcon />
+                                    <p>Copy</p>
+                                </Copy>
+                            </TemplateBox>
+                        </div>
+                    </>
                 )}
 
-                <div>
-                    <TemplateHeading>Collab Template</TemplateHeading>
-                    <TemplateBox>
-                        <p>
-                            In this task you are to engage in tweets and blah
-                            blah blah. In this task you are to engage in tweets
-                            and blah blah blah. In this task you are to engage
-                            in tweets and blah blah blah. In this task you are
-                            to engage in tweets and blah blah blah. In this task
-                            you are to engage in tweets and blah blah blah.
-                        </p>
-
-                        <Copy>
-                            <CopyIcon />
-                            <p>Copy</p>
-                        </Copy>
-                    </TemplateBox>
-                </div>
                 {startTask || (
                     <StartButton onClick={() => setStartTask(true)}>
                         Start Task

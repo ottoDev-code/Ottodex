@@ -18,17 +18,21 @@ import {
 } from "../svg-icons";
 import { UsersIcon } from "../svg-icons";
 import { LogoutIcon } from "../svg-icons";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const Sidebar = () => {
     const [show, setShow] = useState(false);
     const pathname = usePathname();
+    const router = useRouter();
     return (
         <Container>
             <LogoWrapper>
                 <Image src={"/logo.svg"} alt="logo" height={50} width={148} />
             </LogoWrapper>
-            <NavButton $isActive={pathname === "/dashboard"}>
+            <NavButton
+                $isActive={pathname === "/dashboard"}
+                onClick={() => router.push("/dashboard")}
+            >
                 <div>
                     <HomeIcon />
                     <span>Dashboard</span>
@@ -46,71 +50,81 @@ const Sidebar = () => {
             </NavButton>
             {show ? (
                 <SubNavWrapper>
-                    <SubNavButton>
+                    <SubNavButton
+                        onClick={() =>
+                            router.push("/dashboard/tasks/moderators")
+                        }
+                    >
                         <div>
-                            <Image
-                                src="/mapper.svg"
-                                alt=""
-                                height={50}
-                                width={24}
-                            />
+                            <HomeIcon />
+                            <span>Dashboard</span>
                         </div>
                         <span>Moderators</span>
                     </SubNavButton>
-                    <SubNavButton>
+                    <SubNavButton
+                        onClick={() => router.push("/dashboard/tasks/managers")}
+                    >
                         <div>
-                            <Image
-                                src="/mapper.svg"
-                                alt=""
-                                height={50}
-                                width={24}
-                            />
+                            <DocumentIcon />
+                            <span>Tasks</span>
                         </div>
                         <span>Collab Managers</span>
                     </SubNavButton>
-                    <SubNavButton>
+                    <SubNavButton
+                        onClick={() =>
+                            router.push("/dashboard/tasks/twitter-raiders")
+                        }
+                    >
                         <div>
-                            <Image
-                                src="/mapper.svg"
-                                alt=""
-                                height={50}
-                                width={24}
-                            />
+                            <WalletIcon />
+                            <span>Wallet</span>
                         </div>
                         <span>Twitter Raiders</span>
                     </SubNavButton>
-                    <SubNavButton>
+                    <SubNavButton
+                        onClick={() =>
+                            router.push("/dashboard/tasks/chat-engagers")
+                        }
+                    >
                         <div>
-                            <Image
-                                src="/mapper.svg"
-                                alt=""
-                                height={50}
-                                width={24}
-                            />
+                            <UserIcon />
+                            <span>Profile</span>
                         </div>
                         <span>Chat Engagers</span>
                     </SubNavButton>
                 </SubNavWrapper>
             ) : null}
-            <NavButton $isActive={pathname === "/dashboard/wallet"}>
+            <NavButton
+                $isActive={pathname === "/dashboard/wallet"}
+                onClick={() => router.push("/dashboard/wallet")}
+            >
                 <div>
                     <WalletIcon />
                     <span>Wallet</span>
                 </div>
             </NavButton>
-            <NavButton $isActive={pathname === "/dashboard/profile"}>
+            <NavButton
+                $isActive={pathname === "/dashboard/profile"}
+                onClick={() => router.push("/dashboard/profile")}
+            >
                 <div>
                     <UserIcon />
                     <span>Profile</span>
                 </div>
             </NavButton>
-            <NavButton $isActive={pathname === "/dashboard/academy"}>
+            <NavButton
+                $isActive={pathname === "/dashboard/academy"}
+                onClick={() => router.push("/dashboard/academy")}
+            >
                 <div>
                     <BookIcon />
                     <span>Academy</span>
                 </div>
             </NavButton>
-            <NavButton $isActive={pathname === "/dashboard/referral"}>
+            <NavButton
+                $isActive={pathname === "/dashboard/referral"}
+                onClick={() => router.push("/dashboard/referral")}
+            >
                 <div>
                     <UsersIcon />
                     <span>Referral</span>
