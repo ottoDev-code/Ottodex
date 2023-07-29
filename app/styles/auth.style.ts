@@ -34,8 +34,8 @@ export const InputWrapper = styled.div`
     flex-direction: column;
     row-gap: 5px;
     label {
-        font-size: 16px;
-        font-weight: 600;
+        font-size: 14px;
+        font-weight: 500;
     }
 `;
 export const GoogleBtn = styled.button`
@@ -68,8 +68,8 @@ export const InputContainer = styled.div`
         background: transparent;
         outline: none;
         border: none;
-        padding: 11px 20px;
-        font-size: 16px;
+        padding: 10px 20px;
+        font-size: 15px;
         font-weight: 500; 
         &::placeholder {
             color: ${colors.lightGrey};
@@ -80,8 +80,8 @@ export const InputContainer = styled.div`
         background: transparent;
         outline: none;
         border: none;
-        padding: 11px 20px;
-        font-size: 16px;
+        padding: 10px 20px;
+        font-size: 15px;
         font-weight: 500; 
         &::placeholder {
             color: ${colors.lightGrey};
@@ -92,6 +92,13 @@ export const InputContainer = styled.div`
         border: none;
         outline: none;
         cursor: pointer;
+    }
+    .level {
+        min-width: 80px;
+        padding: 5px 10px;
+        background: ${colors.primaryColor}16;
+        font-size: 14px;
+        color: ${colors.primaryColor};
     }
 `;
 export const LogoWrapper = styled.button`
@@ -144,6 +151,9 @@ export const AcceptTerms = styled.div`
     column-gap: 10px;
     align-items: center;
     margin: 10px 0 12px 0;
+    p {
+        font-size: 14px;
+    }
     button {
         background: transparent;
         border: none;
@@ -154,6 +164,7 @@ export const AcceptTerms = styled.div`
     }
     a {
         text-decoration: underline;
+        font-size: 14px;
     }
 `;
 export const QControl = styled.div`
