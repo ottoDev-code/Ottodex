@@ -16,23 +16,11 @@ export const Container = styled.div`
     max-height: 100vh;
     overflow-y: scroll;
     border-right: 1px solid #D9D9D9;
-    :hover {
-        scrollbar-color: ${colors.primaryColor} ${colors.primaryColor}11;
-
-        ::-webkit-scrollbar-thumb {
-            background-color: ${colors.primaryColor};
-        }
-        ::-webkit-scrollbar {
-            background-color: ${colors.primaryColor}11;
-            width: 3px;
-        }
-    }
-    scrollbar-color: transparent transparent;
-
-    ::-webkit-scrollbar-thumb {
+    scrollbar-color: ${colors.primaryColor}  ${colors.primaryColor}11;
+    &::-webkit-scrollbar-thumb {
         background-color: transparent;
     }
-    ::-webkit-scrollbar {
+    &::-webkit-scrollbar {
         background-color: transparent;
         width: 3px;
     }
