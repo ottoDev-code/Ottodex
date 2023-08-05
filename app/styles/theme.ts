@@ -12,6 +12,10 @@ const theme = {
     },
     sizes: {
         wrapperWidth: "1080px"
+    },
+    breakpoints: {
+        lg: "@media screen and (max-width: 1000px)",
+        sm: '@media screen and (max-width: 650px)'
     }
 }
 

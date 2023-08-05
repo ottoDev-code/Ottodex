@@ -170,11 +170,13 @@ export const ActivityCard = styled.div`
         display: flex;
         column-gap: 15px;
         align-items: center;
-        width: calc(50% - 10px);
-        max-width: calc(50% - 10px);
+        width: calc(55% - 10px);
+        max-width: calc(55% - 10px);
         .icon {
             height: 45px;
             width: 45px;
+            min-width: 45px;
+            min-height: 45px;
             border-radius: 50%;
             background: ${colors.primaryColor};
             display: flex;
@@ -182,22 +184,23 @@ export const ActivityCard = styled.div`
             justify-content: center;
         }
         h3 {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 500;
             margin-bottom: 5px;
         }
         p {
             font-weight: 500;
+            font-size: 12px;
         }
     }
     .right {
         display: flex;
         justify-content: space-between;
-        width: calc(50% - 10px);
-        max-width: calc(50% - 10px);
+        width: calc(45% - 10px);
+        max-width: calc(45% - 10px);
         align-items: center;
         p:first-of-type {
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 500;
         }
         p {
@@ -211,6 +214,28 @@ export const Card = styled.div`
     width: calc(50% - 10px);
     max-width: calc(50% - 10px);
     padding: 14px;
+    h2 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+`;
+export const CardLeft = styled.div`
+    width: calc(100% - 10px);
+    h2 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+`;
+export const CardRight = styled.div`
+    border-radius: 10px;
+    background: #F2F2F2; 
+    width: 390px;
+    max-width: 390px;
+    min-width: 390px;
+    padding: 14px;
+    min-height: calc(100vh - 130px);
     h2 {
         font-size: 18px;
         font-weight: 600;
@@ -241,6 +266,10 @@ export const CopyContainer = styled.div`
             border: none;
             font-size: 16px;
             cursor: pointer;
+            color: ${colors.primaryColor};
+            display: inline-flex;
+            align-items: center;
+            column-gap: 5px;
         }
     }
 `;

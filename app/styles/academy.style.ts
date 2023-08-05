@@ -47,7 +47,8 @@ export const CourseLeft = styled.div`
     iframe {
         border: 0;
         width: 100%;
-        height: 300px;
+        height: 50vh;
+        min-height: 300px;
         border-radius: 10px;
         margin: 20px 0;
     }

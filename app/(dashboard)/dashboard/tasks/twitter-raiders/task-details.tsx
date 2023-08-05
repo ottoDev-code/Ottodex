@@ -19,6 +19,7 @@ import {
     ColoredButton,
     UploadedDocContainer,
     ScreenshotContainer,
+    TaskWrapper,
 } from "../../../../styles/task-details.styles";
 import TaskBox from "../../../../components/taskbox/TaskBox";
 import Image from "next/image";
@@ -61,9 +62,11 @@ const TaskDetails: React.FC = () => {
     return (
         <Wrapper>
             <LeftColumn>
-                <TaskBox heading={"Available Tasks"} tasksNub={1} />
-                <TaskBox heading={"Pending Tasks"} tasksNub={5} />
-                <TaskBox heading={"Completed Tasks"} tasksNub={50} />
+                <TaskWrapper>
+                    <TaskBox heading={"Available Tasks"} tasksNub={1} />
+                    <TaskBox heading={"Pending Tasks"} tasksNub={5} />
+                    <TaskBox heading={"Completed Tasks"} tasksNub={50} />
+                </TaskWrapper>
             </LeftColumn>
 
             <RightColumn>
