@@ -48,6 +48,13 @@ export const BalanceCard = styled.div`
     }
 `;
 
+export const TotalCard = styled.div`
+    background-color: ${colors.white};
+    border-radius: 0.625rem;
+    padding: 1.5rem 0.75rem 1.5625rem 0.75rem;
+    min-width: 18.75rem;
+`;
+
 export const Amount = styled.p`
     margin-top: 0.6rem;
     font-size: 2.5rem;
