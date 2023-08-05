@@ -115,6 +115,44 @@ export const ArrowDownIcon = () => (
     </svg>
 );
 
+export const ArrowLeftIcon = () => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+    >
+        <path
+            d="M14.825 19L9.47396 13.649C8.84201 13.017 8.84201 11.983 9.47396 11.351L14.825 6"
+            stroke="black"
+            stroke-width="1.5"
+            stroke-miterlimit="10"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        />
+    </svg>
+);
+
+export const ArrowRightIcon = () => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+    >
+        <path
+            d="M9 19L14.351 13.649C14.983 13.017 14.983 11.983 14.351 11.351L9 6"
+            stroke="black"
+            stroke-width="1.5"
+            stroke-miterlimit="10"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        />
+    </svg>
+);
+
 export const CopyIcon = () => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -136,6 +174,48 @@ export const CopyIcon = () => (
             rx="2"
             stroke="#FFCC00"
             stroke-width="1.5"
+        />
+    </svg>
+);
+
+export const WithdrawIcon = () => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="25"
+        height="24"
+        viewBox="0 0 25 24"
+        fill="none"
+    >
+        <path
+            d="M3.5 3V2H2.5V3H3.5ZM12.7929 13.7071C13.1834 14.0976 13.8166 14.0976 14.2071 13.7071C14.5976 13.3166 14.5976 12.6834 14.2071 12.2929L12.7929 13.7071ZM4.5 11V3H2.5V11H4.5ZM3.5 4H11.5V2H3.5V4ZM2.79289 3.70711L12.7929 13.7071L14.2071 12.2929L4.20711 2.29289L2.79289 3.70711Z"
+            fill="black"
+        />
+        <path
+            d="M4.5 15V15C4.5 16.8692 4.5 17.8038 4.90192 18.5C5.16523 18.9561 5.54394 19.3348 6 19.5981C6.69615 20 7.63077 20 9.5 20H14.5C17.3284 20 18.7426 20 19.6213 19.1213C20.5 18.2426 20.5 16.8284 20.5 14V9C20.5 7.13077 20.5 6.19615 20.0981 5.5C19.8348 5.04394 19.4561 4.66523 19 4.40192C18.3038 4 17.3692 4 15.5 4V4"
+            stroke="black"
+            stroke-width="2"
+            stroke-linecap="round"
+        />
+    </svg>
+);
+
+export const DepositIcon = () => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+    >
+        <path
+            d="M3 9V15C3 17.8284 3 19.2426 3.87868 20.1213C4.75736 21 6.17157 21 9 21H15C17.8284 21 19.2426 21 20.1213 20.1213C21 19.2426 21 17.8284 21 15V9C21 6.17157 21 4.75736 20.1213 3.87868C19.2426 3 17.8284 3 15 3H9"
+            stroke="black"
+            stroke-width="2"
+            stroke-linecap="round"
+        />
+        <path
+            d="M15 15V16H16V15H15ZM7.70711 6.29289C7.31658 5.90237 6.68342 5.90237 6.29289 6.29289C5.90237 6.68342 5.90237 7.31658 6.29289 7.70711L7.70711 6.29289ZM14 8V15H16V8H14ZM15 14H8V16H15V14ZM15.7071 14.2929L7.70711 6.29289L6.29289 7.70711L14.2929 15.7071L15.7071 14.2929Z"
+            fill="black"
         />
     </svg>
 );
