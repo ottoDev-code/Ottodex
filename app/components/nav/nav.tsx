@@ -2,12 +2,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import { Auth, Container, Links, Logo, NavLink, Wrapper } from './style'
+import { Auth, Container, Dropdown, Links, Logo, MAuth, MLinks, NavLink, Wrapper } from './style'
 import { useRouter, usePathname } from 'next/navigation'
 
 const Nav = () => {
   const path = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
 
   // Track if the page is scrolled then the styling of the nav is updated
@@ -46,7 +47,31 @@ const Nav = () => {
           <Link href={"/login"} legacyBehavior>Login</Link>
           <Link href={"/register"} legacyBehavior>Register</Link>
         </Auth>
+        <button className='nav-btn' onClick={() => setShowDropdown(!showDropdown)}>
+          <Image src={showDropdown ? "/close-icon.svg" : "/menu.svg"} alt="logo" height={36} width={36} />
+        </button>
       </Wrapper>
+      {
+        showDropdown ? (
+          <Dropdown>
+            <MLinks>
+              <NavLink $isActive={path === "/"} onClick={() => { setShowDropdown(false) }}>
+                <Link href={"/"} legacyBehavior>Home</Link>
+              </NavLink>
+              <NavLink $isActive={path === "/overview"} onClick={() => { setShowDropdown(false) }}>
+                <Link href={"/overview"} legacyBehavior>Overview</Link>
+              </NavLink>
+              <NavLink $isActive={path === "/about"} onClick={() => { setShowDropdown(false) }}>
+                <Link href={"/about"} legacyBehavior>About</Link>
+              </NavLink>
+            </MLinks>
+            <MAuth>
+              <Link href={"/login"} legacyBehavior>Login</Link>
+              <Link href={"/register"} legacyBehavior>Register</Link>
+            </MAuth>
+          </Dropdown>
+        ) : null
+      }
     </Container>
   )
 }

@@ -267,6 +267,10 @@ export const CopyContainer = styled.div`
             border: none;
             font-size: 16px;
             cursor: pointer;
+            color: ${colors.primaryColor};
+            display: inline-flex;
+            align-items: center;
+            column-gap: 5px;
         }
     }
 `;

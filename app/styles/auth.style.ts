@@ -1,11 +1,14 @@
 import { styled } from "styled-components";
 import theme from "./theme";
-const { colors } = theme;
+const { colors, breakpoints } = theme;
 
 export const Container = styled.div`
     padding: 50px 0;
     background: #FBFBFB; 
     min-height: 100vh;
+    ${breakpoints.sm} {
+        padding: 20px 0;
+    }
 `;
 export const FormContainer = styled.form`
     display: flex;
@@ -25,6 +28,18 @@ export const FormContainer = styled.form`
     p {
         font-size: 16px;
         font-weight: 500; 
+    }
+    ${breakpoints.sm} {
+        padding: 0 20px;
+        border: none;
+        h1 {
+            font-size: 20px;
+            text-align: center;
+        }
+        p {
+            font-size: 14px;
+            text-align: center;
+        }
     }
 `;
 export const InputWrapper = styled.div`

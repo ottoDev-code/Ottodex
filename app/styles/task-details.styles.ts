@@ -4,16 +4,21 @@ import theme from "./theme";
 const { colors } = theme;
 
 export const Wrapper = styled.div`
-    margin-top: 3.125rem;
     display: flex;
     column-gap: 1.25rem;
-    max-width: calc(100% - 295px);
-    width: calc(100% - 295px);
+    padding-top: 20px;
 `;
 
 export const LeftColumn = styled.div`
     display: flex;
     flex-direction: column;
+    row-gap: 1.25rem;
+`;
+export const TaskWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 100px;
     row-gap: 1.25rem;
 `;
 
@@ -22,8 +27,9 @@ export const RightColumn = styled.div`
     display: flex;
     flex-direction: column;
     padding: 1.5rem;
-    max-width: 40rem;
     width: 100%;
+    max-width: 800px;
+    border-radius: 10px;
 `;
 
 export const TaskSub = styled.h3`
@@ -126,13 +132,15 @@ export const TextInput = styled.div`
     justify-content: space-between;
     padding: 0.7rem;
     input {
-        background-color: transparent;
+        background: transparent;
         color: #cacaca;
         display: block;
         border: transparent;
         font-family: inherit;
         font-size: 1rem;
         font-weight: 500;
+        outline: none;
+
     }
 
     input:focus {
@@ -141,9 +149,12 @@ export const TextInput = styled.div`
 
     button {
         color: ${colors.primaryColor};
-        font-size: 1rem;
-        font-weight: 600;
+        font-size: 15px;
+        font-weight: 500;
         border: transparent;
+        background: transparent;
+        outline: none;
+        cursor: pointer;
     }
 
     button:focus,

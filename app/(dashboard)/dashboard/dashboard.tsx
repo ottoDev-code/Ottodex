@@ -1,6 +1,6 @@
 "use client"
 import HeadingCard from '@/app/components/heading-card'
-import { ArrowDownIcon, DocumentIcon } from '@/app/components/svg-icons'
+import { ArrowDownIcon, CopyIcon, DocumentIcon } from '@/app/components/svg-icons'
 import { ActivityCard, ActivityWrapper, BalanceCard, BottomWrapper, Card, CardWrapper, Container, CopyContainer, StatsCard, StatsContainer, StreakBox, StreakCard, TaskCard } from '@/app/styles/dashboard.style'
 import React from 'react'
 
@@ -182,7 +182,10 @@ const Dashboard = () => {
             <p className='label'>Share your referral link</p>
             <div>
               <p>https://BMDAO.io/r/Bab28ndm</p>
-              <button>Copy</button>
+              <button>
+                  <CopyIcon />
+                  <span>Copy</span>
+              </button>
             </div>
           </CopyContainer>
           <StatsContainer>

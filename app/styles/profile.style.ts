@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
 `;
 export const Form = styled.form`
     width: calc(100% - 330px);
+    max-width: 600px;
     background: ${colors.cardBg};
     padding: 30px 25px;
     border-radius: 10px;

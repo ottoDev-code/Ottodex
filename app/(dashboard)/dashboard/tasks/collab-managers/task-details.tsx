@@ -22,6 +22,7 @@ import {
     TemplateHeading,
     TemplateBox,
     Copy,
+    TaskWrapper,
 } from "../../../../styles/task-details.styles";
 import TaskBox from "../../../../components/taskbox/TaskBox";
 import { CopyIcon } from "@/app/components/svg-icons";
@@ -68,9 +69,11 @@ const TaskDetails: React.FC = () => {
     return (
         <Wrapper>
             <LeftColumn>
-                <TaskBox heading={"Available Tasks"} tasksNub={1} />
-                <TaskBox heading={"Pending Tasks"} tasksNub={5} />
-                <TaskBox heading={"Completed Tasks"} tasksNub={50} />
+                <TaskWrapper>
+                    <TaskBox heading={"Available Tasks"} tasksNub={1} />
+                    <TaskBox heading={"Pending Tasks"} tasksNub={5} />
+                    <TaskBox heading={"Completed Tasks"} tasksNub={50} />
+                </TaskWrapper>
             </LeftColumn>
 
             <RightColumn>
@@ -230,12 +233,7 @@ const TaskDetails: React.FC = () => {
                                                     src={imageDocIcon}
                                                     alt="Image document icon"
                                                 />{" "}
-                                                <p>
-                                                    Screenshot{" "}
-                                                    {uploadedProofs.indexOf(
-                                                        item
-                                                    ) + 1}
-                                                </p>
+                                                <p>{item.name.slice(0, 8)}...{item.name.slice(item.name.lastIndexOf("."),)}</p>
                                                 <Image
                                                     src={closeIcon}
                                                     alt="Close"

@@ -11,7 +11,7 @@ export const Container = styled.div`
     min-height: 100vh;
 `;
 export const Wrapper = styled.div`
-    width: 98%;
+    width: 92%;
     max-width: ${sizes.wrapperWidth};
     margin: 0 auto;
 `;

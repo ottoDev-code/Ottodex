@@ -1,5 +1,6 @@
 "use client"
 import HeadingCard from '@/app/components/heading-card'
+import { CopyIcon } from '@/app/components/svg-icons'
 import { Container, CopyContainer, StatsContainer } from '@/app/styles/dashboard.style'
 import { Left, Right, TBody, THead, TRow, Table, Top, UserImage, Wrapper } from '@/app/styles/referral.style'
 import Image from 'next/image'
@@ -94,7 +95,10 @@ const Dashboard = () => {
             <p className='label'>Share your referral link</p>
             <div>
               <p>https://BMDAO.io/r/Bab28ndm</p>
-              <button>Copy</button>
+              <button>
+                  <CopyIcon />
+                  <span>Copy</span>
+              </button>
             </div>
           </CopyContainer>
           <h2>Referrals</h2>
