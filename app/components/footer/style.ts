@@ -1,19 +1,23 @@
 import theme from "@/app/styles/theme";
 import { styled } from "styled-components";
-const { colors, sizes } = theme;
+const { colors, sizes, breakpoints } = theme;
 
 export const Container = styled.div`
     background: ${colors.bgGrey};
     padding: 60px 0;
 `;
 export const Wrapper = styled.div`
-    width: 98%;
+    width: 92%;
     max-width: ${sizes.wrapperWidth};
     margin: 0 auto;
 `;
 export const Top = styled.div`
     display: flex;
     justify-content: space-between;
+    ${breakpoints.sm} {
+       flex-direction: column;
+       row-gap: 20px;
+    }
 `; 
 export const Bottom = styled.div`
     margin-top: 30px;
@@ -38,10 +42,19 @@ export const Section = styled.div`
             margin: 5px 0;
         }
     }
+    ${breakpoints.sm} {
+       a {
+        font-size: 14px;
+       }
+    }
 `;
 export const Logo = styled.div`
 `;
 export const SectionWrapper = styled.div`
     display: flex;
     column-gap: 100px;
+    ${breakpoints.sm} {
+      flex-direction: column;
+      row-gap: 20px;
+    }
 `;

@@ -16,6 +16,14 @@ export const Container = styled.div`
     max-height: 100vh;
     overflow-y: scroll;
     border-right: 1px solid #D9D9D9;
+    scrollbar-color: ${colors.primaryColor}  ${colors.primaryColor}11;
+    &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar {
+        background-color: transparent;
+        width: 3px;
+    }
 `;
 export const LogoWrapper = styled.div`
     margin-bottom: 30px;

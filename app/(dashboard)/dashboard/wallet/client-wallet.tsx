@@ -1,5 +1,7 @@
 "use client";
 
+import chart from "../../../../public/chart.svg";
+
 import HeadingCard from "@/app/components/heading-card/heading-card";
 import {
     ArrowDownIcon,
@@ -14,11 +16,13 @@ import {
     Buttons,
     History,
     HistoryDetails,
+    TotalCard,
 } from "@/app/styles/client-wallet.style";
 import { Container } from "@/app/styles/dashboard.style";
+import Image from "next/image";
 import React from "react";
 
-const Wallet = () => {
+const ClientWallet = () => {
     return (
         <Container>
             <HeadingCard heading={"Wallet"} />
@@ -40,19 +44,27 @@ const Wallet = () => {
                         </div>
                     </BalanceCard>
 
-                    <BalanceCard>
-                        <div className="button">
-                            <p>BMT</p>
-                            <button>
-                                <span>BMT</span>
-                                <ArrowDownIcon />
-                            </button>
-                        </div>
+                    <TotalCard>
                         <div>
-                            <p>Total Amount Spent</p>
-                            <Amount>15,500 BMT</Amount>
+                            <div className="content">
+                                <Image src={chart} alt="chart icon" />
+                                Total Income
+                            </div>
+
+                            <div className="price">$2,789.28</div>
                         </div>
-                    </BalanceCard>
+
+                        <div className="stroke"></div>
+
+                        <div>
+                            <div className="content">
+                                <Image src={chart} alt="chart icon" />
+                                Total Withdrawn
+                            </div>
+
+                            <div className="price">$2,510.76</div>
+                        </div>
+                    </TotalCard>
                 </BalanceCards>
 
                 <Buttons>
@@ -137,4 +149,4 @@ const Wallet = () => {
     );
 };
 
-export default Wallet;
+export default ClientWallet;

@@ -7,7 +7,7 @@ import {
 import Image from "next/image";
 import React from "react";
 
-import image from "../../../../../../public/not-registered.png";
+import image from "../../../public/not-registered.png";
 
 interface Props {
     taskSub: string;

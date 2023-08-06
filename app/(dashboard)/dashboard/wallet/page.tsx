@@ -1,13 +1,18 @@
-import React from 'react'
-import Wallet from './wallet'
+import React from "react";
+import Wallet from "./wallet";
+import ClientWallet from "./client-wallet";
 
 const Page = () => {
-  return (
-    <><Wallet /></>
-  )
-}
-export const metadata = {
-    title: "BM DAO | Wallet"
-}
+    return (
+        <>
+            {/* <Wallet /> */}
+            <ClientWallet />
+        </>
+    );
+};
 
-export default Page
+export const metadata = {
+    title: "BM DAO | Wallet",
+};
+
+export default Page;

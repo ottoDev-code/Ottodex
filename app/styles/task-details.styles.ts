@@ -4,16 +4,21 @@ import theme from "./theme";
 const { colors } = theme;
 
 export const Wrapper = styled.div`
-    margin-top: 3.125rem;
     display: flex;
     column-gap: 1.25rem;
-    max-width: calc(100% - 295px);
-    width: calc(100% - 295px);
+    padding-top: 20px;
 `;
 
 export const LeftColumn = styled.div`
     display: flex;
     flex-direction: column;
+    row-gap: 1.25rem;
+`;
+export const TaskWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 100px;
     row-gap: 1.25rem;
 `;
 
@@ -22,8 +27,9 @@ export const RightColumn = styled.div`
     display: flex;
     flex-direction: column;
     padding: 1.5rem;
-    max-width: 40rem;
     width: 100%;
+    max-width: 800px;
+    border-radius: 10px;
 `;
 
 export const TaskSub = styled.h3`
@@ -125,14 +131,20 @@ export const TextInput = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 0.7rem;
+    form,
     input {
-        background-color: transparent;
+        width: 100%;
+    }
+
+    input {
+        background: transparent;
         color: #cacaca;
         display: block;
         border: transparent;
         font-family: inherit;
         font-size: 1rem;
         font-weight: 500;
+        outline: none;
     }
 
     input:focus {
@@ -141,9 +153,12 @@ export const TextInput = styled.div`
 
     button {
         color: ${colors.primaryColor};
-        font-size: 1rem;
-        font-weight: 600;
+        font-size: 15px;
+        font-weight: 500;
         border: transparent;
+        background: transparent;
+        outline: none;
+        cursor: pointer;
     }
 
     button:focus,
@@ -209,7 +224,7 @@ export const ScreenshotContainer = styled.div`
         display: flex;
         justify-content: center;
         padding: 0.62rem;
-        max-width: 13rem;
+        /* max-width: 13rem; */
     }
 
     div > p {
@@ -232,5 +247,71 @@ export const Username = styled.div`
         border: transparent;
         font: inherit;
         font-weight: 600;
+    }
+`;
+
+//Task Details New
+
+export const TaskNav = styled.div`
+    align-self: center;
+    align-items: center;
+    background: #fff1bb;
+    border-radius: 0.625rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0.1875rem;
+    text-align: center;
+    width: 80%;
+`;
+
+export const TaskNavItem = styled.div<{ active: boolean }>`
+    background-color: ${(props) =>
+        props.active ? colors.primaryColor : "transparent"};
+    border-radius: 0.625rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.875rem 2rem;
+`;
+
+export const Tasks = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    row-gap: 0.625rem;
+`;
+
+export const Task = styled.div`
+    border-radius: 0.625rem;
+    border: 1px solid ${colors.lightGrey};
+    display: flex;
+    font-weight: 400;
+    justify-content: space-between;
+    padding: 0.625rem;
+
+    h3 {
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+
+    p.task-text {
+        font-size: 0.875rem;
+        margin: 0.3125rem 0;
+        max-width: 25rem;
+    }
+
+    div.reward span {
+        font-weight: 500;
+        margin-right: 2rem;
+    }
+
+    button {
+        background-color: ${colors.primaryColor};
+        border-radius: 0.625rem;
+        font-family: inherit;
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 0.75rem 2rem;
+        margin-bottom: 0.625rem;
     }
 `;

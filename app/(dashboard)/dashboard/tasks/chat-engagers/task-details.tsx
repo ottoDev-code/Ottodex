@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, DragEvent, useState } from "react";
 import {
     Wrapper,
     LeftColumn,
@@ -19,39 +19,25 @@ import {
     ColoredButton,
     UploadedDocContainer,
     ScreenshotContainer,
+    TaskWrapper,
 } from "../../../../styles/task-details.styles";
 import TaskBox from "../../../../components/taskbox/TaskBox";
 import Image from "next/image";
 import uploadIcon from "../../../../../public/upload-icon.svg";
 import imageDocIcon from "../../../../../public/img-doc-icon.svg";
 import closeIcon from "../../../../../public/close-icon.svg";
-import linkIcon from "../../../../../public/link-icon.svg";
 
 const TaskDetails: React.FC = () => {
     const [startTask, setStartTask] = useState<boolean>(false);
     const [uploadedProofs, setUploadedProofs] = useState<File[]>([]);
-    const [url, setUrl] = useState<string>("");
-    const [uploadedUrl, setUploadedUrl] = useState<string[]>([]);
 
-    const addUrl = () => {
-        if (url === "") {
-            return;
+    const handleDrop = (event: DragEvent<HTMLDivElement>) => {
+        console.log("Dropped");
+        event.preventDefault();
+        const file = event.dataTransfer.files[0];
+        if (file) {
+            setUploadedProofs([...uploadedProofs, file]);
         }
-        setUploadedUrl([...uploadedUrl, url]);
-
-        setUrl("");
-    };
-
-    const handleDragOver: (event: Event) => void = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-    };
-    const handleDragLeave: (event: Event) => void = (event) => {
-        event.preventDefault();
-    };
-
-    const handleDrop: (event: Event) => void = (event) => {
-        event.preventDefault();
     };
 
     const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -64,9 +50,11 @@ const TaskDetails: React.FC = () => {
     return (
         <Wrapper>
             <LeftColumn>
-                <TaskBox heading={"Available Tasks"} tasksNub={1} />
-                <TaskBox heading={"Pending Tasks"} tasksNub={5} />
-                <TaskBox heading={"Completed Tasks"} tasksNub={50} />
+                <TaskWrapper>
+                    <TaskBox heading={"Available Tasks"} tasksNub={1} />
+                    <TaskBox heading={"Pending Tasks"} tasksNub={5} />
+                    <TaskBox heading={"Completed Tasks"} tasksNub={50} />
+                </TaskWrapper>
             </LeftColumn>
 
             <RightColumn>
@@ -142,14 +130,20 @@ const TaskDetails: React.FC = () => {
                 )}
 
                 {startTask && (
-                    <UploadContainer
-                        onDrop={() => handleDrop}
-                        onDragLeave={() => handleDragLeave}
-                        onDragOver={() => handleDragOver}
-                    >
+                    <UploadContainer>
                         <div>
                             <h4>Upload Proof</h4>
-                            <UploadBox>
+                            <UploadBox
+                                onDrop={(event: DragEvent<HTMLDivElement>) =>
+                                    handleDrop(event)
+                                }
+                                onDragEnter={(
+                                    event: DragEvent<HTMLDivElement>
+                                ) => event.preventDefault()}
+                                onDragOver={(
+                                    event: DragEvent<HTMLDivElement>
+                                ) => event.preventDefault()}
+                            >
                                 <Image src={uploadIcon} alt="upload icon" />
                                 <FileInput>
                                     <p>
@@ -173,28 +167,8 @@ const TaskDetails: React.FC = () => {
                             </UploadBox>
                         </div>
 
-                        <div>
-                            <h4>Upload Link</h4>
-                            <TextInput>
-                                <form
-                                    onSubmit={(event) => event.preventDefault()}
-                                >
-                                    <input
-                                        type="text"
-                                        placeholder="Add URL"
-                                        value={url}
-                                        onChange={(event) =>
-                                            setUrl(event.target.value)
-                                        }
-                                    />
-                                </form>
-                                <button onClick={() => addUrl()}>Upload</button>
-                            </TextInput>
-                        </div>
-
                         <UploadedDocContainer>
-                            {(uploadedProofs.length !== 0 ||
-                                uploadedUrl.length !== 0) && (
+                            {uploadedProofs.length !== 0 && (
                                 <div>
                                     <h4>Uploaded Proofs</h4>
                                     <ScreenshotContainer>
@@ -209,27 +183,17 @@ const TaskDetails: React.FC = () => {
                                                     alt="Image document icon"
                                                 />{" "}
                                                 <p>
-                                                    Screenshot{" "}
-                                                    {uploadedProofs.indexOf(
-                                                        item
-                                                    ) + 1}
+                                                    {item.name.slice(0, 8)}...
+                                                    {item.name.slice(
+                                                        item.name.lastIndexOf(
+                                                            "."
+                                                        )
+                                                    )}
                                                 </p>
                                                 <Image
                                                     src={closeIcon}
                                                     alt="Close"
                                                 />
-                                            </div>
-                                        ))}
-
-                                        {uploadedUrl?.map((item) => (
-                                            <div
-                                                key={uploadedUrl.indexOf(item)}
-                                            >
-                                                <Image
-                                                    src={linkIcon}
-                                                    alt="Image document icon"
-                                                />{" "}
-                                                <p>{item}</p>
                                             </div>
                                         ))}
                                     </ScreenshotContainer>
@@ -239,7 +203,11 @@ const TaskDetails: React.FC = () => {
 
                         <Buttons>
                             <BorderedButton>Cancel</BorderedButton>
-                            <ColoredButton>Upload</ColoredButton>
+                            <ColoredButton>
+                                {uploadedProofs.length !== 0
+                                    ? "Submit Task"
+                                    : "Upload"}
+                            </ColoredButton>
                         </Buttons>
                     </UploadContainer>
                 )}
