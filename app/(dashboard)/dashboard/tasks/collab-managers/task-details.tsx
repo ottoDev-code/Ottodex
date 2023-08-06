@@ -236,7 +236,14 @@ const TaskDetails: React.FC = () => {
                                                     src={imageDocIcon}
                                                     alt="Image document icon"
                                                 />{" "}
-                                                <p>{item.name.slice(0, 8)}...{item.name.slice(item.name.lastIndexOf("."),)}</p>
+                                                <p>
+                                                    {item.name.slice(0, 8)}...
+                                                    {item.name.slice(
+                                                        item.name.lastIndexOf(
+                                                            "."
+                                                        )
+                                                    )}
+                                                </p>
                                                 <Image
                                                     src={closeIcon}
                                                     alt="Close"
@@ -262,7 +269,12 @@ const TaskDetails: React.FC = () => {
 
                         <Buttons>
                             <BorderedButton>Cancel</BorderedButton>
-                            <ColoredButton>Upload</ColoredButton>
+                            <ColoredButton>
+                                {uploadedProofs.length !== 0 ||
+                                uploadedUrl.length !== 0
+                                    ? "Submit Task"
+                                    : "Upload"}
+                            </ColoredButton>
                         </Buttons>
                     </UploadContainer>
                 )}

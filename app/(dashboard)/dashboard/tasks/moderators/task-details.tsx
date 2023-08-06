@@ -205,7 +205,14 @@ const TaskDetails: React.FC = () => {
                                                     src={imageDocIcon}
                                                     alt="Image document icon"
                                                 />{" "}
-                                                <p>{item.name.slice(0, 8)}...{item.name.slice(item.name.lastIndexOf("."),)}</p>
+                                                <p>
+                                                    {item.name.slice(0, 8)}...
+                                                    {item.name.slice(
+                                                        item.name.lastIndexOf(
+                                                            "."
+                                                        )
+                                                    )}
+                                                </p>
                                                 <Image
                                                     src={closeIcon}
                                                     alt="Close"

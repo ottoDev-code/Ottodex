@@ -1,10 +1,16 @@
-import React from 'react'
-import CollabManagers from './collab-managers'
+import React from "react";
+import CollabManagers from "./collab-managers";
 
 const Page = () => {
-  return (
-    <><CollabManagers /></>
-  )
-}
+    return (
+        <>
+            <CollabManagers />
+        </>
+    );
+};
 
-export default Page
+export const metadata = {
+    title: "BM DAO | Collab Managers",
+};
+
+export default Page;

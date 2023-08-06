@@ -49,10 +49,31 @@ export const BalanceCard = styled.div`
 `;
 
 export const TotalCard = styled.div`
+    align-items: center;
     background-color: ${colors.white};
     border-radius: 0.625rem;
+    column-gap: 1.25rem;
+    display: flex;
     padding: 1.5rem 0.75rem 1.5625rem 0.75rem;
     min-width: 18.75rem;
+
+    div.content {
+        align-items: center;
+        display: flex;
+        font-weight: 500;
+    }
+
+    div.price {
+        font-size: 1.375rem;
+        font-weight: 700;
+        margin-top: 0.94rem;
+    }
+
+    div.stroke {
+        background-color: ${colors.lightGrey};
+        height: 6.25rem;
+        width: 2px;
+    }
 `;
 
 export const Amount = styled.p`

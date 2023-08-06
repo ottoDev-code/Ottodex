@@ -26,22 +26,10 @@ import Image from "next/image";
 import uploadIcon from "../../../../../public/upload-icon.svg";
 import imageDocIcon from "../../../../../public/img-doc-icon.svg";
 import closeIcon from "../../../../../public/close-icon.svg";
-import linkIcon from "../../../../../public/link-icon.svg";
 
 const TaskDetails: React.FC = () => {
     const [startTask, setStartTask] = useState<boolean>(false);
     const [uploadedProofs, setUploadedProofs] = useState<File[]>([]);
-    const [url, setUrl] = useState<string>("");
-    const [uploadedUrl, setUploadedUrl] = useState<string[]>([]);
-
-    const addUrl = () => {
-        if (url === "") {
-            return;
-        }
-        setUploadedUrl([...uploadedUrl, url]);
-
-        setUrl("");
-    };
 
     const handleDrop = (event: DragEvent<HTMLDivElement>) => {
         console.log("Dropped");
@@ -179,28 +167,8 @@ const TaskDetails: React.FC = () => {
                             </UploadBox>
                         </div>
 
-                        <div>
-                            <h4>Upload Link</h4>
-                            <TextInput>
-                                <form
-                                    onSubmit={(event) => event.preventDefault()}
-                                >
-                                    <input
-                                        type="text"
-                                        placeholder="Add URL"
-                                        value={url}
-                                        onChange={(event) =>
-                                            setUrl(event.target.value)
-                                        }
-                                    />
-                                </form>
-                                <button onClick={() => addUrl()}>Upload</button>
-                            </TextInput>
-                        </div>
-
                         <UploadedDocContainer>
-                            {(uploadedProofs.length !== 0 ||
-                                uploadedUrl.length !== 0) && (
+                            {uploadedProofs.length !== 0 && (
                                 <div>
                                     <h4>Uploaded Proofs</h4>
                                     <ScreenshotContainer>
@@ -214,23 +182,18 @@ const TaskDetails: React.FC = () => {
                                                     src={imageDocIcon}
                                                     alt="Image document icon"
                                                 />{" "}
-                                                <p>{item.name.slice(0, 8)}...{item.name.slice(item.name.lastIndexOf("."),)}</p>
+                                                <p>
+                                                    {item.name.slice(0, 8)}...
+                                                    {item.name.slice(
+                                                        item.name.lastIndexOf(
+                                                            "."
+                                                        )
+                                                    )}
+                                                </p>
                                                 <Image
                                                     src={closeIcon}
                                                     alt="Close"
                                                 />
-                                            </div>
-                                        ))}
-
-                                        {uploadedUrl?.map((item) => (
-                                            <div
-                                                key={uploadedUrl.indexOf(item)}
-                                            >
-                                                <Image
-                                                    src={linkIcon}
-                                                    alt="Image document icon"
-                                                />{" "}
-                                                <p>{item}</p>
                                             </div>
                                         ))}
                                     </ScreenshotContainer>
@@ -240,7 +203,11 @@ const TaskDetails: React.FC = () => {
 
                         <Buttons>
                             <BorderedButton>Cancel</BorderedButton>
-                            <ColoredButton>Upload</ColoredButton>
+                            <ColoredButton>
+                                {uploadedProofs.length !== 0
+                                    ? "Submit Task"
+                                    : "Upload"}
+                            </ColoredButton>
                         </Buttons>
                     </UploadContainer>
                 )}

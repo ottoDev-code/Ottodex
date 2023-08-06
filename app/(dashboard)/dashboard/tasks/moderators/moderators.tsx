@@ -10,8 +10,8 @@ const Moderators = () => {
     return (
         <Container>
             <HeadingCard heading={"Tasks"} sub={"Moderators"} />
-            <NotRegistered taskSub={"Moderator"} />
-            {/* <TaskDetails /> */}
+            {/* <NotRegistered taskSub={"Moderator"} /> */}
+            <TaskDetails />
         </Container>
     );
 };

@@ -1,5 +1,7 @@
 "use client";
 
+import chart from "../../../../public/chart.svg";
+
 import HeadingCard from "@/app/components/heading-card/heading-card";
 import {
     ArrowDownIcon,
@@ -17,6 +19,7 @@ import {
     TotalCard,
 } from "@/app/styles/client-wallet.style";
 import { Container } from "@/app/styles/dashboard.style";
+import Image from "next/image";
 import React from "react";
 
 const ClientWallet = () => {
@@ -41,7 +44,27 @@ const ClientWallet = () => {
                         </div>
                     </BalanceCard>
 
-                    <TotalCard></TotalCard>
+                    <TotalCard>
+                        <div>
+                            <div className="content">
+                                <Image src={chart} alt="chart icon" />
+                                Total Income
+                            </div>
+
+                            <div className="price">$2,789.28</div>
+                        </div>
+
+                        <div className="stroke"></div>
+
+                        <div>
+                            <div className="content">
+                                <Image src={chart} alt="chart icon" />
+                                Total Withdrawn
+                            </div>
+
+                            <div className="price">$2,510.76</div>
+                        </div>
+                    </TotalCard>
                 </BalanceCards>
 
                 <Buttons>

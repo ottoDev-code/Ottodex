@@ -131,6 +131,11 @@ export const TextInput = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 0.7rem;
+    form,
+    input {
+        width: 100%;
+    }
+
     input {
         background: transparent;
         color: #cacaca;
@@ -140,7 +145,6 @@ export const TextInput = styled.div`
         font-size: 1rem;
         font-weight: 500;
         outline: none;
-
     }
 
     input:focus {
@@ -220,7 +224,7 @@ export const ScreenshotContainer = styled.div`
         display: flex;
         justify-content: center;
         padding: 0.62rem;
-        max-width: 13rem;
+        /* max-width: 13rem; */
     }
 
     div > p {
@@ -243,5 +247,71 @@ export const Username = styled.div`
         border: transparent;
         font: inherit;
         font-weight: 600;
+    }
+`;
+
+//Task Details New
+
+export const TaskNav = styled.div`
+    align-self: center;
+    align-items: center;
+    background: #fff1bb;
+    border-radius: 0.625rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0.1875rem;
+    text-align: center;
+    width: 80%;
+`;
+
+export const TaskNavItem = styled.div<{ active: boolean }>`
+    background-color: ${(props) =>
+        props.active ? colors.primaryColor : "transparent"};
+    border-radius: 0.625rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.875rem 2rem;
+`;
+
+export const Tasks = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    row-gap: 0.625rem;
+`;
+
+export const Task = styled.div`
+    border-radius: 0.625rem;
+    border: 1px solid ${colors.lightGrey};
+    display: flex;
+    font-weight: 400;
+    justify-content: space-between;
+    padding: 0.625rem;
+
+    h3 {
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+
+    p.task-text {
+        font-size: 0.875rem;
+        margin: 0.3125rem 0;
+        max-width: 25rem;
+    }
+
+    div.reward span {
+        font-weight: 500;
+        margin-right: 2rem;
+    }
+
+    button {
+        background-color: ${colors.primaryColor};
+        border-radius: 0.625rem;
+        font-family: inherit;
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 0.75rem 2rem;
+        margin-bottom: 0.625rem;
     }
 `;
