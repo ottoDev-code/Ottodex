@@ -3,22 +3,27 @@ import theme from "./theme";
 interface IBoxProps {
     $isCompleted: boolean;
 }
-const { colors } = theme;
+const { colors, breakpoints } = theme;
 
 export const Container = styled.div`
     padding: 80px 0 30px 0;
     position: relative;
     max-width: calc(100vw - 290px);
+    ${breakpoints.lg} {
+        max-width: 100%;
+    }
 `;
 export const CardWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     column-gap: 20px;
+    row-gap: 20px;
     margin-top: 30px;
 `;
 export const BalanceCard = styled.div`
     min-width: 300px;
     min-height: 160px;
+    flex: 1 300px;
     background: ${colors.primaryColor};
     border-radius: 10px;
     padding: 10px;
@@ -37,7 +42,7 @@ export const BalanceCard = styled.div`
             margin-bottom: 10px;
         }
         h1 {
-            font-size: 40px;
+            font-size: 34px;
             font-weight: 700;
         }
         button {
@@ -65,6 +70,7 @@ export const TaskCard = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    flex: 1 300px;
     .top {
         display: flex;
         align-items: center;
@@ -115,8 +121,7 @@ export const StatsCard = styled.div`
     }
 `;
 export const StreakCard = styled.div`
-    min-width: 400px;
-    max-width: calc(100% - 650px);
+    flex: 1 400px;
     background: #f2f2f2;
     border-radius: 10px;
     padding: 10px;
@@ -145,6 +150,9 @@ export const StreakCard = styled.div`
     h2 {
         font-size: 18px;
     }
+    ${breakpoints.lg} {
+        flex: 1 300px;
+    }
 `;
 export const StreakBox = styled.div<IBoxProps>`
     background: ${({ $isCompleted }) =>
@@ -158,6 +166,10 @@ export const BottomWrapper = styled.div`
     display: flex;
     column-gap: 20px;
     width: 100%;
+    ${breakpoints.lg} {
+        flex-direction: column;
+        row-gap: 20px;
+    }
 `;
 export const ActivityWrapper = styled.div``;
 export const ActivityCard = styled.div`
@@ -219,6 +231,10 @@ export const Card = styled.div`
         font-weight: 600;
         margin-bottom: 10px;
     }
+    ${breakpoints.lg} {
+        width: 100%;
+        max-width: 100%;
+    }
 `;
 export const CardLeft = styled.div`
     width: calc(100% - 10px);
@@ -259,6 +275,10 @@ export const CopyContainer = styled.div`
         p {
             color: #cacaca;
             font-size: 16px;
+
+            ${breakpoints.lg} {
+                font-size: 12px;
+            }
         }
         button {
             outline: none;

@@ -1,11 +1,15 @@
 import { styled } from "styled-components";
 import theme from "./theme";
-const { colors } = theme;
+const { colors, breakpoints } = theme;
 
 export const Wrapper = styled.div`
     display: flex;
     column-gap: 20px;
     padding: 20px 0;
+    ${breakpoints.lg} {
+        flex-direction: column-reverse;
+        row-gap: 20px;
+    }
 `;
 export const Form = styled.form`
     width: calc(100% - 330px);
@@ -18,10 +22,16 @@ export const Form = styled.form`
         font-weight: 600;
         font-size: 16px;
     }
+    ${breakpoints.lg} {
+        width: 100%;
+    }
 `;
 export const UserSection = styled.div`
     position: relative;
     width: 310px;
+    ${breakpoints.lg} {
+        width: 100%;
+    }
 `;
 export const UserWrap = styled.div`
     background: ${colors.cardBg};
@@ -80,4 +90,7 @@ export const RoleCapsule = styled.span`
 export const InputFlex = styled.div`
     display: flex;
     column-gap: 10px;
+    ${breakpoints.lg} {
+        flex-direction: column;
+    }
 `;

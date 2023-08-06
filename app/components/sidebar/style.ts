@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import theme from "@/app/styles/theme";
-const { colors } = theme;
+const { colors, breakpoints } = theme;
 interface IProps {
     $isActive?: boolean;
 }
@@ -23,6 +23,9 @@ export const Container = styled.div`
     &::-webkit-scrollbar {
         background-color: transparent;
         width: 3px;
+    }
+    ${breakpoints.lg} {
+        display: none;
     }
 `;
 export const LogoWrapper = styled.div`

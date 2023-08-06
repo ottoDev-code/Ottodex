@@ -1,10 +1,14 @@
 import { styled } from "styled-components";
 import theme from "./theme";
-const { colors } = theme;
+const { colors, breakpoints } = theme;
 
 export const Wrapper = styled.div`
     display: flex;
     column-gap: 20px;
+    ${breakpoints.lg} {
+        flex-direction: column;
+        row-gap: 20px;
+    }
 `;
 export const Left = styled.div`
     width: calc(50% - 10px);
@@ -13,6 +17,10 @@ export const Left = styled.div`
     background: ${colors.cardBg};
     border-radius: 10px; 
     padding: 16px 20px;
+    ${breakpoints.lg} {
+        width: 100%;
+        max-width: 100%;
+    }
 `;
 export const Top = styled.div`
     display: flex;
@@ -85,6 +93,10 @@ export const Right = styled.div`
     ul {
         margin-top: 20px;
         padding-left: 15px;
+    }
+    ${breakpoints.lg} {
+        width: 100%;
+        max-width: 100%;
     }
 `;
 export const UserImage = styled.div`
