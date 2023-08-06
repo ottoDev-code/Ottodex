@@ -14,11 +14,12 @@ import {
     Buttons,
     History,
     HistoryDetails,
+    TotalCard,
 } from "@/app/styles/client-wallet.style";
 import { Container } from "@/app/styles/dashboard.style";
 import React from "react";
 
-const Wallet = () => {
+const ClientWallet = () => {
     return (
         <Container>
             <HeadingCard heading={"Wallet"} />
@@ -40,19 +41,7 @@ const Wallet = () => {
                         </div>
                     </BalanceCard>
 
-                    <BalanceCard>
-                        <div className="button">
-                            <p>BMT</p>
-                            <button>
-                                <span>BMT</span>
-                                <ArrowDownIcon />
-                            </button>
-                        </div>
-                        <div>
-                            <p>Total Amount Spent</p>
-                            <Amount>15,500 BMT</Amount>
-                        </div>
-                    </BalanceCard>
+                    <TotalCard></TotalCard>
                 </BalanceCards>
 
                 <Buttons>
@@ -137,4 +126,4 @@ const Wallet = () => {
     );
 };
 
-export default Wallet;
+export default ClientWallet;

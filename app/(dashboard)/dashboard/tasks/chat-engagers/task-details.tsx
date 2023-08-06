@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, DragEvent, useState } from "react";
 import {
     Wrapper,
     LeftColumn,
@@ -43,16 +43,13 @@ const TaskDetails: React.FC = () => {
         setUrl("");
     };
 
-    const handleDragOver: (event: Event) => void = (event) => {
+    const handleDrop = (event: DragEvent<HTMLDivElement>) => {
+        console.log("Dropped");
         event.preventDefault();
-        event.stopPropagation();
-    };
-    const handleDragLeave: (event: Event) => void = (event) => {
-        event.preventDefault();
-    };
-
-    const handleDrop: (event: Event) => void = (event) => {
-        event.preventDefault();
+        const file = event.dataTransfer.files[0];
+        if (file) {
+            setUploadedProofs([...uploadedProofs, file]);
+        }
     };
 
     const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -145,14 +142,20 @@ const TaskDetails: React.FC = () => {
                 )}
 
                 {startTask && (
-                    <UploadContainer
-                        onDrop={() => handleDrop}
-                        onDragLeave={() => handleDragLeave}
-                        onDragOver={() => handleDragOver}
-                    >
+                    <UploadContainer>
                         <div>
                             <h4>Upload Proof</h4>
-                            <UploadBox>
+                            <UploadBox
+                                onDrop={(event: DragEvent<HTMLDivElement>) =>
+                                    handleDrop(event)
+                                }
+                                onDragEnter={(
+                                    event: DragEvent<HTMLDivElement>
+                                ) => event.preventDefault()}
+                                onDragOver={(
+                                    event: DragEvent<HTMLDivElement>
+                                ) => event.preventDefault()}
+                            >
                                 <Image src={uploadIcon} alt="upload icon" />
                                 <FileInput>
                                     <p>

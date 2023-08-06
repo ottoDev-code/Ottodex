@@ -8,7 +8,7 @@ const { colors } = theme;
 export const Container = styled.div`
     padding: 80px 0 30px 0;
     position: relative;
-    max-width: calc(100vw - 290px)
+    max-width: calc(100vw - 290px);
 `;
 export const CardWrapper = styled.div`
     display: flex;
@@ -20,7 +20,7 @@ export const BalanceCard = styled.div`
     min-width: 300px;
     min-height: 160px;
     background: ${colors.primaryColor};
-    border-radius: 10px; 
+    border-radius: 10px;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -33,12 +33,12 @@ export const BalanceCard = styled.div`
         justify-content: space-between;
         p {
             font-size: 18px;
-            font-weight: 600; 
+            font-weight: 600;
             margin-bottom: 10px;
         }
         h1 {
             font-size: 40px;
-            font-weight: 700; 
+            font-weight: 700;
         }
         button {
             height: 44px;
@@ -46,7 +46,7 @@ export const BalanceCard = styled.div`
             padding: 10px;
             border: none;
             border-radius: 7px;
-            background: #FFDE5C;
+            background: #ffde5c;
             font-size: 16px;
             display: flex;
             column-gap: 10px;
@@ -59,7 +59,7 @@ export const BalanceCard = styled.div`
 export const TaskCard = styled.div`
     min-width: 300px;
     background: #f2f2f2;
-    border-radius: 10px; 
+    border-radius: 10px;
     padding: 10px;
     min-height: 160px;
     display: flex;
@@ -72,11 +72,10 @@ export const TaskCard = styled.div`
         h2 {
             font-size: 18px;
             justify-content: space-between;
-        
         }
         div {
             border-radius: 35px;
-            background: #FFF1BB; 
+            background: #fff1bb;
             padding: 10px;
             display: flex;
             column-gap: 10px;
@@ -95,7 +94,7 @@ export const TaskCard = styled.div`
         column-gap: 20px;
         .divider {
             width: 2px;
-            background: #CACACA;
+            background: #cacaca;
         }
     }
 `;
@@ -112,30 +111,30 @@ export const StatsCard = styled.div`
     }
     h2 {
         font-size: 20px;
-        font-weight: 700; 
+        font-weight: 700;
     }
 `;
 export const StreakCard = styled.div`
     min-width: 400px;
     max-width: calc(100% - 650px);
-    background:  #f2f2f2;
-    border-radius: 10px; 
+    background: #f2f2f2;
+    border-radius: 10px;
     padding: 10px;
     min-height: 160px;
     display: flex;
     column-gap: 10px;
     .left {
-       width: calc(50% - 5px);
-       max-width: calc(50% - 5px);
+        width: calc(50% - 5px);
+        max-width: calc(50% - 5px);
     }
     .right {
-       width: calc(50% - 5px);
-       max-width: calc(50% - 5px);
-       div {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 5px;
-       }
+        width: calc(50% - 5px);
+        max-width: calc(50% - 5px);
+        div {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
     }
     .field {
         display: flex;
@@ -148,7 +147,8 @@ export const StreakCard = styled.div`
     }
 `;
 export const StreakBox = styled.div<IBoxProps>`
-    background: ${({$isCompleted}) => $isCompleted ? colors.primaryColor : colors.lightPrimaryColor};
+    background: ${({ $isCompleted }) =>
+        $isCompleted ? colors.primaryColor : colors.lightPrimaryColor};
     height: 20px;
     width: 20px;
     border-radius: 5px;
@@ -159,13 +159,12 @@ export const BottomWrapper = styled.div`
     column-gap: 20px;
     width: 100%;
 `;
-export const ActivityWrapper = styled.div`
-`;
+export const ActivityWrapper = styled.div``;
 export const ActivityCard = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 10px 0;
-    border-bottom: 1px solid #CACACA; 
+    border-bottom: 1px solid #cacaca;
     margin-bottom: 15px;
     .left {
         display: flex;
@@ -211,7 +210,7 @@ export const ActivityCard = styled.div`
 `;
 export const Card = styled.div`
     border-radius: 10px;
-    background: #F2F2F2; 
+    background: #f2f2f2;
     width: calc(50% - 10px);
     max-width: calc(50% - 10px);
     padding: 14px;
@@ -252,13 +251,13 @@ export const CopyContainer = styled.div`
     div {
         padding: 10px 20px;
         border-radius: 10px;
-        border: 1.5px solid #CACACA; 
+        border: 1.5px solid #cacaca;
         display: flex;
         justify-content: space-between;
         align-items: center;
         height: 40px;
         p {
-            color: #CACACA;
+            color: #cacaca;
             font-size: 16px;
         }
         button {
