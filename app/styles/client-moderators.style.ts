@@ -16,6 +16,49 @@ export const Tasks = styled.div`
     width: calc(30% - 1.25rem);
 `;
 
+export const TaskCard = styled.div`
+    min-width: 300px;
+    background: #f2f2f2;
+    border-radius: 10px;
+    padding: 10px;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        h2 {
+            font-size: 18px;
+            justify-content: space-between;
+        }
+        div {
+            border-radius: 35px;
+            background: #fff1bb;
+            padding: 10px;
+            display: flex;
+            column-gap: 10px;
+            align-items: center;
+            font-size: 14px;
+            span {
+                height: 10px;
+                width: 10px;
+                border-radius: 50%;
+                background: ${colors.primaryColor};
+            }
+        }
+    }
+    .bottom {
+        display: flex;
+        column-gap: 20px;
+        .divider {
+            width: 2px;
+            background: #cacaca;
+        }
+    }
+`;
+
 export const HistoryContainer = styled.div`
     width: 65%;
     margin-top: -1.25rem;

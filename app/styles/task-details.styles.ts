@@ -169,6 +169,9 @@ export const TextInput = styled.div`
 
 export const Buttons = styled.div`
     align-self: flex-end;
+    display: grid;
+    column-gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
     margin: 5rem 0 1.5rem;
 `;
 
@@ -186,12 +189,13 @@ export const button = styled.button`
 
 export const ColoredButton = styled(button)`
     background-color: #fc0;
-    margin-left: 1rem;
+    width: 100%;
 `;
 
 export const BorderedButton = styled(button)`
     border-radius: 0.625rem;
     border: 1px solid #818181;
+    padding: 0.5rem 3rem;
 `;
 
 export const StartButton = styled(button)`

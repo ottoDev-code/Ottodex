@@ -16,8 +16,9 @@ import {
     ModWrapper,
     Pagination,
     Tasks,
+    TaskCard,
 } from "@/app/styles/client-moderators.style";
-import { Container, StatsCard, TaskCard } from "@/app/styles/dashboard.style";
+import { Container, StatsCard } from "@/app/styles/dashboard.style";
 import React, { useState } from "react";
 import UploadTask from "./upload-task";
 
@@ -27,7 +28,7 @@ const ClientModerators = () => {
     return (
         <>
             <Container>
-                <HeadingCard heading={"Tasks"} sub={"ClientModerators"} />
+                <HeadingCard heading={"Tasks"} sub={"Moderators"} />
 
                 <ModWrapper>
                     <Tasks>
@@ -247,7 +248,7 @@ const ClientModerators = () => {
                     </HistoryContainer>
                 </ModWrapper>
             </Container>
-            {showModal && <UploadTask />}
+            {showModal && <UploadTask setShowModal={setShowModal} />}
         </>
     );
 };
