@@ -4,8 +4,8 @@ import ClientDashboard from "./client-dashboard";
 
 const Page = () => {
     return (
-        // <><Dashboard /></>
         <>
+            {/* <Dashboard /> */}
             <ClientDashboard />
         </>
     );

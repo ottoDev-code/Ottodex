@@ -11,6 +11,10 @@ import {
     HistoryCard,
     HistoryCardItem,
     LeftContainer,
+    ActivitiesCardRight,
+    ActivitiesCardLeft,
+    ClientTaskCard,
+    ClientBalanceCard,
 } from "@/app/styles/client-dashboard.style";
 
 import {
@@ -32,7 +36,7 @@ const Dashboard = () => {
             <ClientGridContainer>
                 <LeftContainer>
                     <ClientCardWrapper>
-                        <BalanceCard>
+                        <ClientBalanceCard>
                             <div className="top">
                                 <div>
                                     <p>Wallet Balance</p>
@@ -44,8 +48,8 @@ const Dashboard = () => {
                                 </button>
                             </div>
                             <p>BMT Value: 12,345.50</p>
-                        </BalanceCard>
-                        <TaskCard>
+                        </ClientBalanceCard>
+                        <ClientTaskCard>
                             <div className="top">
                                 <h2>Tasks</h2>
                             </div>
@@ -66,8 +70,89 @@ const Dashboard = () => {
                                     <h2>20</h2>
                                 </StatsCard>
                             </div>
-                        </TaskCard>
+                        </ClientTaskCard>
                     </ClientCardWrapper>
+
+                    <ActivitiesCardLeft>
+                        <h2>Recent Activities</h2>
+                        <ActivityWrapper>
+                            <ActivityCard>
+                                <div className="left">
+                                    <div className="icon">
+                                        <DocumentIcon />
+                                    </div>
+                                    <div>
+                                        <h3>Twitter Raiding</h3>
+                                        <p>Task</p>
+                                    </div>
+                                </div>
+                                <div className="right">
+                                    <p>20 BMT</p>
+                                    <p>26 June, 2023</p>
+                                </div>
+                            </ActivityCard>
+                            <ActivityCard>
+                                <div className="left">
+                                    <div className="icon">
+                                        <DocumentIcon />
+                                    </div>
+                                    <div>
+                                        <h3>Twitter Raiding</h3>
+                                        <p>Task</p>
+                                    </div>
+                                </div>
+                                <div className="right">
+                                    <p>20 BMT</p>
+                                    <p>26 June, 2023</p>
+                                </div>
+                            </ActivityCard>
+                            <ActivityCard>
+                                <div className="left">
+                                    <div className="icon">
+                                        <DocumentIcon />
+                                    </div>
+                                    <div>
+                                        <h3>Twitter Raiding</h3>
+                                        <p>Task</p>
+                                    </div>
+                                </div>
+                                <div className="right">
+                                    <p>20 BMT</p>
+                                    <p>26 June, 2023</p>
+                                </div>
+                            </ActivityCard>
+                            <ActivityCard>
+                                <div className="left">
+                                    <div className="icon">
+                                        <DocumentIcon />
+                                    </div>
+                                    <div>
+                                        <h3>Twitter Raiding</h3>
+                                        <p>Task</p>
+                                    </div>
+                                </div>
+                                <div className="right">
+                                    <p>20 BMT</p>
+                                    <p>26 June, 2023</p>
+                                </div>
+                            </ActivityCard>
+                            <ActivityCard>
+                                <div className="left">
+                                    <div className="icon">
+                                        <DocumentIcon />
+                                    </div>
+                                    <div>
+                                        <h3>Twitter Raiding</h3>
+                                        <p>Task</p>
+                                    </div>
+                                </div>
+                                <div className="right">
+                                    <p>20 BMT</p>
+                                    <p>26 June, 2023</p>
+                                </div>
+                            </ActivityCard>
+                        </ActivityWrapper>
+                    </ActivitiesCardLeft>
 
                     <History>
                         <div className="first">
@@ -76,108 +161,108 @@ const Dashboard = () => {
                         </div>
                         <HistoryCard>
                             <HistoryCardItem>
-                                <p>
+                                <p className="title">
                                     <span>#</span> Task
                                 </p>
-                                <p>Date</p>
-                                <p>Status</p>
-                                <p>Amount</p>
+                                <p className="date">Date</p>
+                                <p className="level">Status</p>
+                                <p className="price">Amount</p>
                             </HistoryCardItem>
 
                             <HistoryCardItem>
-                                <p>
+                                <p className="title">
                                     <span>1</span> Twitter Raider
                                 </p>
-                                <p>26/06/2023</p>
-                                <p>Pending</p>
-                                <p>500 BMT</p>
+                                <p className="date">26/06/2023</p>
+                                <p className="level">Pending</p>
+                                <p className="price">500 BMT</p>
                             </HistoryCardItem>
 
                             <HistoryCardItem>
-                                <p>
+                                <p className="title">
                                     <span>2</span> Collab Manager
                                 </p>
-                                <p>26/06/2023</p>
-                                <p>Completed</p>
-                                <p>500 BMT</p>
+                                <p className="date">26/06/2023</p>
+                                <p className="level">Completed</p>
+                                <p className="price">500 BMT</p>
                             </HistoryCardItem>
 
                             <HistoryCardItem>
-                                <p>
+                                <p className="title">
                                     <span>3</span> Twitter Raider
                                 </p>
-                                <p>26/06/2023</p>
-                                <p>Completed</p>
-                                <p>500 BMT</p>
+                                <p className="date">26/06/2023</p>
+                                <p className="level">Completed</p>
+                                <p className="price">500 BMT</p>
                             </HistoryCardItem>
 
                             <HistoryCardItem>
-                                <p>
+                                <p className="title">
                                     <span>4</span> Twitter Raider
                                 </p>
-                                <p>26/06/2023</p>
-                                <p>Completed</p>
-                                <p>500 BMT</p>
+                                <p className="date">26/06/2023</p>
+                                <p className="level">Completed</p>
+                                <p className="price">500 BMT</p>
                             </HistoryCardItem>
 
                             <HistoryCardItem>
-                                <p>
+                                <p className="title">
                                     <span>5</span> Twitter Raider
                                 </p>
-                                <p>26/06/2023</p>
-                                <p>Completed</p>
-                                <p>500 BMT</p>
+                                <p className="date">26/06/2023</p>
+                                <p className="level">Completed</p>
+                                <p className="price">500 BMT</p>
                             </HistoryCardItem>
 
                             <HistoryCardItem>
-                                <p>
+                                <p className="title">
                                     <span>6</span> Twitter Raider
                                 </p>
-                                <p>26/06/2023</p>
-                                <p>Completed</p>
-                                <p>500 BMT</p>
+                                <p className="date">26/06/2023</p>
+                                <p className="level">Completed</p>
+                                <p className="price">500 BMT</p>
                             </HistoryCardItem>
 
                             <HistoryCardItem>
-                                <p>
+                                <p className="title">
                                     <span>7</span> Chat Engagers
                                 </p>
-                                <p>26/06/2023</p>
-                                <p>Completed</p>
-                                <p>500 BMT</p>
+                                <p className="date">26/06/2023</p>
+                                <p className="level">Completed</p>
+                                <p className="price">500 BMT</p>
                             </HistoryCardItem>
 
                             <HistoryCardItem>
-                                <p>
+                                <p className="title">
                                     <span>8</span> Chat Engagers
                                 </p>
-                                <p>26/06/2023</p>
-                                <p>Completed</p>
-                                <p>500 BMT</p>
+                                <p className="date">26/06/2023</p>
+                                <p className="level">Completed</p>
+                                <p className="price">500 BMT</p>
                             </HistoryCardItem>
 
                             <HistoryCardItem>
-                                <p>
+                                <p className="title">
                                     <span>9</span> Chat Engagers
                                 </p>
-                                <p>26/06/2023</p>
-                                <p>Completed</p>
-                                <p>500 BMT</p>
+                                <p className="date">26/06/2023</p>
+                                <p className="level">Completed</p>
+                                <p className="price">500 BMT</p>
                             </HistoryCardItem>
 
                             <HistoryCardItem>
-                                <p>
+                                <p className="title">
                                     <span>10</span> Twitter Raider
                                 </p>
-                                <p>26/06/2023</p>
-                                <p>Completed</p>
-                                <p>500 BMT</p>
+                                <p className="date">26/06/2023</p>
+                                <p className="level">Completed</p>
+                                <p className="price">500 BMT</p>
                             </HistoryCardItem>
                         </HistoryCard>
                     </History>
                 </LeftContainer>
 
-                <ActivitiesCard>
+                <ActivitiesCardRight>
                     <h2>Recent Activities</h2>
                     <ActivityWrapper>
                         <ActivityCard>
@@ -256,7 +341,7 @@ const Dashboard = () => {
                             </div>
                         </ActivityCard>
                     </ActivityWrapper>
-                </ActivitiesCard>
+                </ActivitiesCardRight>
             </ClientGridContainer>
         </Container>
     );
