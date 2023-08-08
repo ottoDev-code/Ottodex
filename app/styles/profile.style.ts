@@ -42,7 +42,7 @@ export const UserWrap = styled.div`
     top: 100px;
     button {
         width: 100%;
-        border-radius: 10px; 
+        border-radius: 10px;
         padding: 12px 0;
         background: ${colors.primaryColor};
         outline: none;
@@ -50,6 +50,9 @@ export const UserWrap = styled.div`
         font-size: 14px;
         font-weight: 500;
         cursor: pointer;
+    }
+
+    @media screen and (max-width: 1000px) {
     }
 `;
 export const UserCard = styled.div`

@@ -18,7 +18,7 @@ import {
 import Image from "next/image";
 import React from "react";
 
-const Profile = () => {
+const ClientProfile = () => {
     return (
         <Container>
             <HeadingCard heading={"Profile"} />
@@ -114,4 +114,4 @@ const Profile = () => {
     );
 };
 
-export default Profile;
+export default ClientProfile;

@@ -16,8 +16,10 @@ import {
     ModWrapper,
     Pagination,
     Tasks,
+    TaskCard,
+    ClientHistory,
 } from "@/app/styles/client-moderators.style";
-import { Container, StatsCard, TaskCard } from "@/app/styles/dashboard.style";
+import { Container, StatsCard } from "@/app/styles/dashboard.style";
 import React, { useState } from "react";
 import UploadTask from "./upload-task";
 
@@ -27,7 +29,7 @@ const ClientModerators = () => {
     return (
         <>
             <Container>
-                <HeadingCard heading={"Tasks"} sub={"ClientModerators"} />
+                <HeadingCard heading={"Tasks"} sub={"Moderators"} />
 
                 <ModWrapper>
                     <Tasks>
@@ -124,111 +126,114 @@ const ClientModerators = () => {
                         </TaskCard>
                     </Tasks>
                     <HistoryContainer>
-                        <History>
+                        <ClientHistory>
                             <div className="first">
                                 <h2>Task History</h2>
-                                <button onClick={() => setShowModal(true)}>
+                                <button
+                                    className="desktop"
+                                    onClick={() => setShowModal(true)}
+                                >
                                     Upload Task
                                 </button>
                             </div>
                             <HistoryCard>
                                 <HistoryCardItem>
-                                    <p>
+                                    <p className="title">
                                         <span>#</span> Task
                                     </p>
-                                    <p>Date</p>
-                                    <p>Status</p>
-                                    <p>Amount</p>
+                                    <p className="date">Date</p>
+                                    <p className="status">Status</p>
+                                    <p className="price">Amount</p>
                                 </HistoryCardItem>
 
                                 <HistoryCardItem>
-                                    <p>
+                                    <p className="title">
                                         <span>1</span> Twitter Raider
                                     </p>
-                                    <p>26/06/2023</p>
-                                    <p>Pending</p>
-                                    <p>500 BMT</p>
+                                    <p className="date">26/06/2023</p>
+                                    <p className="status">Pending</p>
+                                    <p className="price">500 BMT</p>
                                 </HistoryCardItem>
 
                                 <HistoryCardItem>
-                                    <p>
+                                    <p className="title">
                                         <span>2</span> Collab Manager
                                     </p>
-                                    <p>26/06/2023</p>
-                                    <p>Completed</p>
-                                    <p>500 BMT</p>
+                                    <p className="date">26/06/2023</p>
+                                    <p className="status">Completed</p>
+                                    <p className="price">500 BMT</p>
                                 </HistoryCardItem>
 
                                 <HistoryCardItem>
-                                    <p>
+                                    <p className="title">
                                         <span>3</span> Twitter Raider
                                     </p>
-                                    <p>26/06/2023</p>
-                                    <p>Completed</p>
-                                    <p>500 BMT</p>
+                                    <p className="date">26/06/2023</p>
+                                    <p className="status">Completed</p>
+                                    <p className="price">500 BMT</p>
                                 </HistoryCardItem>
 
                                 <HistoryCardItem>
-                                    <p>
+                                    <p className="title">
                                         <span>4</span> Twitter Raider
                                     </p>
-                                    <p>26/06/2023</p>
-                                    <p>Completed</p>
-                                    <p>500 BMT</p>
+                                    <p className="date">26/06/2023</p>
+                                    <p className="status">Completed</p>
+                                    <p className="price">500 BMT</p>
                                 </HistoryCardItem>
 
                                 <HistoryCardItem>
-                                    <p>
+                                    <p className="title">
                                         <span>5</span> Twitter Raider
                                     </p>
-                                    <p>26/06/2023</p>
-                                    <p>Completed</p>
-                                    <p>500 BMT</p>
+                                    <p className="date">26/06/2023</p>
+                                    <p className="status">Completed</p>
+                                    <p className="price">500 BMT</p>
                                 </HistoryCardItem>
 
                                 <HistoryCardItem>
-                                    <p>
+                                    <p className="title">
                                         <span>6</span> Twitter Raider
                                     </p>
-                                    <p>26/06/2023</p>
-                                    <p>Completed</p>
-                                    <p>500 BMT</p>
+                                    <p className="date">26/06/2023</p>
+                                    <p className="status">Completed</p>
+                                    <p className="price">500 BMT</p>
                                 </HistoryCardItem>
 
                                 <HistoryCardItem>
-                                    <p>
+                                    <p className="title">
                                         <span>7</span> Chat Engagers
                                     </p>
-                                    <p>26/06/2023</p>
-                                    <p>Completed</p>
-                                    <p>500 BMT</p>
+                                    <p className="date">26/06/2023</p>
+                                    <p className="status">Completed</p>
+                                    <p className="price">500 BMT</p>
                                 </HistoryCardItem>
 
                                 <HistoryCardItem>
-                                    <p>
+                                    <p className="title">
                                         <span>8</span> Chat Engagers
                                     </p>
-                                    <p>26/06/2023</p>
-                                    <p>Completed</p>
-                                    <p>500 BMT</p>
+                                    <p className="date">26/06/2023</p>
+                                    <p className="status">Completed</p>
+                                    <p className="price">500 BMT</p>
                                 </HistoryCardItem>
 
                                 <HistoryCardItem>
-                                    <p>
+                                    <p className="title">
                                         <span>9</span> Chat Engagers
                                     </p>
-                                    <p>26/06/2023</p>
-                                    <p>Completed</p>
-                                    <p>500 BMT</p>
+                                    <p className="date">26/06/2023</p>
+                                    <p className="status">Completed</p>
+                                    <p className="price">500 BMT</p>
                                 </HistoryCardItem>
 
                                 <HistoryCardItem>
-                                    <p>
+                                    <p className="title">
                                         <span>10</span> Twitter Raider
                                     </p>
-                                    <p>26/06/2023</p>
-                                    <p>Completed</p>
-                                    <p>500 BMT</p>
+                                    <p className="date">26/06/2023</p>
+                                    <p className="status">Completed</p>
+                                    <p className="price">500 BMT</p>
                                 </HistoryCardItem>
                             </HistoryCard>
 
@@ -243,11 +248,18 @@ const ClientModerators = () => {
                                 </div>
                                 <ArrowRightIcon />
                             </Pagination>
-                        </History>
+
+                            <button
+                                className="mobile"
+                                onClick={() => setShowModal(true)}
+                            >
+                                Upload Task
+                            </button>
+                        </ClientHistory>
                     </HistoryContainer>
                 </ModWrapper>
             </Container>
-            {showModal && <UploadTask />}
+            {showModal && <UploadTask setShowModal={setShowModal} />}
         </>
     );
 };

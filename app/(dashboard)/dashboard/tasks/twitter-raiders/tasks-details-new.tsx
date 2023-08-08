@@ -26,9 +26,9 @@ const TaskDetailsNew = () => {
 
             <RightColumn>
                 <TaskNav>
-                    <TaskNavItem active={false}>Default Tasks</TaskNavItem>
-                    <TaskNavItem active={true}>Major Tasks</TaskNavItem>
-                    <TaskNavItem active={false}>Minor Tasks</TaskNavItem>
+                    <TaskNavItem isActive={false}>Default Tasks</TaskNavItem>
+                    <TaskNavItem isActive={true}>Major Tasks</TaskNavItem>
+                    <TaskNavItem isActive={false}>Minor Tasks</TaskNavItem>
                 </TaskNav>
 
                 <Tasks>
@@ -47,7 +47,7 @@ const TaskDetailsNew = () => {
                             </div>
                         </div>
 
-                        <div>
+                        <div className="claim">
                             <button>Claim</button>
                             <p>10/1000 left</p>
                         </div>
@@ -68,7 +68,7 @@ const TaskDetailsNew = () => {
                             </div>
                         </div>
 
-                        <div>
+                        <div className="claim">
                             <button>Claim</button>
                             <p>10/1000 left</p>
                         </div>
@@ -89,7 +89,7 @@ const TaskDetailsNew = () => {
                             </div>
                         </div>
 
-                        <div>
+                        <div className="claim">
                             <button>Claim</button>
                             <p>10/1000 left</p>
                         </div>
@@ -110,7 +110,7 @@ const TaskDetailsNew = () => {
                             </div>
                         </div>
 
-                        <div>
+                        <div className="claim">
                             <button>Claim</button>
                             <p>10/1000 left</p>
                         </div>
