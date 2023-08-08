@@ -12,8 +12,8 @@ const TwitterRaiders = () => {
         <Container>
             <HeadingCard heading={"Tasks"} sub={"Twitter Raiders"} />
             {/* <NotRegistered taskSub={"Twitter Raiders"} /> */}
-            {/* <TaskDetails /> */}
-            <TaskDetailsNew />
+            <TaskDetails />
+            {/* <TaskDetailsNew /> */}
         </Container>
     );
 };

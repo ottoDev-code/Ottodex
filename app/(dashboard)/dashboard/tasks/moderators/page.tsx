@@ -5,8 +5,8 @@ import ClientModerators from "./client-moderator";
 const Page = () => {
     return (
         <>
-            {/* <Moderators /> */}
-            <ClientModerators />
+            <Moderators />
+            {/* <ClientModerators /> */}
         </>
     );
 };

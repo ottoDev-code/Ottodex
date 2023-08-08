@@ -7,6 +7,11 @@ export const Wrapper = styled.div`
     display: flex;
     column-gap: 1.25rem;
     padding-top: 20px;
+
+    @media screen and (max-width: 1080px) {
+        flex-direction: column;
+        row-gap: 1.25rem;
+    }
 `;
 
 export const LeftColumn = styled.div`
@@ -20,6 +25,12 @@ export const TaskWrapper = styled.div`
     position: sticky;
     top: 100px;
     row-gap: 1.25rem;
+    @media screen and (max-width: 1080px) {
+        position: static;
+        flex-direction: row;
+        column-gap: 1.25rem;
+        overflow-x: scroll;
+    }
 `;
 
 export const RightColumn = styled.div`
@@ -30,11 +41,21 @@ export const RightColumn = styled.div`
     width: 100%;
     max-width: 800px;
     border-radius: 10px;
+    @media screen and (max-width: 1000px) {
+        max-width: none;
+    }
+
+    @media screen and (max-width: 768px) {
+        padding: 10px;
+    }
 `;
 
 export const TaskSub = styled.h3`
     font-size: 1.25rem;
     font-weight: 600;
+    @media screen and (max-width: 768px) {
+        font-size: 18px;
+    }
 `;
 
 export const Details = styled.div`
@@ -46,11 +67,23 @@ export const Details = styled.div`
         justify-content: space-between;
         margin-bottom: 0.8rem;
     }
+
+    @media screen and (max-width: 768px) {
+        font-size: 14px;
+
+        > div {
+            flex-wrap: wrap;
+        }
+    }
 `;
 
 export const BoldP = styled.p`
     font-size: 1.125rem;
     font-weight: 600;
+
+    @media screen and (max-width: 768px) {
+        font-size: 14px;
+    }
 `;
 
 export const Instructions = styled.div`
@@ -58,10 +91,24 @@ export const Instructions = styled.div`
         font-size: 1rem;
         font-weight: 600;
         margin-bottom: 0.85rem;
+        margin-top: 20px;
     }
 
-    > p {
-        margin-bottom: 0.15rem;
+    p {
+        margin-bottom: 0.25rem;
+    }
+
+    .instruction-grid {
+        display: flex;
+        column-gap: 6px;
+    }
+
+    @media screen and (max-width: 768px) {
+        font-size: 14px;
+
+        > h4 {
+            font-size: 18px;
+        }
     }
 `;
 
@@ -81,6 +128,10 @@ export const TemplateBox = styled.div`
 
     p {
         font-size: 0.875rem;
+    }
+
+    @media screen and (max-width: 495px) {
+        padding: 10px 8px;
     }
 `;
 
@@ -103,6 +154,10 @@ export const UploadContainer = styled.div`
         font-size: 1rem;
         font-weight: 600;
         margin: 1.25rem 0 0.85rem;
+    }
+
+    @media screen and (max-width: 495px) {
+        font-size: 14px;
     }
 `;
 
@@ -165,6 +220,13 @@ export const TextInput = styled.div`
     input:focus {
         outline: none;
     }
+
+    @media screen and (max-width: 495px) {
+        input,
+        button {
+            font-size: 14px;
+        }
+    }
 `;
 
 export const Buttons = styled.div`
@@ -173,6 +235,11 @@ export const Buttons = styled.div`
     column-gap: 1rem;
     grid-template-columns: repeat(2, 1fr);
     margin: 5rem 0 1.5rem;
+    @media screen and (max-width: 495px) {
+        align-self: center;
+        column-gap: 8px;
+        margin: 5rem 0 8px;
+    }
 `;
 
 export const button = styled.button`
@@ -180,22 +247,27 @@ export const button = styled.button`
     border-radius: 0.625rem;
     font-size: inherit;
     font-family: inherit;
-    padding: 0.65rem 3rem;
+    padding: 0.65rem 2rem;
 
     :focus {
         outline: none;
+    }
+
+    @media screen and (max-width: 768px) {
+        font-size: 14px;
     }
 `;
 
 export const ColoredButton = styled(button)`
     background-color: #fc0;
     width: 100%;
+    text-overflow: wrap;
 `;
 
 export const BorderedButton = styled(button)`
     border-radius: 0.625rem;
     border: 1px solid #818181;
-    padding: 0.5rem 3rem;
+    padding: 0.5rem 2rem;
 `;
 
 export const StartButton = styled(button)`
@@ -221,7 +293,7 @@ export const ScreenshotContainer = styled.div`
     padding: 1.06rem;
     row-gap: 0.625rem;
 
-    div {
+    > div {
         align-items: center;
         border: 1px solid #818181;
         border-radius: 1.5625rem;
@@ -234,6 +306,51 @@ export const ScreenshotContainer = styled.div`
     div > p {
         margin: 0 0.8rem;
         font-weight: 500;
+    }
+
+    .hidden-desktop {
+        display: none;
+    }
+
+    .uploaded-url > div {
+        display: flex;
+    }
+
+    .url-wrapper h4 {
+        display: none;
+    }
+
+    @media screen and (max-width: 495px) {
+        border: none;
+        padding: 0;
+
+        .hidden-desktop {
+            color: ${colors.primaryColor};
+            display: block;
+            font: inherit;
+            font-weight: 600;
+        }
+
+        .url-wrapper {
+            align-items: flex-start;
+            border: none;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .url-wrapper h4 {
+            display: block;
+        }
+        .uploaded-url {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .uploaded-url > div {
+            border: none;
+            padding-left: 0;
+        }
     }
 `;
 
@@ -252,6 +369,15 @@ export const Username = styled.div`
         font: inherit;
         font-weight: 600;
     }
+
+    @media screen and (max-width: 495px) {
+        margin-bottom: 20px;
+        padding: 0 20px;
+        p,
+        button {
+            font-size: 14px;
+        }
+    }
 `;
 
 //Task Details New
@@ -266,16 +392,24 @@ export const TaskNav = styled.div`
     padding: 0.1875rem;
     text-align: center;
     width: 80%;
+
+    @media screen and (max-width: 1000px) {
+        width: 100%;
+    }
 `;
 
-export const TaskNavItem = styled.div<{ active: boolean }>`
+export const TaskNavItem = styled.div<{ isActive: boolean }>`
     background-color: ${(props) =>
-        props.active ? colors.primaryColor : "transparent"};
+        props.isActive ? colors.primaryColor : "transparent"};
     border-radius: 0.625rem;
     cursor: pointer;
     font-size: 0.875rem;
     font-weight: 500;
     padding: 0.875rem 2rem;
+    @media screen and (max-width: 536px) {
+        font-size: 12px;
+        padding: 10px 15px;
+    }
 `;
 
 export const Tasks = styled.div`
@@ -288,6 +422,7 @@ export const Tasks = styled.div`
 export const Task = styled.div`
     border-radius: 0.625rem;
     border: 1px solid ${colors.lightGrey};
+    column-gap: 1rem;
     display: flex;
     font-weight: 400;
     justify-content: space-between;
@@ -317,5 +452,28 @@ export const Task = styled.div`
         font-weight: 500;
         padding: 0.75rem 2rem;
         margin-bottom: 0.625rem;
+    }
+
+    @media screen and (max-width: 536px) {
+        h3 {
+            font-size: 16px;
+        }
+
+        p {
+            font-size: 12px;
+        }
+
+        div.reward span {
+            margin-right: 10px;
+        }
+
+        div.claim {
+            align-self: flex-end;
+        }
+
+        button {
+            font-size: 14px;
+            padding: 10px 25px;
+        }
     }
 `;
