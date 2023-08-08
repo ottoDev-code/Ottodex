@@ -157,7 +157,7 @@ const Dashboard = () => {
                     <History>
                         <div className="first">
                             <h2>Task History</h2>
-                            <button>View All</button>
+                            <button className="dashboard">View All</button>
                         </div>
                         <HistoryCard>
                             <HistoryCardItem>
@@ -165,7 +165,7 @@ const Dashboard = () => {
                                     <span>#</span> Task
                                 </p>
                                 <p className="date">Date</p>
-                                <p className="level">Status</p>
+                                <p className="status">Status</p>
                                 <p className="price">Amount</p>
                             </HistoryCardItem>
 
@@ -174,7 +174,7 @@ const Dashboard = () => {
                                     <span>1</span> Twitter Raider
                                 </p>
                                 <p className="date">26/06/2023</p>
-                                <p className="level">Pending</p>
+                                <p className="status">Pending</p>
                                 <p className="price">500 BMT</p>
                             </HistoryCardItem>
 
@@ -183,7 +183,7 @@ const Dashboard = () => {
                                     <span>2</span> Collab Manager
                                 </p>
                                 <p className="date">26/06/2023</p>
-                                <p className="level">Completed</p>
+                                <p className="status">Completed</p>
                                 <p className="price">500 BMT</p>
                             </HistoryCardItem>
 
@@ -192,7 +192,7 @@ const Dashboard = () => {
                                     <span>3</span> Twitter Raider
                                 </p>
                                 <p className="date">26/06/2023</p>
-                                <p className="level">Completed</p>
+                                <p className="status">Completed</p>
                                 <p className="price">500 BMT</p>
                             </HistoryCardItem>
 
@@ -201,7 +201,7 @@ const Dashboard = () => {
                                     <span>4</span> Twitter Raider
                                 </p>
                                 <p className="date">26/06/2023</p>
-                                <p className="level">Completed</p>
+                                <p className="status">Completed</p>
                                 <p className="price">500 BMT</p>
                             </HistoryCardItem>
 
@@ -210,7 +210,7 @@ const Dashboard = () => {
                                     <span>5</span> Twitter Raider
                                 </p>
                                 <p className="date">26/06/2023</p>
-                                <p className="level">Completed</p>
+                                <p className="status">Completed</p>
                                 <p className="price">500 BMT</p>
                             </HistoryCardItem>
 
@@ -219,7 +219,7 @@ const Dashboard = () => {
                                     <span>6</span> Twitter Raider
                                 </p>
                                 <p className="date">26/06/2023</p>
-                                <p className="level">Completed</p>
+                                <p className="status">Completed</p>
                                 <p className="price">500 BMT</p>
                             </HistoryCardItem>
 
@@ -228,7 +228,7 @@ const Dashboard = () => {
                                     <span>7</span> Chat Engagers
                                 </p>
                                 <p className="date">26/06/2023</p>
-                                <p className="level">Completed</p>
+                                <p className="status">Completed</p>
                                 <p className="price">500 BMT</p>
                             </HistoryCardItem>
 
@@ -237,7 +237,7 @@ const Dashboard = () => {
                                     <span>8</span> Chat Engagers
                                 </p>
                                 <p className="date">26/06/2023</p>
-                                <p className="level">Completed</p>
+                                <p className="status">Completed</p>
                                 <p className="price">500 BMT</p>
                             </HistoryCardItem>
 
@@ -246,7 +246,7 @@ const Dashboard = () => {
                                     <span>9</span> Chat Engagers
                                 </p>
                                 <p className="date">26/06/2023</p>
-                                <p className="level">Completed</p>
+                                <p className="status">Completed</p>
                                 <p className="price">500 BMT</p>
                             </HistoryCardItem>
 
@@ -255,7 +255,7 @@ const Dashboard = () => {
                                     <span>10</span> Twitter Raider
                                 </p>
                                 <p className="date">26/06/2023</p>
-                                <p className="level">Completed</p>
+                                <p className="status">Completed</p>
                                 <p className="price">500 BMT</p>
                             </HistoryCardItem>
                         </HistoryCard>

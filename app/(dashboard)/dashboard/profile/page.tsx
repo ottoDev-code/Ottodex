@@ -1,10 +1,14 @@
-import React from 'react'
-import Profile from './profile'
+import React from "react";
+import Profile from "./profile";
+import ClientProfile from "./client-profile";
 
 const Page = () => {
-  return (
-    <><Profile /></>
-  )
-}
+    return (
+        <>
+            {/* <Profile /> */}
+            <ClientProfile />
+        </>
+    );
+};
 
-export default Page
+export default Page;

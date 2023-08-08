@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import theme from "./theme";
-const { colors, breakpoints } = theme;
+const { colors } = theme;
 
 export const Wrapper = styled.div`
     align-items: center;
@@ -22,11 +22,21 @@ export const Wrapper = styled.div`
         background-color: transparent;
         width: 3px;
     }
-    ${breakpoints.lg} {
-        display: none;
-    }
+
     > div {
         margin-bottom: 1.25rem;
+    }
+
+    @media screen and (max-width: 1000px) {
+        z-index: 11111111111111111;
+    }
+
+    @media screen and (max-width: 565px) {
+        background-color: transparent;
+        z-index: 111;
+        > div {
+            width: 100%;
+        }
     }
 `;
 
@@ -160,6 +170,22 @@ export const UploadContainer = styled.div`
         font-family: inherit;
         font-size: 1rem;
         font-weight: 500;
+    }
+
+    @media screen and (max-width: 1000px) {
+        background-color: ${colors.bgGrey};
+    }
+
+    @media screen and (max-width: 565px) {
+        margin-top: 60px;
+        min-width: auto;
+        form > div {
+            flex-direction: column;
+        }
+
+        label {
+            width: 100%;
+        }
     }
 `;
 

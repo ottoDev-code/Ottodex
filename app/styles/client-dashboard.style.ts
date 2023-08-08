@@ -123,6 +123,7 @@ export const History = styled.div`
     flex-direction: column;
     margin-top: 1.25rem;
     padding: 1.45rem;
+
     div.first {
         align-items: center;
         display: flex;
@@ -149,15 +150,16 @@ export const History = styled.div`
     @media screen and (max-width: 654px) {
         h2 {
             margin-bottom: 0;
+            padding-left: 0.875rem;
         }
 
-        button {
+        button.dashboard {
             background-color: transparent;
             padding: 0;
             position: relative;
         }
 
-        button::after {
+        button.dashboard::after {
             background-color: ${colors.black};
             content: "";
             display: block;
@@ -212,12 +214,12 @@ export const HistoryCardItem = styled.div`
             grid-area: 2/1/3/2;
         }
 
-        p.level {
+        p.status {
             grid-area: 2/2/3/3;
         }
 
         p.date,
-        p.level {
+        p.status {
             font-size: 12px;
             font-weight: 500;
         }
@@ -228,7 +230,7 @@ export const HistoryCardItem = styled.div`
         }
 
         p.price,
-        p.level {
+        p.status {
             justify-self: end;
         }
     }

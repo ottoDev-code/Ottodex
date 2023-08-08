@@ -60,6 +60,10 @@ export const BalanceCard = styled.div`
             cursor: pointer;
         }
     }
+
+    @media screen and (max-width: 340px) {
+        min-width: 280px;
+    }
 `;
 export const TaskCard = styled.div`
     min-width: 300px;
@@ -102,6 +106,10 @@ export const TaskCard = styled.div`
             width: 2px;
             background: #cacaca;
         }
+    }
+
+    @media screen and (max-width: 340px) {
+        min-width: 280px;
     }
 `;
 export const StatsCard = styled.div`
@@ -246,7 +254,7 @@ export const CardLeft = styled.div`
 `;
 export const CardRight = styled.div`
     border-radius: 10px;
-    background: #F2F2F2; 
+    background: #f2f2f2;
     width: 390px;
     max-width: 390px;
     min-width: 390px;
