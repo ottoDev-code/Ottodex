@@ -219,6 +219,19 @@ export const ActivityCard = styled.div`
             font-weight: 600;
         }
     }
+    ${breakpoints.lg} {
+        .left {
+            column-gap: 5px;
+            width: calc(65% - 5px);
+            max-width: calc(65% - 5px) ;
+        }
+        .right {
+            flex-direction: column-reverse;
+            align-items: start;
+            width: calc(35% - 5px);
+            max-width: calc(35% - 5px);
+        }
+    }
 `;
 export const Card = styled.div`
     border-radius: 10px;

@@ -24,6 +24,7 @@ export const Form = styled.form`
     }
     ${breakpoints.lg} {
         width: 100%;
+        background: transparent;
     }
 `;
 export const UserSection = styled.div`
@@ -51,11 +52,21 @@ export const UserWrap = styled.div`
         font-weight: 500;
         cursor: pointer;
     }
+    ${breakpoints.lg} {
+        background: transparent;
+        padding: 0;
+    }
 `;
 export const UserCard = styled.div`
     display: flex;
     column-gap: 10px;
     align-items: center;
+    ${breakpoints.lg} {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        row-gap: 10px;
+    }
 `;
 export const UserImage = styled.div`
     position: relative;
@@ -78,6 +89,9 @@ export const RoleWrapper = styled.div`
     flex-wrap: wrap;
     gap: 5px;
     padding: 20px 0;
+    ${breakpoints.lg} {
+        justify-content: center;
+    }
 `;
 export const RoleCapsule = styled.span`
     display: inline-block;

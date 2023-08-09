@@ -2,7 +2,11 @@ import { styled } from "styled-components";
 import theme from "@/app/styles/theme";
 const { colors, breakpoints } = theme;
 
-export const Container = styled.div`
+interface IContainer {
+    $notShow?: boolean;
+}
+
+export const Container = styled.div<IContainer>`
     display: flex;
     justify-content: space-between;
     position: fixed;
@@ -14,6 +18,7 @@ export const Container = styled.div`
         padding: 20px 10px 10px 10px; 
         width: 100%;
         position: relative;
+        ${({$notShow}) => $notShow ? "display: none;": ""};
     }
 `;
 export const Heading = styled.div`

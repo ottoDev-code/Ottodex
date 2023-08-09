@@ -4,9 +4,10 @@ import { Container, Heading, TimeContainer } from './style';
 import Image from 'next/image';
 interface IProps {
     heading: string;
-    sub?: string
+    sub?: string;
+    notShow?: boolean;
 }
-const HeadingCard: FunctionComponent<IProps> = ({ heading, sub }) => {
+const HeadingCard: FunctionComponent<IProps> = ({ heading, sub, notShow }) => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   let intervalId: NodeJS.Timer;
@@ -20,7 +21,7 @@ const HeadingCard: FunctionComponent<IProps> = ({ heading, sub }) => {
     }
   }, [])
   return (
-    <Container>
+    <Container $notShow={notShow}>
         <Heading>
             <h1>{heading}</h1>
             <p>{sub}</p>

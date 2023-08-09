@@ -7,7 +7,7 @@ import React from 'react'
 const Dashboard = () => {
   return (
     <Container>
-      <HeadingCard heading={"Hello, Dave 👋"} sub={"Perform daily tasks and track your records!"} />
+      <HeadingCard heading={"Hello, Dave 👋"} sub={"Perform daily tasks and track your records!"} notShow={true}/>
       <CardWrapper>
         <BalanceCard>
           <div className="top">

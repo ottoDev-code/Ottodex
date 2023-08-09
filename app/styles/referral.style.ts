@@ -41,6 +41,31 @@ export const Table = styled.div`
     border: 1px solid ${colors.midGrey};
     border-radius: 10px;
     overflow: hidden;
+    ${breakpoints.lg} {
+        display: none;
+    }
+`;
+export const MTable = styled.div`
+    display: none;
+    padding: 10px 0;
+    ${breakpoints.lg} {
+        display: block;
+    }
+`;
+export const MRow = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid ${colors.midGrey};
+    div {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+    }
+    p {
+        font-weight: 500;
+    }
 `;
 export const THead = styled.div`
     background: #E6E6E6;

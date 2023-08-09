@@ -2,7 +2,7 @@
 import HeadingCard from '@/app/components/heading-card'
 import { CopyIcon } from '@/app/components/svg-icons'
 import { Container, CopyContainer, StatsContainer } from '@/app/styles/dashboard.style'
-import { Left, Right, TBody, THead, TRow, Table, Top, UserImage, Wrapper } from '@/app/styles/referral.style'
+import { Left, MRow, MTable, Right, TBody, THead, TRow, Table, Top, UserImage, Wrapper } from '@/app/styles/referral.style'
 import Image from 'next/image'
 import React from 'react'
 
@@ -89,6 +89,43 @@ const Dashboard = () => {
                     </TRow>
                 </TBody>
             </Table>
+            <MTable>
+              <MRow>
+                  <div>
+                      <p>Gemma Sandra</p>
+                      <p>Level 1</p>
+                  </div>
+                  <p>500 BMT</p>
+              </MRow>
+              <MRow>
+                  <div>
+                      <p>Gemma Sandra</p>
+                      <p>Level 1</p>
+                  </div>
+                  <p>500 BMT</p>
+              </MRow>
+              <MRow>
+                  <div>
+                      <p>Gemma Sandra</p>
+                      <p>Level 1</p>
+                  </div>
+                  <p>500 BMT</p>
+              </MRow>
+              <MRow>
+                  <div>
+                      <p>Gemma Sandra</p>
+                      <p>Level 1</p>
+                  </div>
+                  <p>500 BMT</p>
+              </MRow>
+              <MRow>
+                  <div>
+                      <p>Gemma Sandra</p>
+                      <p>Level 1</p>
+                  </div>
+                  <p>500 BMT</p>
+              </MRow>
+            </MTable>
         </Left>
         <Right>
           <CopyContainer>

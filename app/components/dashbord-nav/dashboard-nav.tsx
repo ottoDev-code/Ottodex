@@ -39,10 +39,10 @@ const Nav = () => {
     <Container $isScrolled={scrolled}>
       <Wrapper>
         <Logo>
-          <Image src={"/logo.svg"} alt="logo" height={50} width={148} />
+          <Image src={"/logo.svg"} alt="logo" height={36} width={118} />
         </Logo>
         <button className='nav-btn' onClick={() => setShowDropdown(!showDropdown)}>
-          <Image src={showDropdown ? "/close-icon.svg" : "/menu.svg"} alt="logo" height={36} width={36} />
+          <Image src={showDropdown ? "/close-icon.svg" : "/menu.svg"} alt="logo" height={34} width={34} />
         </button>
       </Wrapper>
       {
