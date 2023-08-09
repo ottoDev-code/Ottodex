@@ -41,9 +41,12 @@ export const UserWrap = styled.div`
     border-radius: 10px;
     position: sticky;
     top: 100px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
     button {
         width: 100%;
-        border-radius: 10px; 
+        border-radius: 10px;
         padding: 12px 0;
         background: ${colors.primaryColor};
         outline: none;

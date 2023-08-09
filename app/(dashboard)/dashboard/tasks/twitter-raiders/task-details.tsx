@@ -104,27 +104,48 @@ const TaskDetails: React.FC = () => {
                 {startTask || (
                     <Instructions>
                         <h4>Task Instruction</h4>
-                        <p>
-                            1. Join the Client’s Discord Community using the
-                            provided invite link.
-                        </p>
-                        <p>
-                            2. Engage in conversations and contribute at least
-                            25 meaningful messages within the allocated time.
-                        </p>
-                        <p>
-                            3. Ensure that your messages are relevant,
-                            respectful, and add value to the community
-                            discussions.
-                        </p>
-                        <p>
-                            4. Be active and responsive during the task duration
-                            to encourage interactions and build connections.
-                        </p>
-                        <p>
-                            5. Take screenshots as proof of completing the
-                            tasks.
-                        </p>
+                        <div className="instruction-grid">
+                            <p>1.</p>
+                            <p>
+                                Join the Client’s Discord Community using the
+                                provided invite link.
+                            </p>
+                        </div>
+
+                        <div className="instruction-grid">
+                            <p>2.</p>
+                            <p>
+                                Engage in conversations and contribute at least
+                                25 meaningful messages within the allocated
+                                time.
+                            </p>
+                        </div>
+
+                        <div className="instruction-grid">
+                            <p>3.</p>
+                            <p>
+                                Ensure that your messages are relevant,
+                                respectful, and add value to the community
+                                discussions.
+                            </p>
+                        </div>
+
+                        <div className="instruction-grid">
+                            <p>4.</p>
+                            <p>
+                                Be active and responsive during the task
+                                duration to encourage interactions and build
+                                connections.
+                            </p>
+                        </div>
+
+                        <div className="instruction-grid">
+                            <p>5.</p>
+                            <p>
+                                Take screenshots as proof of completing the
+                                tasks.
+                            </p>
+                        </div>
                     </Instructions>
                 )}
 
@@ -221,14 +242,25 @@ const TaskDetails: React.FC = () => {
                                         ))}
 
                                         {uploadedUrl?.map((item) => (
-                                            <div
-                                                key={uploadedUrl.indexOf(item)}
-                                            >
-                                                <Image
-                                                    src={linkIcon}
-                                                    alt="Image document icon"
-                                                />{" "}
-                                                <p>{item}</p>
+                                            <div className="url-wrapper">
+                                                <h4>Uploaded urls</h4>
+                                                <div
+                                                    key={uploadedUrl.indexOf(
+                                                        item
+                                                    )}
+                                                    className="uploaded-url"
+                                                >
+                                                    <div>
+                                                        <Image
+                                                            src={linkIcon}
+                                                            alt="Image document icon"
+                                                        />{" "}
+                                                        <p>{item}</p>
+                                                    </div>
+                                                    <button className="hidden-desktop">
+                                                        Remove
+                                                    </button>
+                                                </div>
                                             </div>
                                         ))}
                                     </ScreenshotContainer>

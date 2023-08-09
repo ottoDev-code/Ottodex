@@ -21,12 +21,18 @@ export const ImageHolder = styled.div`
 export const Text = styled.p`
     font-weight: 500;
     margin-top: 3.9rem;
+    text-align: center;
+
+    @media screen and (max-width: 768px) {
+        max-width: 300px;
+    }
 `;
 
 export const Button = styled.button`
     background-color: ${colors.primaryColor};
     border: transparent;
     border-radius: 0.625rem;
+    font-size: 1rem;
     font-family: inherit;
     font-weight: 500;
     margin-top: 1rem;

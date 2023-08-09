@@ -1,12 +1,12 @@
 import React from "react";
-import Wallet from "./wallet";
 import ClientWallet from "./client-wallet";
+import Wallet from "./wallet";
 
 const Page = () => {
     return (
         <>
-            {/* <Wallet /> */}
-            <ClientWallet />
+            <Wallet />
+            {/* <ClientWallet /> */}
         </>
     );
 };
