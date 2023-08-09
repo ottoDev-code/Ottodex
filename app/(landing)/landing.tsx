@@ -71,37 +71,6 @@ const LandingPage = () => {
         </ImageWrapper>
       </SectionWrapper>
     </SectionThree>
-    <SectionFour>
-      <h2>What they say about us</h2>
-      <ReviewWrapper>
-        <ReviewCard>
-          <ReviewLine>
-            <Image src={"/quote.svg"} alt="user" width={33} height={20} />
-            <div></div>
-          </ReviewLine>
-          <p>&quot;Our mission at BM DAO is to empower crypto and NFT projects with the tools, expertise and support they need to build vibrant communities, drive engagement.&quot;</p>
-          <UserCard>
-            <UserImage>
-              <Image src={"/user-1.png"} alt="user"  objectFit="cover" objectPosition="center" layout="fill" />
-            </UserImage>
-            <h3>Gemma Sandra</h3>
-          </UserCard>
-        </ReviewCard>
-        <ReviewCard>
-          <ReviewLine>
-            <Image src={"/quote.svg"} alt="user" width={33} height={20} />
-            <div></div>
-          </ReviewLine>
-          <p>&quot;Our mission at BM DAO is to empower crypto and NFT projects with the tools, expertise and support they need to build vibrant communities, drive engagement.&quot;</p>
-          <UserCard>
-            <UserImage>
-              <Image src={"/user-2.png"} alt="user" objectFit="cover" objectPosition="center" layout="fill"/>
-            </UserImage>
-            <h3>Gemma Sandra</h3>
-          </UserCard>
-        </ReviewCard>
-      </ReviewWrapper>
-    </SectionFour>
     <SectionFive>
       <h2>BM TOKEN: THE CURRENCY OF BM DAO</h2>
       <p>BM Token (BMT) is the native cryptocurrency of BM DAO, a utility token that empowers collaboration, incentivizes participation, and unlocks rewards. With a fixed supply of 10 Billion BMT, BM Token provides a seamless and efficient medium of exchange for members.
@@ -122,59 +91,6 @@ const LandingPage = () => {
         </OutlineWrapperT>
       </SectionWrapperT>
     </SectionFive>
-    <SectionSix>
-      <h2>Join us and make Money as a</h2>
-      <CardWrapper>
-        <CategoryCard>
-          <div className="icon">
-            <Image src={"/group.svg"} alt="user" height={36} width={36}/>
-          </div>
-          <div className="down">
-            <div>
-              <h4>Collab Manager</h4>
-              <p>Coordinate and manage collaborations with other members and the community.</p>
-            </div>
-            <button><span>Register</span> <Image src={"/arrow-right.svg"} alt="arrow_right" width={24} height={24}/></button>
-          </div>
-        </CategoryCard>
-        <CategoryCard>
-          <div className="icon">
-            <Image src={"/group.svg"} alt="user" height={36} width={36}/>
-          </div>
-          <div className="down">
-            <div>
-              <h4>Chat Engagers</h4>
-              <p>Engage and interact with the community and promote project initiatives.</p>
-            </div>
-            <button><span>Register</span> <Image src={"/arrow-right.svg"} alt="arrow_right" width={24} height={24}/></button>
-          </div>
-        </CategoryCard>
-        <CategoryCard>
-          <div className="icon">
-            <Image src={"/group.svg"} alt="user" height={36} width={36}/>
-          </div>
-          <div className="down">
-            <div>
-              <h4>Moderatos</h4>
-              <p>Maintain the quality of discussions in the community and ensure compliance with the platform's guidelines.</p>
-            </div>
-            <button><span>Register</span> <Image src={"/arrow-right.svg"} alt="arrow_right" width={24} height={24}/></button>
-          </div>
-        </CategoryCard>
-        <CategoryCard>
-          <div className="icon">
-            <Image src={"/group.svg"} alt="user" height={36} width={36}/>
-          </div>
-          <div className="down">
-            <div>
-              <h4>Twitter Raiders</h4>
-              <p>Create and execute Twitter campaigns to promote projects, increase visibility, and drive engagement.</p>
-            </div>
-            <button><span>Register</span> <Image src={"/arrow-right.svg"} alt="arrow_right" width={24} height={24}/></button>
-          </div>
-        </CategoryCard>
-      </CardWrapper>
-    </SectionSix>
     <SectionSeven>
       <h2>How to start earning</h2>
       <StepWrapper>
@@ -187,13 +103,66 @@ const LandingPage = () => {
         </StepMapWrapper>
         <Step>
           <StepText>Create an Account</StepText>
-          <StepText>Choose a Package and Level</StepText>
+          <StepText>Choose a Package</StepText>
           <StepText>Pay Registration Fee</StepText>
           <StepText>Start Earning</StepText>
         </Step>
       </StepWrapper>
     </SectionSeven>
-    <SectionEight>
+    <SectionSix id="jobs">
+      <h2>Join us and make Money as a</h2>
+      <CardWrapper>
+        <CategoryCard>
+          <div className="icon">
+            <Image src={"/group.svg"} alt="user" height={36} width={36}/>
+          </div>
+          <div className="down">
+            <div>
+              <h4>Collab Manager</h4>
+              <p>Coordinate and manage collaborations with other members and the community.</p>
+            </div>
+            <button><span>Learn more</span> <Image src={"/arrow-right.svg"} alt="arrow_right" width={24} height={24}/></button>
+          </div>
+        </CategoryCard>
+        <CategoryCard>
+          <div className="icon">
+            <Image src={"/group.svg"} alt="user" height={36} width={36}/>
+          </div>
+          <div className="down">
+            <div>
+              <h4>Chat Engagers</h4>
+              <p>Engage and interact with the community and promote project initiatives.</p>
+            </div>
+            <button><span>Learn more</span> <Image src={"/arrow-right.svg"} alt="arrow_right" width={24} height={24}/></button>
+          </div>
+        </CategoryCard>
+        <CategoryCard>
+          <div className="icon">
+            <Image src={"/group.svg"} alt="user" height={36} width={36}/>
+          </div>
+          <div className="down">
+            <div>
+              <h4>Moderatos</h4>
+              <p>Maintain the quality of discussions in the community and ensure compliance with the platform's guidelines.</p>
+            </div>
+            <button><span>Learn more</span> <Image src={"/arrow-right.svg"} alt="arrow_right" width={24} height={24}/></button>
+          </div>
+        </CategoryCard>
+        <CategoryCard>
+          <div className="icon">
+            <Image src={"/group.svg"} alt="user" height={36} width={36}/>
+          </div>
+          <div className="down">
+            <div>
+              <h4>Twitter Raiders</h4>
+              <p>Create and execute Twitter campaigns to promote projects, increase visibility, and drive engagement.</p>
+            </div>
+            <button><span>Learn more</span> <Image src={"/arrow-right.svg"} alt="arrow_right" width={24} height={24}/></button>
+          </div>
+        </CategoryCard>
+      </CardWrapper>
+    </SectionSix>
+    {/* <SectionEight>
       <h2>Packages</h2>
       <TableWrapper>
         <Tr>
@@ -246,7 +215,38 @@ const LandingPage = () => {
           <Td><button>Choose Package</button></Td>
         </Tr>
       </TableWrapper>
-    </SectionEight>
+    </SectionEight> */}
+     <SectionFour>
+      <h2>What they say about us</h2>
+      <ReviewWrapper>
+        <ReviewCard>
+          <ReviewLine>
+            <Image src={"/quote.svg"} alt="user" width={33} height={20} />
+            <div></div>
+          </ReviewLine>
+          <p>&quot;Our mission at BM DAO is to empower crypto and NFT projects with the tools, expertise and support they need to build vibrant communities, drive engagement.&quot;</p>
+          <UserCard>
+            <UserImage>
+              <Image src={"/user-1.png"} alt="user"  objectFit="cover" objectPosition="center" layout="fill" />
+            </UserImage>
+            <h3>Gemma Sandra</h3>
+          </UserCard>
+        </ReviewCard>
+        <ReviewCard>
+          <ReviewLine>
+            <Image src={"/quote.svg"} alt="user" width={33} height={20} />
+            <div></div>
+          </ReviewLine>
+          <p>&quot;Our mission at BM DAO is to empower crypto and NFT projects with the tools, expertise and support they need to build vibrant communities, drive engagement.&quot;</p>
+          <UserCard>
+            <UserImage>
+              <Image src={"/user-2.png"} alt="user" objectFit="cover" objectPosition="center" layout="fill"/>
+            </UserImage>
+            <h3>Gemma Sandra</h3>
+          </UserCard>
+        </ReviewCard>
+      </ReviewWrapper>
+    </SectionFour>
     <SectionNine>
       <h2>Join our Community</h2>
       <p>Get access to 24/7 support from our community managers, chatters, moderators, and twitter raiders, as well as ouir panel of experts and mentors.</p>

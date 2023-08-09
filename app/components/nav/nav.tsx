@@ -39,8 +39,8 @@ const Nav = () => {
           <NavLink $isActive={path === "/overview"}>
             <Link href={"/overview"} legacyBehavior>Overview</Link>
           </NavLink>
-          <NavLink $isActive={path === "/about"}>
-            <Link href={"/about"} legacyBehavior>About</Link>
+          <NavLink $isActive={false}>
+            <Link href={"/#jobs"} legacyBehavior>Jobs</Link>
           </NavLink>
         </Links>
         <Auth>
@@ -61,8 +61,8 @@ const Nav = () => {
               <NavLink $isActive={path === "/overview"} onClick={() => { setShowDropdown(false) }}>
                 <Link href={"/overview"} legacyBehavior>Overview</Link>
               </NavLink>
-              <NavLink $isActive={path === "/about"} onClick={() => { setShowDropdown(false) }}>
-                <Link href={"/about"} legacyBehavior>About</Link>
+              <NavLink $isActive={path === "/jobs"} onClick={() => { setShowDropdown(false) }}>
+                <Link href={"/#jobs"} legacyBehavior>Jobs</Link>
               </NavLink>
             </MLinks>
             <MAuth>

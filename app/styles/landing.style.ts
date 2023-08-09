@@ -564,14 +564,20 @@ export const SocialCard = styled.div`
     }
 `;
 export const OverviewContent = styled.div`
-    text-align: center;
     padding-top: 100px;
     h1 {
         font-size: 24px;
         font-weight: 600; 
+        text-align: center;
+        text-transform: uppercase;
     }
     p {
         margin-top: 10px;
+        font-weight: 500;
+        font-size: 18px;
+    }
+    ul {
+        padding-left: 15px;
         font-weight: 500;
         font-size: 18px;
     }
