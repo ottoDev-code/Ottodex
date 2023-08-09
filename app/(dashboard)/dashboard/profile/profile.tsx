@@ -82,15 +82,15 @@ const Profile = () => {
           </InputWrapper>
           <InputFlex>
             <InputWrapper>
-              <label>Expiration</label>
+              <label>Binance Pay ID</label>
               <InputContainer>
-                <input type="email" placeholder="Enter your email address"/>
+                <input type="text" placeholder="Enter your Binance pay ID"/>
               </InputContainer>
             </InputWrapper>
             <InputWrapper>
-              <label>CVV</label>
+              <label>BEP-20 Wallet Address</label>
               <InputContainer>
-                <input type="tel" placeholder="Enter your phone number"/>
+                <input type="tel" placeholder="Enter your wallet address"/>
               </InputContainer>
             </InputWrapper>
           </InputFlex>
