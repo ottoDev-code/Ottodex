@@ -72,9 +72,8 @@ const LandingPage = () => {
       </SectionWrapper>
     </SectionThree>
     <SectionFive>
-      <h2>BM TOKEN: THE CURRENCY OF BM DAO</h2>
-      <p>BM Token (BMT) is the native cryptocurrency of BM DAO, a utility token that empowers collaboration, incentivizes participation, and unlocks rewards. With a fixed supply of 10 Billion BMT, BM Token provides a seamless and efficient medium of exchange for members.
-        BM Token supports various use cases, such as:</p>
+      <h2>BM DAO ACADEMY: LEARN AND GROW WITH US</h2>
+      <p>The BM DAO Academy provides comprehensive learning resources and training opportunities for our members who are interested inn Crypto and NFTs. By joining the BM DAO Academy you will benefit from:</p>
       <SectionWrapperT>
         <ImageWrapper>
           <Image src={"/side2.svg"} alt="user_holding_card" objectFit="contain" objectPosition="center" layout="fill"/>

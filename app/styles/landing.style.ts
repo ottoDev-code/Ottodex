@@ -20,6 +20,9 @@ export const SectionOne = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    height: 100vh;
+    min-height: 700px;
     h1 {
         font-size: 40px; 
         font-weight: 500;
