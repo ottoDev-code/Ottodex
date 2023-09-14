@@ -13,8 +13,8 @@ export const Wrapper = styled.div`
 export const ImageHolder = styled.div`
     max-width: 24rem;
     img {
-        height: auto;
-        width: 100%;
+        height: 50vh;
+        width: auto;
     }
 `;
 

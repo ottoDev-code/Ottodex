@@ -23,7 +23,7 @@ import { Container, StatsCard } from "@/app/styles/dashboard.style";
 import React, { useState } from "react";
 import UploadTask from "./upload-task";
 
-const ClientModerators = () => {
+const ClientTasks = () => {
     const [showModal, setShowModal] = useState<boolean>(false);
 
     return (
@@ -264,4 +264,4 @@ const ClientModerators = () => {
     );
 };
 
-export default ClientModerators;
+export default ClientTasks;

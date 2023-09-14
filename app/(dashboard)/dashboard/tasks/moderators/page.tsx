@@ -1,12 +1,10 @@
 import React from "react";
 import Moderators from "./moderators";
-import ClientModerators from "./client-moderator";
 
 const Page = () => {
     return (
         <>
             <Moderators />
-            {/* <ClientModerators /> */}
         </>
     );
 };

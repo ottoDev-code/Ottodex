@@ -14,6 +14,7 @@ export const Container = styled.div<IContainer>`
     top: 0;
     background: ${colors.bgGrey};
     width: calc(100vw - 290px);
+    z-index: 99999;
     ${breakpoints.lg} {
         padding: 20px 10px 10px 10px; 
         width: 100%;

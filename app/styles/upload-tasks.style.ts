@@ -9,11 +9,12 @@ export const Wrapper = styled.div`
     min-height: 100vh;
     justify-content: center;
     padding: 1.25rem 0;
-    position: absolute;
+    position: fixed;
     right: 0;
     top: 0;
     min-width: 100vw;
     overflow-y: scroll;
+    z-index: 999999;
     scrollbar-color: ${colors.primaryColor} ${colors.primaryColor}11;
     &::-webkit-scrollbar-thumb {
         background-color: transparent;
@@ -47,6 +48,8 @@ export const UploadContainer = styled.div`
     flex-direction: column;
     padding: 1.5rem 1.1875rem 1.5rem 1.3125rem;
     min-width: 34.5rem;
+    max-height: 95vh;
+    overflow-y: scroll;
     h3 {
         font-size: 1.25rem;
         font-weight: 600;
@@ -91,7 +94,7 @@ export const UploadContainer = styled.div`
         flex-direction: row;
         font-weight: 500;
         padding: 0.625rem;
-        width: fit-content;
+        width: calc(50% - 0.625rem);
     }
 
     .actions input {
@@ -100,6 +103,7 @@ export const UploadContainer = styled.div`
 
     label.full-width {
         width: calc(100% - 0.625rem);
+
     }
 
     label div,
@@ -127,9 +131,13 @@ export const UploadContainer = styled.div`
     select,
     input {
         background-color: transparent;
-        color: ${colors.lightGrey};
+        color: ${colors.black};
         font-size: 1rem;
         font-weight: 500;
+        outline: none;
+    }
+    select::placeholder, input::placeholder {
+         color: ${colors.lightGrey};
     }
 
     div.input input,
@@ -153,6 +161,8 @@ export const UploadContainer = styled.div`
     textarea {
         background-color: transparent;
         min-height: 10rem;
+        width: 100%;
+        min-width: 100%;
         max-width: 100%;
     }
 

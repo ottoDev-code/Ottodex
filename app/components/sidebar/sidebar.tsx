@@ -6,11 +6,17 @@ import { ArrowDownIcon, BookIcon, DocumentIcon, HomeIcon, UserIcon, WalletIcon }
 import { UsersIcon } from '../svg-icons'
 import { LogoutIcon } from '../svg-icons'
 import { usePathname, useRouter } from 'next/navigation'
+import { getUser, useSelector } from '@/lib/redux'
 
 const Sidebar = () => {
   const [show, setShow] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+  const user = useSelector(getUser);
+  const handleLogout = () => {
+    localStorage.clear();
+    router.replace("/login");
+  }
   return (
     <Container>
         <LogoWrapper>
@@ -22,13 +28,14 @@ const Sidebar = () => {
               <span>Dashboard</span>
             </div>
         </NavButton>
-        <NavButton onClick={() => setShow(!show)} $isActive={pathname.includes("/dashboard/tasks")}>
+        {user.accountType === "user" && <NavButton onClick={() => setShow(!show)} $isActive={pathname.includes("/dashboard/tasks")}>
             <div>
               <DocumentIcon />
               <span>Tasks</span>
             </div>
             <ArrowDownIcon />
-        </NavButton>
+          </NavButton>
+        }
         {
           show ? (
             <SubNavWrapper>
@@ -59,6 +66,14 @@ const Sidebar = () => {
             </SubNavWrapper>
           ) : null
         }
+        {user.accountType === "client" && 
+          <NavButton $isActive={pathname.includes("/dashboard/tasks/client")} onClick={() => router.push("/dashboard/tasks/client")}>
+            <div>
+              <DocumentIcon />
+              <span>Tasks</span>
+            </div>
+          </NavButton>
+        }
         <NavButton $isActive={pathname === ("/dashboard/wallet")} onClick={() => router.push("/dashboard/wallet")}>
             <div>
               <WalletIcon />
@@ -71,19 +86,21 @@ const Sidebar = () => {
               <span>Profile</span>
             </div>
         </NavButton>
-        <NavButton $isActive={pathname === "/dashboard/academy"}  onClick={() => router.push("/dashboard/academy")}>
+        { user.accountType === "user" && <NavButton $isActive={pathname === "/dashboard/academy"}  onClick={() => router.push("/dashboard/academy")}>
             <div>
               <BookIcon />
               <span>Academy</span>
             </div>
         </NavButton>
-        <NavButton $isActive={pathname === "/dashboard/referral"}  onClick={() => router.push("/dashboard/referral")}>
+        }
+        { user.accountType === "user" && <NavButton $isActive={pathname === "/dashboard/referral"}  onClick={() => router.push("/dashboard/referral")}>
             <div>
               <UsersIcon />
               <span>Referral</span>
             </div>
         </NavButton>
-        <NavButton>
+        }
+        <NavButton onClick={handleLogout}>
             <div>
               <LogoutIcon />
               <span>Logout</span>

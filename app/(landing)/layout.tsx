@@ -8,7 +8,7 @@ const LandingLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <Container>
             <Nav />
-            <Wrapper>{children}</Wrapper>
+                <Wrapper>{children}</Wrapper>
             <Footer />
         </Container>
     );

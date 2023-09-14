@@ -8,12 +8,39 @@ import Image from "next/image";
 import React from "react";
 
 import image from "../../../public/not-registered.png";
+import { subscribeToService } from "@/app/api/service";
+import { setUser } from "@/lib/redux";
+import { getUserProfile } from "@/app/api/auth";
+import { useDispatch } from "react-redux";
 
 interface Props {
     taskSub: string;
 }
 
 const NotRegistered: React.FC<Props> = ({ taskSub }) => {
+    const dispatch = useDispatch();
+    const fetchProfile = () => {
+        getUserProfile()
+        .then((res) => {
+          dispatch(setUser(res.data.data))
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+      }
+    const handleSubscribeToService = () => {
+        if(taskSub === "Twitter Raiders") {
+            subscribeToService({
+                accountType: "raider"
+            })
+            .then(() => {
+                fetchProfile();
+            })
+            .catch((e) => {
+                console.log(e)
+            })
+        }
+    }
     return (
         <Wrapper>
             <ImageHolder>
@@ -23,7 +50,7 @@ const NotRegistered: React.FC<Props> = ({ taskSub }) => {
                 Register as a <span>{taskSub}</span> to have access to this
                 Dashboard
             </Text>
-            <Button>Register</Button>
+            <Button onClick={handleSubscribeToService}>Register</Button>
         </Wrapper>
     );
 };

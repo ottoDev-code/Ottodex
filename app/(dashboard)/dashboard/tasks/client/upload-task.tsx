@@ -5,13 +5,16 @@ import {
     Wrapper,
 } from "@/app/styles/upload-tasks.style";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 
 import dropdon_icon from "../../../../../public/dropdown.svg";
 import {
     BorderedButton,
     ColoredButton,
 } from "@/app/styles/task-details.styles";
+import { createRaidTask } from "@/app/api/task";
+import { setLoading, useDispatch } from "@/lib/redux";
+import { toast } from "react-toastify";
 
 interface Props {
     setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -19,17 +22,74 @@ interface Props {
 
 const UploadTask: React.FC<Props> = ({ setShowModal }) => {
     const [taskType, setTaskType] = useState<string>("chat-engager");
+    const [raidersNumber, setRaidersNumber] = useState("");
+    const [weeks, setWeeks] = useState("");
+    const [dailyPost, setDailyPost] = useState("");
+    const [startDate, setStartDate] = useState("");
+    const [raidLink, setRaidLink] = useState("");
+    const [actions, setActions] = useState<string[]>([]);
+    const [caption, setCaption] = useState("");
+    const [mediaLink, setMediaLink] = useState("");
+    const toggleAction = (action: string) => {
+        setActions((prev) => {
+            const copyOfPrev = [...prev];
+            if((copyOfPrev.indexOf(action) > -1)) {
+                copyOfPrev.splice(copyOfPrev.indexOf(action), 1);
+            } else {
+                copyOfPrev.push(action)
+            }
+            return copyOfPrev;
+        })
+    }
+    const getActionStatus = (action: string) => {
+        return !!(actions.indexOf(action) > -1);
+    }
+    const dispatch = useDispatch();
 
     const changeTaskType = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setTaskType(e.target.value);
     };
+    
+    const handleCreateTask = () => {
+        if(taskType === "twitter-raider") {
+            if(!raidersNumber || !weeks || !dailyPost || !startDate) {
+              toast.error("Fill in required fields", {
+                position: toast.POSITION.TOP_RIGHT
+              });
+              return;
+            }
+            dispatch(setLoading(true));
+            createRaidTask({
+                taskType: "raider",
+                users: raidersNumber,
+                weeks,
+                dailyPost,
+                startDate,
+                raidLink,
+                campaignCaption: caption,
+                actions,
+                mediaUrl: mediaLink,
+            }).then((res) => {
+                toast.success("Raiders task created successfully", {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+                setShowModal(false);
+                dispatch(setLoading(false));
+            }).catch((e: any) => {
+                toast.error(e.response.data.error[0].message, {
+                  position: toast.POSITION.TOP_RIGHT
+                });
+                dispatch(setLoading(false));
+            })
+        }
+    }
 
     return (
         <Wrapper>
             <div>
                 <UploadContainer>
                     <h3>Upload Task</h3>
-                    <form onSubmit={(e) => e.preventDefault()}>
+                    <form>
                         <div>
                             <label htmlFor="task-type">
                                 <h4>Task Type</h4>
@@ -288,15 +348,16 @@ const UploadTask: React.FC<Props> = ({ setShowModal }) => {
 
                         {taskType == "twitter-raider" && (
                             <>
-                                <div className="actions">
+                              <div className="actions">
                                     <h4>Actions</h4>
                                     <div>
                                         <label htmlFor="follow-account">
                                             <input
                                                 type="checkbox"
                                                 name=""
-                                                value=""
                                                 id="follow-account"
+                                                checked={getActionStatus("Follow Account")}
+                                                onChange={() => toggleAction("Follow Account")}
                                             />
                                             Follow Account
                                         </label>
@@ -305,8 +366,9 @@ const UploadTask: React.FC<Props> = ({ setShowModal }) => {
                                             <input
                                                 type="checkbox"
                                                 name=""
-                                                value=""
                                                 id="like-post"
+                                                checked={getActionStatus("Like Post")}
+                                                onChange={() => toggleAction("Like Post")}
                                             />
                                             Like Post
                                         </label>
@@ -315,8 +377,9 @@ const UploadTask: React.FC<Props> = ({ setShowModal }) => {
                                             <input
                                                 type="checkbox"
                                                 name=""
-                                                value=""
                                                 id="retweet-post"
+                                                checked={getActionStatus("Retweet Post")}
+                                                onChange={() => toggleAction("Retweet Post")}
                                             />
                                             Retweet Post
                                         </label>
@@ -325,8 +388,9 @@ const UploadTask: React.FC<Props> = ({ setShowModal }) => {
                                             <input
                                                 type="checkbox"
                                                 name=""
-                                                value=""
                                                 id="comment-on-post"
+                                                checked={getActionStatus("Comment On Post")}
+                                                onChange={() => toggleAction("Comment On Post")}
                                             />
                                             Comment on Post
                                         </label>
@@ -335,14 +399,15 @@ const UploadTask: React.FC<Props> = ({ setShowModal }) => {
                                             <input
                                                 type="checkbox"
                                                 name=""
-                                                value=""
                                                 id="create-tweet"
+                                                checked={getActionStatus("Create Tweet")}
+                                                onChange={() => toggleAction("Create Tweet")}
                                             />
                                             Create Tweet
                                         </label>
                                     </div>
                                 </div>
-
+                                {/* 
                                 <div>
                                     <label htmlFor="" className="full-width">
                                         <h4>No of Followers</h4>
@@ -436,9 +501,84 @@ const UploadTask: React.FC<Props> = ({ setShowModal }) => {
                                             />
                                         </div>
                                     </label>
-                                </div>
-
+                                </div> */}
                                 <div>
+                                    <label htmlFor="raid-weeks">
+                                        <h4>Raid Weeks</h4>
+                                        <input
+                                            id="raid-weeks"
+                                            type="text"
+                                            placeholder=""
+                                            value={weeks}
+                                            onChange={(e) => {
+                                                (e.target.value === "") ? setWeeks(e.target.value) : Number(e.target.value) && setWeeks(e.target.value) 
+                                            }}
+                                        />
+                                    </label>
+                                    <label htmlFor="raiders-count">
+                                        <h4>Number of Raiders</h4>
+                                        <input
+                                            id="raiders-count"
+                                            type="text"
+                                            placeholder=""
+                                            value={raidersNumber}
+                                            onChange={(e) => {
+                                                (e.target.value === "") ? setRaidersNumber(e.target.value) : Number(e.target.value) && setRaidersNumber(e.target.value) 
+                                            }}
+                                        />
+                                    </label>
+                                </div>
+                                <div>
+                                    <label htmlFor="raid-start">
+                                        <h4>Start date</h4>
+                                        <input
+                                            id="raid-start"
+                                            type="date"
+                                            placeholder=""
+                                            value={startDate}
+                                            onChange={(e) => setStartDate(e.target.value)}
+                                        />
+                                    </label>
+                                    <label htmlFor="post-count">
+                                        <h4>No of posts per day</h4>
+                                        <input
+                                            id="post-count"
+                                            type="text"
+                                            placeholder=""
+                                            value={dailyPost}
+                                            onChange={(e) => {
+                                                (e.target.value === "") ? setDailyPost(e.target.value) : Number(e.target.value) && setDailyPost(e.target.value) 
+                                            }}
+                                        />
+                                    </label>
+                                </div>
+                                <div>
+                                    <label htmlFor="" className="full-width">
+                                        <h4>Raid Link</h4>
+
+                                        <input
+                                            id=""
+                                            type="text"
+                                            placeholder=""
+                                            value={raidLink}
+                                            onChange={(e) => setRaidLink(e.target.value)}
+                                        />
+                                    </label>
+                                </div>
+                                <div>
+                                    <label htmlFor="" className="full-width">
+                                        <h4>Media URL</h4>
+
+                                        <input
+                                            id=""
+                                            type="text"
+                                            placeholder=""
+                                            value={mediaLink}
+                                            onChange={(e) => setMediaLink(e.target.value)}
+                                        />
+                                    </label>
+                                </div>
+                                {/* <div>
                                     <label htmlFor="" className="full-width">
                                         <h4>
                                             Upload the media you want to be
@@ -456,19 +596,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal }) => {
                                             </button>
                                         </div>
                                     </label>
-                                </div>
-
-                                <div>
-                                    <label htmlFor="" className="full-width">
-                                        <h4>Raid Link</h4>
-
-                                        <input
-                                            id=""
-                                            type="text"
-                                            placeholder=""
-                                        />
-                                    </label>
-                                </div>
+                                </div> */}
 
                                 <div>
                                     <label
@@ -480,6 +608,8 @@ const UploadTask: React.FC<Props> = ({ setShowModal }) => {
                                         <textarea
                                             name="campaign-caption"
                                             id="campaign-caption"
+                                            value={caption}
+                                            onChange={(e) => setCaption(e.target.value)}
                                         />
                                     </label>
                                 </div>
@@ -595,7 +725,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal }) => {
                         <BorderedButton onClick={() => setShowModal(false)}>
                             Cancel
                         </BorderedButton>
-                        <ColoredButton>Pay</ColoredButton>
+                        <ColoredButton type="submit" onClick={handleCreateTask}>Pay</ColoredButton>
                     </Buttons>
                 </UploadContainer>
             </div>

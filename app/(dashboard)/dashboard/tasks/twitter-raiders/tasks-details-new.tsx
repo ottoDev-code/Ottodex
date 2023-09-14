@@ -1,5 +1,6 @@
 "use client";
 
+import { getAllRaidTask } from "@/app/api/task";
 import TaskBox from "@/app/components/taskbox/TaskBox";
 import {
     LeftColumn,
@@ -11,9 +12,23 @@ import {
     Tasks,
     Wrapper,
 } from "@/app/styles/task-details.styles";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const TaskDetailsNew = () => {
+    const [tasks, setTasks] = useState([]);
+    const fetchTasks = () => {
+        getAllRaidTask()
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((res) => {
+
+        })
+    }
+    useEffect(() => {
+      fetchTasks();
+    }, [])
+    
     return (
         <Wrapper>
             <LeftColumn>
@@ -32,89 +47,30 @@ const TaskDetailsNew = () => {
                 </TaskNav>
 
                 <Tasks>
-                    <Task>
-                        <div>
-                            <h3>Name of Task</h3>
-                            <p className="task-text">
-                                Lorem ipsum dolor sit amet consectetur. Arcu
-                                venenatis adipiscing suspendisse quis elementum
-                                et faucibus neque.
-                            </p>
-                            <div className="reward">
-                                <p>
-                                    <span>Reward:</span>590 BMT
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="claim">
-                            <button>Claim</button>
-                            <p>10/1000 left</p>
-                        </div>
-                    </Task>
-
-                    <Task>
-                        <div>
-                            <h3>Name of Task</h3>
-                            <p className="task-text">
-                                Lorem ipsum dolor sit amet consectetur. Arcu
-                                venenatis adipiscing suspendisse quis elementum
-                                et faucibus neque.
-                            </p>
-                            <div className="reward">
-                                <p>
-                                    <span>Reward:</span>590 BMT
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="claim">
-                            <button>Claim</button>
-                            <p>10/1000 left</p>
-                        </div>
-                    </Task>
-
-                    <Task>
-                        <div>
-                            <h3>Name of Task</h3>
-                            <p className="task-text">
-                                Lorem ipsum dolor sit amet consectetur. Arcu
-                                venenatis adipiscing suspendisse quis elementum
-                                et faucibus neque.
-                            </p>
-                            <div className="reward">
-                                <p>
-                                    <span>Reward:</span>590 BMT
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="claim">
-                            <button>Claim</button>
-                            <p>10/1000 left</p>
-                        </div>
-                    </Task>
-
-                    <Task>
-                        <div>
-                            <h3>Name of Task</h3>
-                            <p className="task-text">
-                                Lorem ipsum dolor sit amet consectetur. Arcu
-                                venenatis adipiscing suspendisse quis elementum
-                                et faucibus neque.
-                            </p>
-                            <div className="reward">
-                                <p>
-                                    <span>Reward:</span>590 BMT
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="claim">
-                            <button>Claim</button>
-                            <p>10/1000 left</p>
-                        </div>
-                    </Task>
+                    {
+                        tasks.map((task) => (
+                            <Task>
+                                <div>
+                                    <h3>Name of Task</h3>
+                                    <p className="task-text">
+                                        Lorem ipsum dolor sit amet consectetur. Arcu
+                                        venenatis adipiscing suspendisse quis elementum
+                                        et faucibus neque.
+                                    </p>
+                                    <div className="reward">
+                                        <p>
+                                            <span>Reward:</span>590 BMT
+                                        </p>
+                                    </div>
+                                </div>
+        
+                                <div className="claim">
+                                    <button>Claim</button>
+                                    <p>10/1000 left</p>
+                                </div>
+                            </Task>
+                        ))
+                    }
                 </Tasks>
             </RightColumn>
         </Wrapper>

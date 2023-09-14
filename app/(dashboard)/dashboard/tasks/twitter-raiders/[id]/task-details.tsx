@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent, DragEvent, useState } from "react";
+import React, { ChangeEvent, DragEvent, useEffect, useState } from "react";
 import {
     Wrapper,
     LeftColumn,
@@ -20,15 +20,20 @@ import {
     UploadedDocContainer,
     ScreenshotContainer,
     TaskWrapper,
-} from "../../../../styles/task-details.styles";
-import TaskBox from "../../../../components/taskbox/TaskBox";
+} from "../../../../../styles/task-details.styles";
+import TaskBox from "../../../../../components/taskbox/TaskBox";
 import Image from "next/image";
 import uploadIcon from "../../../../../public/upload-icon.svg";
 import imageDocIcon from "../../../../../public/img-doc-icon.svg";
 import closeIcon from "../../../../../public/close-icon.svg";
 import linkIcon from "../../../../../public/link-icon.svg";
+import { getSingleTask } from "@/app/api/task";
 
-const TaskDetails: React.FC = () => {
+interface IProps {
+    id: string
+}
+
+const TaskDetails: React.FC<IProps> = ({ id }) => {
     const [startTask, setStartTask] = useState<boolean>(false);
     const [uploadedProofs, setUploadedProofs] = useState<File[]>([]);
     const [url, setUrl] = useState<string>("");
@@ -58,6 +63,19 @@ const TaskDetails: React.FC = () => {
             setUploadedProofs([...uploadedProofs, file]);
         }
     };
+    const fetchTask = () => {
+        getSingleTask(id)
+        .then((res) => {
+
+        })
+        .catch((e) => {
+
+        })
+    }
+    useEffect(() => {
+      fetchTask()
+    }, [])
+    
 
     return (
         <Wrapper>
@@ -107,7 +125,7 @@ const TaskDetails: React.FC = () => {
                         <div className="instruction-grid">
                             <p>1.</p>
                             <p>
-                                Join the Client’s Discord Community using the
+                                Join the Client&amp;s Discord Community using the
                                 provided invite link.
                             </p>
                         </div>
@@ -149,7 +167,7 @@ const TaskDetails: React.FC = () => {
                     </Instructions>
                 )}
 
-                {startTask || (
+                {!startTask && (
                     <StartButton onClick={() => setStartTask(true)}>
                         Start Task
                     </StartButton>

@@ -24,13 +24,15 @@ import {
     StatsCard,
     TaskCard,
 } from "@/app/styles/dashboard.style";
+import { getUser, useSelector } from "@/lib/redux";
 import React from "react";
 
 const Dashboard = () => {
+    const user = useSelector(getUser);
     return (
         <Container>
             <HeadingCard
-                heading={"Hello, Dave 👋"}
+                heading={`Hello, ${user.name} 👋`}
                 sub={"Perform daily tasks and track your records!"}
                 notShow={true}
             />
@@ -41,7 +43,7 @@ const Dashboard = () => {
                             <div className="top">
                                 <div>
                                     <p>Wallet Balance</p>
-                                    <h1>$279.5</h1>
+                                    <h1>${user?.wallet?.balance?.walletBalance ?? "0"}</h1>
                                 </div>
                                 <button>
                                     <span>BMT</span>

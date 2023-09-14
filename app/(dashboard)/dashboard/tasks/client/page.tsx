@@ -1,17 +1,16 @@
 import React from "react";
-import ClientWallet from "./client-wallet";
-import Wallet from "./wallet";
+import ClientTasks from "./task"
 
 const Page = () => {
     return (
         <>
-            <Wallet />
+            <ClientTasks />
         </>
-    );
+    )
 };
 
 export const metadata = {
-    title: "BM DAO | Wallet",
+    title: "BM DAO | Tasks",
 };
 
 export default Page;

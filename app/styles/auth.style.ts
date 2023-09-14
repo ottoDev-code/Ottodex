@@ -188,3 +188,27 @@ export const QControl = styled.div`
     justify-content: space-between;
     width: 100%;
 `;
+export const LoadingContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.4);
+    top: 0;
+    left: 0;
+    z-index: 99999999;
+    height: 100vh;
+    width: 100vw;
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        h3 {
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 3px;
+            margin-top: 10px;
+        }
+    }
+`;
