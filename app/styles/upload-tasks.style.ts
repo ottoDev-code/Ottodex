@@ -119,8 +119,8 @@ export const UploadContainer = styled.div`
     label div.select {
         align-items: center;
         display: flex;
-        padding: 0.5rem 0.625rem;
         justify-content: space-between;
+        padding: 0 0.625rem;
     }
 
     h4 {
@@ -134,6 +134,7 @@ export const UploadContainer = styled.div`
         color: ${colors.black};
         font-size: 1rem;
         font-weight: 500;
+        height: 40px;
         outline: none;
     }
     select::placeholder, input::placeholder {

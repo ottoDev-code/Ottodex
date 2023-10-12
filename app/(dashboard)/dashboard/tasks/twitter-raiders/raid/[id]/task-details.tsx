@@ -20,14 +20,14 @@ import {
     UploadedDocContainer,
     ScreenshotContainer,
     TaskWrapper,
-} from "../../../../../styles/task-details.styles";
-import TaskBox from "../../../../../components/taskbox/TaskBox";
+} from "../../../../../../styles/task-details.styles";
+import TaskBox from "../../../../../../components/taskbox/TaskBox";
 import Image from "next/image";
 import uploadIcon from "../../../../../../public/upload-icon.svg";
 import imageDocIcon from "../../../../../../public/img-doc-icon.svg";
 import closeIcon from "../../../../../../public/close-icon.svg";
 import linkIcon from "../../../../../../public/link-icon.svg";
-import { getSingleTask, startRaidTask } from "@/app/api/task";
+import { completeRaidTask, getSingleRaid, getSingleTask, startRaidTask } from "@/app/api/task";
 import { getUser, setLoading, useDispatch, useSelector } from "@/lib/redux";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
@@ -41,7 +41,7 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
     const [uploadedProofs, setUploadedProofs] = useState<File[]>([]);
     const [url, setUrl] = useState<string>("");
     const [uploadedUrl, setUploadedUrl] = useState<string[]>([]);
-    const [task, setTask] = useState<any>(null);
+    const [raid, setRaid] = useState<any>(null);
     const user = useSelector(getUser);
     const dispatch = useDispatch();
     const router = useRouter();
@@ -70,13 +70,13 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
             setUploadedProofs([...uploadedProofs, file]);
         }
     };
-    const handleStartTask = () => {
+    const handleCompleteRaid = () => {
             dispatch(setLoading(true));
-            startRaidTask({
-                taskId: id,
+            completeRaidTask({
+                raidId: raid?.id,
                 serviceId: user.raiderService?._id,
             }).then((res) => {
-                toast.success("Raid started successfully", {
+                toast.success("Raid completed successfully", {
                     position: toast.POSITION.TOP_RIGHT
                 });
                 dispatch(setLoading(false));
@@ -88,17 +88,17 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
                 dispatch(setLoading(false));
             })
     }
-    const fetchTask = () => {
-        getSingleTask(id)
+    const fetchRaid = () => {
+        getSingleRaid(id)
         .then((res) => {
-            setTask(res.data.data)
+            setRaid(res.data.data)
         })
         .catch((e) => {
             console.log(e)
         })
     }
     useEffect(() => {
-      fetchTask()
+      fetchRaid()
     }, [])
     
 
@@ -106,9 +106,9 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
         <Wrapper>
             <LeftColumn>
                 <TaskWrapper style={{ top: "30px" }}>
-                    <TaskBox heading={"Available Tasks"} tasksNub={1} />
-                    <TaskBox heading={"Pending Tasks"} tasksNub={5} />
-                    <TaskBox heading={"Completed Tasks"} tasksNub={50} />
+                    <TaskBox heading={"Available Raids"} tasksNub={1} />
+                    <TaskBox heading={"Pending Raids"} tasksNub={5} />
+                    <TaskBox heading={"Completed Raids"} tasksNub={50} />
                 </TaskWrapper>
             </LeftColumn>
 
@@ -116,25 +116,29 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
                 <TaskSub>Twitter Raiders</TaskSub>
                 <Details>
                     <div>
+                        <p>Task status:</p>
+                        <BoldP>{raid?.taskStatus}</BoldP>
+                    </div>
+                    <div>
                         <p>Task created at:</p>
-                        <BoldP>{(new Date(task?.startedAt)).toUTCString()}</BoldP>
+                        <BoldP>{(new Date(raid?.task?.startedAt)).toUTCString()}</BoldP>
                     </div>
 
                     <div>
                         <p>Task to end before:</p>
-                        <BoldP>{(new Date(task?.endedAt)).toUTCString()}</BoldP>
+                        <BoldP>{(new Date(raid?.task?.endedAt)).toUTCString()}</BoldP>
                     </div>
 
                     <div>
                         <p>Raid Link</p>
-                        <BoldP>{task?.raidInformation?.raidLink}</BoldP>
+                        <BoldP>{raid?.task?.raidInformation?.raidLink}</BoldP>
                     </div>
 
                     <div>
                         <p>Actions</p>
                         <BoldP>
                             {
-                                task?.raidInformation?.actions.map((val: any) => val + ", ")
+                                raid?.task?.raidInformation?.actions.map((val: any) => val + ", ")
                             }
                         </BoldP>
                     </div>
@@ -147,7 +151,7 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
                 <Instructions>
                         <h4>Caption</h4>
                         <div className="instruction-grid">
-                            <p>{task?.raidInformation?.campaignCaption}</p>
+                            <p>{raid?.task?.raidInformation?.campaignCaption}</p>
                         </div>
                 </Instructions>
                 {/* {startTask || (
@@ -197,8 +201,8 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
                         </div>
                     </Instructions>
                 )} */}
-                <StartButton onClick={handleStartTask}>
-                    Start Raid
+                <StartButton onClick={handleCompleteRaid}>
+                    Complete Raid
                 </StartButton>
 
                 {/* {startTask && (

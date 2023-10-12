@@ -11,11 +11,12 @@ export const Container = styled.div`
     width: 270px;
     min-width: 270px;
     max-width: 270px;
-    padding: 30px 36px 25px 36px;
+    padding: 30px 20px 25px 20px;
     row-gap: 5px;
     max-height: 100vh;
     overflow-y: scroll;
     border-right: 1px solid #D9D9D9;
+    scrollbar-width: thin;
     scrollbar-color: ${colors.primaryColor}  ${colors.primaryColor}11;
     &::-webkit-scrollbar-thumb {
         background-color: transparent;

@@ -19,13 +19,39 @@ import {
 } from "@/app/styles/client-wallet.style";
 import { Container } from "@/app/styles/dashboard.style";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import dropdown_icon from "../../../../public/dropdown.svg";
+import { getUser, setUser, useDispatch, useSelector } from "@/lib/redux";
+import { getUserProfile } from "@/app/api/auth";
+import { getUserTransactionHistory } from "@/app/api/wallet";
 
 const ClientWallet = () => {
     const [changeCurrency, setChangeCurrency] = useState<boolean>(false);
-
+    const [history, setHistory] = useState<any>([]);
+    const dispatch = useDispatch();
+    const user = useSelector(getUser);
+    const fetchProfile = () => {
+        getUserProfile()
+        .then((res) => {
+          dispatch(setUser(res.data.data));
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+      }
+    const fetchHistory = () => {
+        getUserTransactionHistory()
+        .then((res) => {
+          setHistory(res.data.data.transactions)
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+      }
+    useEffect(() => {
+      fetchHistory();
+    }, [])
     return (
         <Container>
             <HeadingCard heading={"Wallet"} />
@@ -34,7 +60,7 @@ const ClientWallet = () => {
                     <div className="top">
                         <div>
                             <p>Wallet Balance</p>
-                            <h1>$279.5</h1>
+                            <h1>{user?.wallet?.balance?.totalBalance}</h1>
                         </div>
                         <button>
                             <span>USD</span>
@@ -49,7 +75,7 @@ const ClientWallet = () => {
                         <p>USD</p>
                         <div>
                             <p>Available Balance</p>
-                            <Amount>$279.5</Amount>
+                            <Amount>${user?.wallet?.balance?.walletBalance}</Amount>
                         </div>
                     </BalanceCard>
 
@@ -57,7 +83,7 @@ const ClientWallet = () => {
                         <p>BMT</p>
                         <div>
                             <p>Available Balance</p>
-                            <Amount>15,500 BMT</Amount>
+                            <Amount>0 BMT</Amount>
                         </div>
                     </BalanceCard>
 
@@ -71,7 +97,7 @@ const ClientWallet = () => {
                         </div>
                         <div>
                             <p>Total Amount Spent</p>
-                            <Amount>15,500 BMT</Amount>
+                            <Amount>0 BMT</Amount>
                         </div>
                     </BalanceCard>
                 </BalanceCards>
@@ -87,7 +113,7 @@ const ClientWallet = () => {
 
                 <MobileTotalCard>
                     <p>Total Amount Spent</p>
-                    <p className="bold">15,500 BMT</p>
+                    <p className="bold">0 BMT</p>
                 </MobileTotalCard>
             </BalanceContainer>
 
@@ -120,145 +146,29 @@ const ClientWallet = () => {
                         </p>
                     </div>
 
-                    <div>
-                        <p className="tittle">Task Reward</p>
-                        <p className="date">26 June, 2023</p>
-                        <p className="hidden-mobile">Successful</p>
-                        <p
-                            className={`bmt ${
-                                changeCurrency ? "none" : "block"
-                            } `}
-                        >
-                            500 BMT
-                        </p>
-                        <p
-                            className={`usd ${
-                                changeCurrency ? "block" : "none"
-                            }`}
-                        >
-                            $10
-                        </p>
-                    </div>
-
-                    <div>
-                        <p className="tittle">Withdrawal</p>
-                        <p className="date">26 June, 2023</p>
-                        <p className="hidden-mobile">Successful</p>
-                        <p
-                            className={`bmt ${
-                                changeCurrency ? "none" : "block"
-                            } `}
-                        >
-                            10,000 BMT
-                        </p>
-                        <p
-                            className={`usd ${
-                                changeCurrency ? "block" : "none"
-                            }`}
-                        >
-                            $150
-                        </p>
-                    </div>
-
-                    <div>
-                        <p className="tittle">Task Reward</p>
-                        <p className="date">26 June, 2023</p>
-                        <p className="hidden-mobile">Successful</p>
-                        <p
-                            className={`bmt ${
-                                changeCurrency ? "none" : "block"
-                            } `}
-                        >
-                            500 BMT
-                        </p>
-                        <p
-                            className={`usd ${
-                                changeCurrency ? "block" : "none"
-                            }`}
-                        >
-                            $10
-                        </p>
-                    </div>
-
-                    <div>
-                        <p className="tittle">Withdrawal</p>
-                        <p className="date">26 June, 2023</p>
-                        <p className="hidden-mobile">Failed</p>
-                        <p
-                            className={`bmt ${
-                                changeCurrency ? "none" : "block"
-                            } `}
-                        >
-                            10,000 BMT
-                        </p>
-                        <p
-                            className={`usd ${
-                                changeCurrency ? "block" : "none"
-                            }`}
-                        >
-                            $150
-                        </p>
-                    </div>
-
-                    <div>
-                        <p className="tittle">Task Reward</p>
-                        <p className="date">26 June, 2023</p>
-                        <p className="hidden-mobile">Successful</p>
-                        <p
-                            className={`bmt ${
-                                changeCurrency ? "none" : "block"
-                            } `}
-                        >
-                            500 BMT
-                        </p>
-                        <p
-                            className={`usd ${
-                                changeCurrency ? "block" : "none"
-                            }`}
-                        >
-                            $10
-                        </p>
-                    </div>
-
-                    <div>
-                        <p className="tittle">Task Reward</p>
-                        <p className="date">26 June, 2023</p>
-                        <p className="hidden-mobile">Successful</p>
-                        <p
-                            className={`bmt ${
-                                changeCurrency ? "none" : "block"
-                            } `}
-                        >
-                            500 BMT
-                        </p>
-                        <p
-                            className={`usd ${
-                                changeCurrency ? "block" : "none"
-                            }`}
-                        >
-                            $10
-                        </p>
-                    </div>
-
-                    <div>
-                        <p className="tittle">Task Reward</p>
-                        <p className="date">26 June, 2023</p>
-                        <p className="hidden-mobile">Successful</p>
-                        <p
-                            className={`bmt ${
-                                changeCurrency ? "none" : "block"
-                            } `}
-                        >
-                            500 BMT
-                        </p>
-                        <p
-                            className={`usd ${
-                                changeCurrency ? "block" : "none"
-                            }`}
-                        >
-                            $10
-                        </p>
-                    </div>
+                    {
+                        history.map((val: any, i: number) => (
+                            <div key={i}>
+                                <p className="tittle">{val?.name}</p>
+                                <p className="date">{(new Date(val?.createdAt)).toDateString()}</p>
+                                <p className="hidden-mobile">{val?.status}</p>
+                                <p
+                                    className={`bmt ${
+                                        changeCurrency ? "none" : "block"
+                                    } `}
+                                >
+                                    ${val?.amount}
+                                </p>
+                                <p
+                                    className={`usd ${
+                                        changeCurrency ? "block" : "none"
+                                    }`}
+                                >
+                                    ${val?.amount}
+                                </p>
+                            </div>
+                        ))
+                    }
                 </HistoryDetails>
             </History>
         </Container>

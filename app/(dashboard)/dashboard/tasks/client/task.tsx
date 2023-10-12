@@ -20,12 +20,38 @@ import {
     ClientHistory,
 } from "@/app/styles/client-moderators.style";
 import { Container, StatsCard } from "@/app/styles/dashboard.style";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import UploadTask from "./upload-task";
+import { getAllClientTask } from "@/app/api/task";
+import { generatePages } from "@/lib/utils";
 
 const ClientTasks = () => {
     const [showModal, setShowModal] = useState<boolean>(false);
+    const [tasks, setTasks] = useState<any>([]);
+    const [pages, setPages] = useState<string[]>([]);
+    const [numberOfPages, setNumberOfPages] = useState(0);
+    const limit = 10;
+    const [currentPage, setCurrentPage] = useState(1);
+    const [refetch, setRefetch] = useState(false);
+    const fetchTasks = () => {
+        getAllClientTask(limit, currentPage)
+        .then((res) => {
+            setTasks(res.data.data.tasks);
+            setPages(generatePages(res.data.data.totalTasks, limit, currentPage))
+            setNumberOfPages(Math.ceil(res.data.data.totalTasks/limit));
+        })
+        .catch((res) => {
 
+        })
+    }
+    const handleChangePage = (page: number) => {
+        if((page !== currentPage) && (page > 0) && (page <= numberOfPages)) {
+            setCurrentPage(page);
+        }
+    }
+    useEffect(() => {
+      fetchTasks();
+    }, [currentPage, refetch])
     return (
         <>
             <Container>
@@ -142,111 +168,43 @@ const ClientTasks = () => {
                                         <span>#</span> Task
                                     </p>
                                     <p className="date">Date</p>
-                                    <p className="status">Status</p>
-                                    <p className="price">Amount</p>
+                                    <p className="status">Raid Link</p>
+                                    <p className="price">Raiders</p>
                                 </HistoryCardItem>
-
-                                <HistoryCardItem>
-                                    <p className="title">
-                                        <span>1</span> Twitter Raider
-                                    </p>
-                                    <p className="date">26/06/2023</p>
-                                    <p className="status">Pending</p>
-                                    <p className="price">500 BMT</p>
-                                </HistoryCardItem>
-
-                                <HistoryCardItem>
-                                    <p className="title">
-                                        <span>2</span> Collab Manager
-                                    </p>
-                                    <p className="date">26/06/2023</p>
-                                    <p className="status">Completed</p>
-                                    <p className="price">500 BMT</p>
-                                </HistoryCardItem>
-
-                                <HistoryCardItem>
-                                    <p className="title">
-                                        <span>3</span> Twitter Raider
-                                    </p>
-                                    <p className="date">26/06/2023</p>
-                                    <p className="status">Completed</p>
-                                    <p className="price">500 BMT</p>
-                                </HistoryCardItem>
-
-                                <HistoryCardItem>
-                                    <p className="title">
-                                        <span>4</span> Twitter Raider
-                                    </p>
-                                    <p className="date">26/06/2023</p>
-                                    <p className="status">Completed</p>
-                                    <p className="price">500 BMT</p>
-                                </HistoryCardItem>
-
-                                <HistoryCardItem>
-                                    <p className="title">
-                                        <span>5</span> Twitter Raider
-                                    </p>
-                                    <p className="date">26/06/2023</p>
-                                    <p className="status">Completed</p>
-                                    <p className="price">500 BMT</p>
-                                </HistoryCardItem>
-
-                                <HistoryCardItem>
-                                    <p className="title">
-                                        <span>6</span> Twitter Raider
-                                    </p>
-                                    <p className="date">26/06/2023</p>
-                                    <p className="status">Completed</p>
-                                    <p className="price">500 BMT</p>
-                                </HistoryCardItem>
-
-                                <HistoryCardItem>
-                                    <p className="title">
-                                        <span>7</span> Chat Engagers
-                                    </p>
-                                    <p className="date">26/06/2023</p>
-                                    <p className="status">Completed</p>
-                                    <p className="price">500 BMT</p>
-                                </HistoryCardItem>
-
-                                <HistoryCardItem>
-                                    <p className="title">
-                                        <span>8</span> Chat Engagers
-                                    </p>
-                                    <p className="date">26/06/2023</p>
-                                    <p className="status">Completed</p>
-                                    <p className="price">500 BMT</p>
-                                </HistoryCardItem>
-
-                                <HistoryCardItem>
-                                    <p className="title">
-                                        <span>9</span> Chat Engagers
-                                    </p>
-                                    <p className="date">26/06/2023</p>
-                                    <p className="status">Completed</p>
-                                    <p className="price">500 BMT</p>
-                                </HistoryCardItem>
-
-                                <HistoryCardItem>
-                                    <p className="title">
-                                        <span>10</span> Twitter Raider
-                                    </p>
-                                    <p className="date">26/06/2023</p>
-                                    <p className="status">Completed</p>
-                                    <p className="price">500 BMT</p>
-                                </HistoryCardItem>
+                                {
+                                    tasks.map((task: any, i: number) => (
+                                        <HistoryCardItem key={i}>
+                                            <p className="title">
+                                                <span>{i + 1}</span> Twitter Raider
+                                            </p>
+                                            <p className="date">{(new Date(task?.createdAt)).toDateString()}</p>
+                                            <p className="status">{`${task?.raidInformation?.raidLink.substring(0, 10)}${task?.raidInformation?.raidLink.length > 10 ? "..." : ""}` }</p>
+                                            <p className="price">{task?.raidInformation?.amount}</p>
+                                        </HistoryCardItem>
+                                    ))
+                                }
                             </HistoryCard>
 
                             <Pagination>
-                                <ArrowLeftIcon />
-                                <div>
-                                    <p>1</p>
-                                    <p>2</p>
-                                    <p className="active">3</p>
-                                    <p>...</p>
-                                    <p>12</p>
+                                <div onClick={() => handleChangePage(currentPage - 1)} style={{ cursor: "pointer" }}> 
+                                    <ArrowLeftIcon />
                                 </div>
-                                <ArrowRightIcon />
+                                <div>
+                                    {
+                                        pages.map((val, i) => {
+                                            if(Number(val) === currentPage) {
+                                                return <p className="active" onClick={() => handleChangePage(Number(val))} style={{ cursor: "pointer" }}>{val}</p> 
+                                            }
+                                            if(val === "...") {
+                                                return <p style={{ cursor: "not-allowed" }}>...</p>
+                                            }
+                                            return <p onClick={() => handleChangePage(Number(val))} style={{ cursor: "pointer" }}>{val}</p> 
+                                        })
+                                    }
+                                </div>
+                                <div onClick={() => handleChangePage(currentPage + 1)} style={{ cursor: "pointer" }}>
+                                    <ArrowRightIcon />
+                                </div>
                             </Pagination>
 
                             <button
@@ -259,7 +217,7 @@ const ClientTasks = () => {
                     </HistoryContainer>
                 </ModWrapper>
             </Container>
-            {showModal && <UploadTask setShowModal={setShowModal} />}
+            {showModal && <UploadTask setShowModal={setShowModal} setRefetch={setRefetch} refetch={refetch} />}
         </>
     );
 };

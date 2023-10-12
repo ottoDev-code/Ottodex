@@ -200,6 +200,12 @@ export const HistoryCardItem = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr) 0.5fr;
     padding: 0.875rem;
+    p.title {
+        span {
+            display: inline-block;
+            min-width: 30px;
+        }
+    }
 
     @media screen and (max-width: 654px) {
         grid-template-columns: repeat(2, 1fr);

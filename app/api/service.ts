@@ -1,8 +1,8 @@
 import { axiosInstance } from "./axios"
 
-export const subscribeToService = (data: any) => {
-    return axiosInstance().post("/user/service/raider/subscribe", data);
+export const subscribeToServiceRaider = (data: any) => {
+    return axiosInstance().post("/user/worker/raider/service/subscribe", data);
 }
-export const resubscribeToService = (data: any) => {
-    return axiosInstance().post("/user/service/raider/resubscribe", data);
+export const resubscribeToServiceRaider = (data: any) => {
+    return axiosInstance().post("/user/worker/raider/service/resubscribe", data);
 }

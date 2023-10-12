@@ -27,7 +27,7 @@ const TaskBox: React.FC<Props> = ({ tasksNub, heading }) => {
                 <Heading>{heading}</Heading>
                 <TasksText>
                     <span>{tasksNub} </span>
-                    Tasks
+                    Raids
                 </TasksText>
             </TaskContent>
         </Wrapper>

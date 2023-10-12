@@ -18,10 +18,12 @@ import { toast } from "react-toastify";
 
 interface Props {
     setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+    setRefetch: React.Dispatch<React.SetStateAction<boolean>>;
+    refetch: boolean;
 }
 
-const UploadTask: React.FC<Props> = ({ setShowModal }) => {
-    const [taskType, setTaskType] = useState<string>("chat-engager");
+const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
+    const [taskType, setTaskType] = useState<string>("twitter-raider");
     const [raidersNumber, setRaidersNumber] = useState("");
     const [weeks, setWeeks] = useState("");
     const [dailyPost, setDailyPost] = useState("");
@@ -66,6 +68,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal }) => {
                 dailyPost,
                 startDate,
                 raidLink,
+                raidersNumber,
                 campaignCaption: caption,
                 actions,
                 mediaUrl: mediaLink,
@@ -75,6 +78,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal }) => {
                 });
                 setShowModal(false);
                 dispatch(setLoading(false));
+                setRefetch(!refetch);
             }).catch((e: any) => {
                 toast.error(e.response.data.error[0].message, {
                   position: toast.POSITION.TOP_RIGHT
@@ -99,23 +103,19 @@ const UploadTask: React.FC<Props> = ({ setShowModal }) => {
                                         id="task-type"
                                         onChange={(e) => changeTaskType(e)}
                                     >
-                                        <option value="chat-engager">
+                                        {/* <option value="chat-engager">
                                             Chat Engager
                                         </option>
                                         <option value="collab-manager">
                                             Collab Manager
-                                        </option>
+                                        </option> */}
                                         <option value="twitter-raider">
                                             Twitter Raider
                                         </option>
-                                        <option value="moderator">
+                                        {/* <option value="moderator">
                                             Moderator
-                                        </option>
+                                        </option> */}
                                     </select>
-                                    <Image
-                                        src={dropdon_icon}
-                                        alt="Dropdown Icon"
-                                    />
                                 </div>
                             </label>
 
@@ -131,10 +131,6 @@ const UploadTask: React.FC<Props> = ({ setShowModal }) => {
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                     </select>
-                                    <Image
-                                        src={dropdon_icon}
-                                        alt="Dropdown Icon"
-                                    />
                                 </div>
                             </label>
                         </div>
@@ -395,7 +391,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal }) => {
                                             Comment on Post
                                         </label>
 
-                                        <label htmlFor="create-tweet">
+                                        {/* <label htmlFor="create-tweet">
                                             <input
                                                 type="checkbox"
                                                 name=""
@@ -404,7 +400,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal }) => {
                                                 onChange={() => toggleAction("Create Tweet")}
                                             />
                                             Create Tweet
-                                        </label>
+                                        </label> */}
                                     </div>
                                 </div>
                                 {/* 

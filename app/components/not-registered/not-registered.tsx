@@ -8,7 +8,7 @@ import Image from "next/image";
 import React from "react";
 
 import image from "../../../public/not-registered.png";
-import { subscribeToService } from "@/app/api/service";
+import { subscribeToServiceRaider } from "@/app/api/service";
 import { setUser } from "@/lib/redux";
 import { getUserProfile } from "@/app/api/auth";
 import { useDispatch } from "react-redux";
@@ -30,7 +30,7 @@ const NotRegistered: React.FC<Props> = ({ taskSub }) => {
       }
     const handleSubscribeToService = () => {
         if(taskSub === "Twitter Raiders") {
-            subscribeToService({
+            subscribeToServiceRaider({
                 accountType: "raider"
             })
             .then(() => {

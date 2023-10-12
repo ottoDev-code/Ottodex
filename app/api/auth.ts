@@ -8,8 +8,9 @@ export const loginUser = (body: IUserLogin) => {
     return axiosInstance().post("/user/auth/login", body);
 }
 export const getUserProfile = () => {
-    return axiosInstance().get("/user/profile");
+    return axiosInstance().get("/user/personal/profile");
 }
 export const updateProfile = (body: any) => {
-    return axiosInstance().post("/user/profile/update", body);
+    return axiosInstance().post("/user/personal/profile/update", body);
 }
+

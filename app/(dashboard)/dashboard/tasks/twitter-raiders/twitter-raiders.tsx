@@ -14,7 +14,7 @@ const TwitterRaiders = () => {
         <Container>
             <HeadingCard heading={"Tasks"} sub={"Twitter Raiders"} />
             {
-                !user.raiderService ?  <TaskDetailsNew /> : <NotRegistered taskSub={"Twitter Raiders"} />
+                user.raiderService ?  <TaskDetailsNew /> : <NotRegistered taskSub={"Twitter Raiders"} />
             }
         </Container>
     );

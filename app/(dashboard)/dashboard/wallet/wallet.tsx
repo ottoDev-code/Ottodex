@@ -23,13 +23,40 @@ import {
 } from "@/app/styles/client-wallet.style";
 import { Container } from "@/app/styles/dashboard.style";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import dropdown_icon from "../../../../public/dropdown.svg";
+import { getUser, setUser, useDispatch, useSelector } from "@/lib/redux";
+import { getUserTransactionHistory } from "@/app/api/wallet";
+import { getUserProfile } from "@/app/api/auth";
 
 const Wallet = () => {
     const [changeCurrency, setChangeCurrency] = useState<boolean>(false);
-
+    const [history, setHistory] = useState<any>([]);
+    const dispatch = useDispatch();
+    const user = useSelector(getUser);
+    const fetchProfile = () => {
+        getUserProfile()
+        .then((res) => {
+          dispatch(setUser(res.data.data));
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+      }
+    const fetchHistory = () => {
+        getUserTransactionHistory()
+        .then((res) => {
+          setHistory(res.data.data.transactions)
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+      }
+    useEffect(() => {
+      fetchHistory();
+    }, [])
+    
     return (
         <Container>
             <HeadingCard heading={"Wallet"} />
@@ -38,14 +65,14 @@ const Wallet = () => {
                     <div className="top">
                         <div>
                             <p>Wallet Balance</p>
-                            <h1>$279.5</h1>
+                            <h1>${user?.wallet?.balance?.totalBalance}</h1>
                         </div>
                         <button>
                             <span>BMT</span>
                             <ArrowDownIcon />
                         </button>
                     </div>
-                    <p>BMT Value: 12,345.50</p>
+                    <p>BMT Value: 0</p>
                 </MobileBalanceCard>
 
                 <BalanceCards>
@@ -53,7 +80,7 @@ const Wallet = () => {
                         <p>USD</p>
                         <div>
                             <p>Available Balance</p>
-                            <Amount>$279.5</Amount>
+                            <Amount>${user?.wallet?.balance?.totalBalance}</Amount>
                         </div>
                     </BalanceCard>
 
@@ -61,7 +88,7 @@ const Wallet = () => {
                         <p>BMT</p>
                         <div>
                             <p>Available Balance</p>
-                            <Amount>15,500 BMT</Amount>
+                            <Amount>0 BMT</Amount>
                         </div>
                     </BalanceCard>
 
@@ -72,7 +99,7 @@ const Wallet = () => {
                                 Total Income
                             </div>
 
-                            <div className="price">$2,789.28</div>
+                            <div className="price">$0</div>
                         </div>
 
                         <div className="stroke"></div>
@@ -83,7 +110,7 @@ const Wallet = () => {
                                 Total Withdrawn
                             </div>
 
-                            <div className="price">$2,510.76</div>
+                            <div className="price">$0</div>
                         </div>
                     </TotalCard>
                 </BalanceCards>
@@ -104,7 +131,7 @@ const Wallet = () => {
                             Total Income
                         </div>
 
-                        <div className="price">$2,789.28</div>
+                        <div className="price">$0</div>
                     </div>
 
                     <div className="stroke"></div>
@@ -115,7 +142,7 @@ const Wallet = () => {
                             Total Withdrawn
                         </div>
 
-                        <div className="price">$2,510.76</div>
+                        <div className="price">$0</div>
                     </div>
                 </WalletMobileTotalCard>
             </BalanceContainer>
@@ -148,146 +175,29 @@ const Wallet = () => {
                             Amount in USD
                         </p>
                     </div>
-
-                    <div>
-                        <p className="tittle">Task Reward</p>
-                        <p className="date">26 June, 2023</p>
-                        <p className="hidden-mobile">Successful</p>
-                        <p
-                            className={`bmt ${
-                                changeCurrency ? "none" : "block"
-                            } `}
-                        >
-                            500 BMT
-                        </p>
-                        <p
-                            className={`usd ${
-                                changeCurrency ? "block" : "none"
-                            }`}
-                        >
-                            $10
-                        </p>
-                    </div>
-
-                    <div>
-                        <p className="tittle">Withdrawal</p>
-                        <p className="date">26 June, 2023</p>
-                        <p className="hidden-mobile">Successful</p>
-                        <p
-                            className={`bmt ${
-                                changeCurrency ? "none" : "block"
-                            } `}
-                        >
-                            10,000 BMT
-                        </p>
-                        <p
-                            className={`usd ${
-                                changeCurrency ? "block" : "none"
-                            }`}
-                        >
-                            $150
-                        </p>
-                    </div>
-
-                    <div>
-                        <p className="tittle">Task Reward</p>
-                        <p className="date">26 June, 2023</p>
-                        <p className="hidden-mobile">Successful</p>
-                        <p
-                            className={`bmt ${
-                                changeCurrency ? "none" : "block"
-                            } `}
-                        >
-                            500 BMT
-                        </p>
-                        <p
-                            className={`usd ${
-                                changeCurrency ? "block" : "none"
-                            }`}
-                        >
-                            $10
-                        </p>
-                    </div>
-
-                    <div>
-                        <p className="tittle">Withdrawal</p>
-                        <p className="date">26 June, 2023</p>
-                        <p className="hidden-mobile">Failed</p>
-                        <p
-                            className={`bmt ${
-                                changeCurrency ? "none" : "block"
-                            } `}
-                        >
-                            10,000 BMT
-                        </p>
-                        <p
-                            className={`usd ${
-                                changeCurrency ? "block" : "none"
-                            }`}
-                        >
-                            $150
-                        </p>
-                    </div>
-
-                    <div>
-                        <p className="tittle">Task Reward</p>
-                        <p className="date">26 June, 2023</p>
-                        <p className="hidden-mobile">Successful</p>
-                        <p
-                            className={`bmt ${
-                                changeCurrency ? "none" : "block"
-                            } `}
-                        >
-                            500 BMT
-                        </p>
-                        <p
-                            className={`usd ${
-                                changeCurrency ? "block" : "none"
-                            }`}
-                        >
-                            $10
-                        </p>
-                    </div>
-
-                    <div>
-                        <p className="tittle">Task Reward</p>
-                        <p className="date">26 June, 2023</p>
-                        <p className="hidden-mobile">Successful</p>
-                        <p
-                            className={`bmt ${
-                                changeCurrency ? "none" : "block"
-                            } `}
-                        >
-                            500 BMT
-                        </p>
-                        <p
-                            className={`usd ${
-                                changeCurrency ? "block" : "none"
-                            }`}
-                        >
-                            $10
-                        </p>
-                    </div>
-
-                    <div>
-                        <p className="tittle">Task Reward</p>
-                        <p className="date">26 June, 2023</p>
-                        <p className="hidden-mobile">Successful</p>
-                        <p
-                            className={`bmt ${
-                                changeCurrency ? "none" : "block"
-                            } `}
-                        >
-                            500 BMT
-                        </p>
-                        <p
-                            className={`usd ${
-                                changeCurrency ? "block" : "none"
-                            }`}
-                        >
-                            $10
-                        </p>
-                    </div>
+                    {
+                        history.map((val: any, i: number) => (
+                            <div key={i}>
+                                <p className="tittle">{val?.name}</p>
+                                <p className="date">{(new Date(val?.createdAt)).toDateString()}</p>
+                                <p className="hidden-mobile">{val?.status}</p>
+                                <p
+                                    className={`bmt ${
+                                        changeCurrency ? "none" : "block"
+                                    } `}
+                                >
+                                    ${val?.amount}
+                                </p>
+                                <p
+                                    className={`usd ${
+                                        changeCurrency ? "block" : "none"
+                                    }`}
+                                >
+                                    ${val?.amount}
+                                </p>
+                            </div>
+                        ))
+                    }
                 </HistoryDetails>
             </History>
         </Container>
