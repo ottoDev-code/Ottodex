@@ -214,6 +214,7 @@ export const HistoryCardItem = styled.div`
         p.title {
             font-weight: 500;
             grid-area: 1/1/2/2;
+            min-width: 150px;
         }
 
         p.date {

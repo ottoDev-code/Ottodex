@@ -145,9 +145,6 @@ export const UploadContainer = styled.div`
     select {
         border: none;
         width: 100%;
-        -webkit-appearance: none; /* Chrome, Safari, Opera */
-        -moz-appearance: none; /* Firefox */
-        appearance: none; /* Modern browsers */
     }
 
     div.input input:focus,

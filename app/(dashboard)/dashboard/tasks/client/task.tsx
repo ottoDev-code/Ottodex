@@ -24,6 +24,7 @@ import React, { useEffect, useState } from "react";
 import UploadTask from "./upload-task";
 import { getAllClientTask } from "@/app/api/task";
 import { generatePages } from "@/lib/utils";
+import { getUser, useSelector } from "@/lib/redux";
 
 const ClientTasks = () => {
     const [showModal, setShowModal] = useState<boolean>(false);
@@ -32,6 +33,7 @@ const ClientTasks = () => {
     const [numberOfPages, setNumberOfPages] = useState(0);
     const limit = 10;
     const [currentPage, setCurrentPage] = useState(1);
+    const user = useSelector(getUser);
     const [refetch, setRefetch] = useState(false);
     const fetchTasks = () => {
         getAllClientTask(limit, currentPage)
@@ -69,7 +71,7 @@ const ClientTasks = () => {
                                         <DocumentIcon />
                                         <p>Uploaded</p>
                                     </div>
-                                    <h2>232</h2>
+                                    <h2>{user?.analytics?.moderators.totalUploaded}</h2>
                                 </StatsCard>
                                 <div className="divider"></div>
                                 <StatsCard>
@@ -77,7 +79,7 @@ const ClientTasks = () => {
                                         <DocumentIcon />
                                         <p>Completed</p>
                                     </div>
-                                    <h2>230</h2>
+                                    <h2>{user.analytics?.moderators.totalCompleted}</h2>
                                 </StatsCard>
                             </div>
                         </TaskCard>
@@ -92,7 +94,7 @@ const ClientTasks = () => {
                                         <DocumentIcon />
                                         <p>Uploaded</p>
                                     </div>
-                                    <h2>232</h2>
+                                    <h2>{user.analytics?.collabManagers.totalUploaded}</h2>
                                 </StatsCard>
                                 <div className="divider"></div>
                                 <StatsCard>
@@ -100,7 +102,7 @@ const ClientTasks = () => {
                                         <DocumentIcon />
                                         <p>Completed</p>
                                     </div>
-                                    <h2>230</h2>
+                                    <h2>{user.analytics?.collabManagers.totalCompleted}</h2>
                                 </StatsCard>
                             </div>
                         </TaskCard>
@@ -115,7 +117,7 @@ const ClientTasks = () => {
                                         <DocumentIcon />
                                         <p>Uploaded</p>
                                     </div>
-                                    <h2>232</h2>
+                                    <h2>{user.analytics?.raiders.totalUploaded}</h2>
                                 </StatsCard>
                                 <div className="divider"></div>
                                 <StatsCard>
@@ -123,7 +125,7 @@ const ClientTasks = () => {
                                         <DocumentIcon />
                                         <p>Completed</p>
                                     </div>
-                                    <h2>230</h2>
+                                    <h2>{user.analytics?.raiders.totalCompleted}</h2>
                                 </StatsCard>
                             </div>
                         </TaskCard>
@@ -138,7 +140,7 @@ const ClientTasks = () => {
                                         <DocumentIcon />
                                         <p>Uploaded</p>
                                     </div>
-                                    <h2>232</h2>
+                                    <h2>{user.analytics?.chatEngagers.totalUploaded}</h2>
                                 </StatsCard>
                                 <div className="divider"></div>
                                 <StatsCard>
@@ -146,7 +148,7 @@ const ClientTasks = () => {
                                         <DocumentIcon />
                                         <p>Completed</p>
                                     </div>
-                                    <h2>230</h2>
+                                    <h2>{user.analytics?.chatEngagers.totalCompleted}</h2>
                                 </StatsCard>
                             </div>
                         </TaskCard>

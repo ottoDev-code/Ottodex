@@ -1,5 +1,6 @@
 "use client";
 
+import { getUserTransactionHistory } from "@/app/api/wallet";
 import HeadingCard from "@/app/components/heading-card/heading-card";
 import { ArrowDownIcon, DocumentIcon } from "@/app/components/svg-icons";
 import {
@@ -16,6 +17,7 @@ import {
     ClientTaskCard,
     ClientBalanceCard,
 } from "@/app/styles/client-dashboard.style";
+import { HistoryDetails } from "@/app/styles/client-wallet.style";
 
 import {
     ActivityWrapper,
@@ -25,10 +27,26 @@ import {
     TaskCard,
 } from "@/app/styles/dashboard.style";
 import { getUser, useSelector } from "@/lib/redux";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 const Dashboard = () => {
     const user = useSelector(getUser);
+    const [changeCurrency, setChangeCurrency] = useState<boolean>(false);
+    const [history, setHistory] = useState<any>([]);
+    const router = useRouter();
+    const fetchHistory = () => {
+        getUserTransactionHistory(10, 1)
+        .then((res) => {
+          setHistory(res.data.data.transactions)
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+      }
+    useEffect(() => {
+      fetchHistory();
+    }, [])
     return (
         <Container>
             <HeadingCard
@@ -42,15 +60,15 @@ const Dashboard = () => {
                         <ClientBalanceCard>
                             <div className="top">
                                 <div>
-                                    <p>Wallet Balance</p>
-                                    <h1>${user?.wallet?.balance?.walletBalance ?? "0"}</h1>
+                                <p>Wallet Balance</p>
+                                <h1>${Number(user?.wallet?.balance?.totalBalance).toFixed(2)}</h1>
                                 </div>
                                 <button>
-                                    <span>BMT</span>
-                                    <ArrowDownIcon />
+                                <span>BMT</span>
+                                <ArrowDownIcon />
                                 </button>
                             </div>
-                            <p>BMT Value: 12,345.50</p>
+                            <p>BMT Value: {(Number(user?.wallet?.balance?.totalBalance ?? "0") * 1000).toFixed(2)}</p>
                         </ClientBalanceCard>
                         <ClientTaskCard>
                             <div className="top">
@@ -62,21 +80,21 @@ const Dashboard = () => {
                                         <DocumentIcon />
                                         <p>Completed</p>
                                     </div>
-                                    <h2>232</h2>
+                                    <h2>{user.analytics?.totalCompleted}</h2>
                                 </StatsCard>
                                 <div className="divider"></div>
                                 <StatsCard>
                                     <div>
                                         <DocumentIcon />
-                                        <p>In Progress</p>
+                                        <p>Uploaded</p>
                                     </div>
-                                    <h2>20</h2>
+                                    <h2>{user.analytics?.totalUploaded}</h2>
                                 </StatsCard>
                             </div>
                         </ClientTaskCard>
                     </ClientCardWrapper>
 
-                    <ActivitiesCardLeft>
+                    {/* <ActivitiesCardLeft>
                         <h2>Recent Activities</h2>
                         <ActivityWrapper>
                             <ActivityCard>
@@ -155,113 +173,57 @@ const Dashboard = () => {
                                 </div>
                             </ActivityCard>
                         </ActivityWrapper>
-                    </ActivitiesCardLeft>
+                    </ActivitiesCardLeft> */}
 
                     <History>
                         <div className="first">
-                            <h2>Task History</h2>
-                            <button className="dashboard">View All</button>
+                            <h2>Recent Transactions</h2>
+                            <button className="dashboard" onClick={() => router.push("/dashboard/wallet")}>View All</button>
                         </div>
-                        <HistoryCard>
-                            <HistoryCardItem>
-                                <p className="title">
-                                    <span>#</span> Task
-                                </p>
+                        <HistoryDetails>
+                            <div>
+                                <p className="tittle">Type</p>
                                 <p className="date">Date</p>
-                                <p className="status">Status</p>
-                                <p className="price">Amount</p>
-                            </HistoryCardItem>
-
-                            <HistoryCardItem>
-                                <p className="title">
-                                    <span>1</span> Twitter Raider
+                                <p className="hidden-mobile">Status</p>
+                                <p
+                                    className={`bmt ${
+                                        changeCurrency ? "none" : "block"
+                                    } `}
+                                >
+                                    Amount in BMT
                                 </p>
-                                <p className="date">26/06/2023</p>
-                                <p className="status">Pending</p>
-                                <p className="price">500 BMT</p>
-                            </HistoryCardItem>
-
-                            <HistoryCardItem>
-                                <p className="title">
-                                    <span>2</span> Collab Manager
+                                <p
+                                    className={`usd ${
+                                        changeCurrency ? "block" : "none"
+                                    }`}
+                                >
+                                    Amount in USD
                                 </p>
-                                <p className="date">26/06/2023</p>
-                                <p className="status">Completed</p>
-                                <p className="price">500 BMT</p>
-                            </HistoryCardItem>
-
-                            <HistoryCardItem>
-                                <p className="title">
-                                    <span>3</span> Twitter Raider
-                                </p>
-                                <p className="date">26/06/2023</p>
-                                <p className="status">Completed</p>
-                                <p className="price">500 BMT</p>
-                            </HistoryCardItem>
-
-                            <HistoryCardItem>
-                                <p className="title">
-                                    <span>4</span> Twitter Raider
-                                </p>
-                                <p className="date">26/06/2023</p>
-                                <p className="status">Completed</p>
-                                <p className="price">500 BMT</p>
-                            </HistoryCardItem>
-
-                            <HistoryCardItem>
-                                <p className="title">
-                                    <span>5</span> Twitter Raider
-                                </p>
-                                <p className="date">26/06/2023</p>
-                                <p className="status">Completed</p>
-                                <p className="price">500 BMT</p>
-                            </HistoryCardItem>
-
-                            <HistoryCardItem>
-                                <p className="title">
-                                    <span>6</span> Twitter Raider
-                                </p>
-                                <p className="date">26/06/2023</p>
-                                <p className="status">Completed</p>
-                                <p className="price">500 BMT</p>
-                            </HistoryCardItem>
-
-                            <HistoryCardItem>
-                                <p className="title">
-                                    <span>7</span> Chat Engagers
-                                </p>
-                                <p className="date">26/06/2023</p>
-                                <p className="status">Completed</p>
-                                <p className="price">500 BMT</p>
-                            </HistoryCardItem>
-
-                            <HistoryCardItem>
-                                <p className="title">
-                                    <span>8</span> Chat Engagers
-                                </p>
-                                <p className="date">26/06/2023</p>
-                                <p className="status">Completed</p>
-                                <p className="price">500 BMT</p>
-                            </HistoryCardItem>
-
-                            <HistoryCardItem>
-                                <p className="title">
-                                    <span>9</span> Chat Engagers
-                                </p>
-                                <p className="date">26/06/2023</p>
-                                <p className="status">Completed</p>
-                                <p className="price">500 BMT</p>
-                            </HistoryCardItem>
-
-                            <HistoryCardItem>
-                                <p className="title">
-                                    <span>10</span> Twitter Raider
-                                </p>
-                                <p className="date">26/06/2023</p>
-                                <p className="status">Completed</p>
-                                <p className="price">500 BMT</p>
-                            </HistoryCardItem>
-                        </HistoryCard>
+                            </div>
+                            {
+                                history.map((val: any, i: number) => (
+                                    <div key={i}>
+                                        <p className="tittle">{val?.transactionType}</p>
+                                        <p className="date">{(new Date(val?.createdAt)).toDateString()}</p>
+                                        <p className="hidden-mobile">{val?.transactionStatus}</p>
+                                        <p
+                                            className={`bmt ${
+                                                changeCurrency ? "none" : "block"
+                                            } `}
+                                        >
+                                            {Number(val?.amount) * 1000 } BMT
+                                        </p>
+                                        <p
+                                            className={`usd ${
+                                                changeCurrency ? "block" : "none"
+                                            }`}
+                                        >
+                                            ${val?.amount}
+                                        </p>
+                                    </div>
+                                ))
+                            }
+                        </HistoryDetails>
                     </History>
                 </LeftContainer>
 

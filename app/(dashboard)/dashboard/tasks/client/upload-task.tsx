@@ -30,6 +30,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
     const [startDate, setStartDate] = useState("");
     const [raidLink, setRaidLink] = useState("");
     const [actions, setActions] = useState<string[]>([]);
+    const [action, setAction] = useState("Follow Account")
     const [caption, setCaption] = useState("");
     const [mediaLink, setMediaLink] = useState("");
     const toggleAction = (action: string) => {
@@ -63,14 +64,13 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
             dispatch(setLoading(true));
             createRaidTask({
                 taskType: "raider",
-                users: raidersNumber,
+                numbers: raidersNumber,
                 weeks,
                 dailyPost,
                 startDate,
                 raidLink,
-                raidersNumber,
                 campaignCaption: caption,
-                actions,
+                action,
                 mediaUrl: mediaLink,
             }).then((res) => {
                 toast.success("Raiders task created successfully", {
@@ -80,9 +80,20 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
                 dispatch(setLoading(false));
                 setRefetch(!refetch);
             }).catch((e: any) => {
-                toast.error(e.response.data.error[0].message, {
-                  position: toast.POSITION.TOP_RIGHT
-                });
+                if(e?.response?.data?.error[0].message) {
+                    toast.error(e?.response?.data?.error[0].message, {
+                      position: toast.POSITION.TOP_RIGHT
+                    });
+                    dispatch(setLoading(false));
+                    return
+                }
+                if(e?.message) {
+                    toast.error(e?.message, {
+                      position: toast.POSITION.TOP_RIGHT
+                    });
+                    dispatch(setLoading(false));
+                    return
+                }
                 dispatch(setLoading(false));
             })
         }
@@ -95,7 +106,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
                     <h3>Upload Task</h3>
                     <form>
                         <div>
-                            <label htmlFor="task-type">
+                            <label htmlFor="task-type" className="full-width">
                                 <h4>Task Type</h4>
                                 <div className="select">
                                     <select
@@ -115,21 +126,6 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
                                         {/* <option value="moderator">
                                             Moderator
                                         </option> */}
-                                    </select>
-                                </div>
-                            </label>
-
-                            <label htmlFor="select-level">
-                                <h4>Select Level</h4>
-                                <div className="select">
-                                    <select
-                                        name="select-level"
-                                        id="select-level"
-                                    >
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
                                     </select>
                                 </div>
                             </label>
@@ -344,7 +340,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
 
                         {taskType == "twitter-raider" && (
                             <>
-                              <div className="actions">
+                                {/* <div className="actions">
                                     <h4>Actions</h4>
                                     <div>
                                         <label htmlFor="follow-account">
@@ -391,7 +387,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
                                             Comment on Post
                                         </label>
 
-                                        {/* <label htmlFor="create-tweet">
+                                         <label htmlFor="create-tweet">
                                             <input
                                                 type="checkbox"
                                                 name=""
@@ -400,8 +396,22 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
                                                 onChange={() => toggleAction("Create Tweet")}
                                             />
                                             Create Tweet
-                                        </label> */}
+                                        </label>
                                     </div>
+                                </div> */}
+                                <div>
+                                    <label htmlFor="" className="full-width">
+                                        <h4>Actions</h4>
+
+                                        <div className="select">
+                                            <select value={action} onChange={(e) => setAction(e.target.value)}>
+                                                <option value="Follow Account">Follow Account</option>
+                                                <option value="Like Post">Like Post</option>
+                                                <option value="Retweet Post">Retweet Post</option>
+                                                <option value="Comment On Post">Comment On Post</option>
+                                            </select>
+                                        </div>
+                                    </label>
                                 </div>
                                 {/* 
                                 <div>
@@ -512,7 +522,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
                                         />
                                     </label>
                                     <label htmlFor="raiders-count">
-                                        <h4>Number of Raiders</h4>
+                                        <h4>{action === "Follow Account" ? "No of followers" : action === "Like Post" ? "No of likes" : action === "Retweet Post"? "No of retweets" : "No of comments" }</h4>
                                         <input
                                             id="raiders-count"
                                             type="text"

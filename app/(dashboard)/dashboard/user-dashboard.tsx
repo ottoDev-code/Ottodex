@@ -23,14 +23,14 @@ const UserDashboard = () => {
           <div className="top">
             <div>
               <p>Wallet Balance</p>
-              <h1>${user?.wallet?.balance?.walletBalance ?? "0"}</h1>
+              <h1>${Number(user?.wallet?.balance?.totalBalance).toFixed(2)}</h1>
             </div>
             <button>
               <span>BMT</span>
               <ArrowDownIcon />
             </button>
           </div>
-          <p>BMT Value: 12,345.50</p>
+          <p>BMT Value: {(Number(user?.wallet?.balance?.totalBalance ?? "0") * 1000).toFixed(2)}</p>
         </BalanceCard>
         <TaskCard>
           <div className='top'>

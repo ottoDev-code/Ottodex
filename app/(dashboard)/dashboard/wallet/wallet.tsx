@@ -5,6 +5,8 @@ import chart from "../../../../public/chart.svg";
 import HeadingCard from "@/app/components/heading-card/heading-card";
 import {
     ArrowDownIcon,
+    ArrowLeftIcon,
+    ArrowRightIcon,
     DepositIcon,
     WithdrawIcon,
 } from "@/app/components/svg-icons";
@@ -29,25 +31,31 @@ import dropdown_icon from "../../../../public/dropdown.svg";
 import { getUser, setUser, useDispatch, useSelector } from "@/lib/redux";
 import { getUserTransactionHistory } from "@/app/api/wallet";
 import { getUserProfile } from "@/app/api/auth";
+import { Pagination } from "@/app/styles/client-moderators.style";
+import { generatePages } from "@/lib/utils";
 
 const Wallet = () => {
     const [changeCurrency, setChangeCurrency] = useState<boolean>(false);
     const [history, setHistory] = useState<any>([]);
     const dispatch = useDispatch();
     const user = useSelector(getUser);
-    const fetchProfile = () => {
-        getUserProfile()
-        .then((res) => {
-          dispatch(setUser(res.data.data));
-        })
-        .catch((e) => {
-          console.log(e)
-        })
-      }
+    const [pages, setPages] = useState<string[]>([]);
+    const [numberOfPages, setNumberOfPages] = useState(0);
+    const limit = 10;
+    const [currentPage, setCurrentPage] = useState(1);
+    const [refetch, setRefetch] = useState(false);
+    const handleChangePage = (page: number) => {
+        if((page !== currentPage) && (page > 0) && (page <= numberOfPages)) {
+            setCurrentPage(page);
+        }
+    }
+
     const fetchHistory = () => {
-        getUserTransactionHistory()
+        getUserTransactionHistory(limit, currentPage)
         .then((res) => {
           setHistory(res.data.data.transactions)
+          setPages(generatePages(res.data.data.totalTransactions, limit, currentPage));
+          setNumberOfPages(Math.ceil(res.data.data.totalTransactions/limit));
         })
         .catch((e) => {
           console.log(e)
@@ -65,14 +73,14 @@ const Wallet = () => {
                     <div className="top">
                         <div>
                             <p>Wallet Balance</p>
-                            <h1>${user?.wallet?.balance?.totalBalance}</h1>
+                            <h1>${Number(user?.wallet?.balance?.totalBalance).toFixed(2)}</h1>
                         </div>
                         <button>
                             <span>BMT</span>
                             <ArrowDownIcon />
                         </button>
                     </div>
-                    <p>BMT Value: 0</p>
+                    <p>BMT Value: {(Number(user?.wallet?.balance?.totalBalance ?? "0") * 1000).toFixed(2)}</p>
                 </MobileBalanceCard>
 
                 <BalanceCards>
@@ -80,7 +88,7 @@ const Wallet = () => {
                         <p>USD</p>
                         <div>
                             <p>Available Balance</p>
-                            <Amount>${user?.wallet?.balance?.totalBalance}</Amount>
+                            <Amount>${Number(user?.wallet?.balance?.totalBalance).toFixed(2)}</Amount>
                         </div>
                     </BalanceCard>
 
@@ -88,10 +96,9 @@ const Wallet = () => {
                         <p>BMT</p>
                         <div>
                             <p>Available Balance</p>
-                            <Amount>0 BMT</Amount>
+                            <Amount>{(Number(user?.wallet?.balance?.totalBalance ?? "0") * 1000).toFixed(2)} BMT</Amount>
                         </div>
                     </BalanceCard>
-
                     <TotalCard>
                         <div>
                             <div className="content">
@@ -157,7 +164,7 @@ const Wallet = () => {
                 </div>
                 <HistoryDetails>
                     <div>
-                        <p className="tittle">Transaction</p>
+                        <p className="tittle">Type</p>
                         <p className="date">Date</p>
                         <p className="hidden-mobile">Status</p>
                         <p
@@ -178,15 +185,15 @@ const Wallet = () => {
                     {
                         history.map((val: any, i: number) => (
                             <div key={i}>
-                                <p className="tittle">{val?.name}</p>
+                                <p className="tittle">{val?.transactionType}</p>
                                 <p className="date">{(new Date(val?.createdAt)).toDateString()}</p>
-                                <p className="hidden-mobile">{val?.status}</p>
+                                <p className="hidden-mobile">{val?.transactionStatus}</p>
                                 <p
                                     className={`bmt ${
                                         changeCurrency ? "none" : "block"
                                     } `}
                                 >
-                                    ${val?.amount}
+                                    {Number(val?.amount) * 1000 } BMT
                                 </p>
                                 <p
                                     className={`usd ${
@@ -199,6 +206,27 @@ const Wallet = () => {
                         ))
                     }
                 </HistoryDetails>
+                <Pagination>
+                    <div onClick={() => handleChangePage(currentPage - 1)} style={{ cursor: "pointer" }}> 
+                        <ArrowLeftIcon />
+                    </div>
+                    <div>
+                        {
+                            pages.map((val, i) => {
+                                if(Number(val) === currentPage) {
+                                    return <p className="active" onClick={() => handleChangePage(Number(val))} style={{ cursor: "pointer" }}>{val}</p> 
+                                }
+                                if(val === "...") {
+                                    return <p style={{ cursor: "not-allowed" }}>...</p>
+                                }
+                                return <p onClick={() => handleChangePage(Number(val))} style={{ cursor: "pointer" }}>{val}</p> 
+                            })
+                        }
+                    </div>
+                    <div onClick={() => handleChangePage(currentPage + 1)} style={{ cursor: "pointer" }}>
+                        <ArrowRightIcon />
+                    </div>
+                </Pagination>
             </History>
         </Container>
     );

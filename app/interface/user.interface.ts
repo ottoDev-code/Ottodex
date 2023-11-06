@@ -25,6 +25,26 @@ export interface IUser {
         subscriptionDate: number,
         isVerified: boolean,
         work_timeout: number,
+    };
+    analytics?: {
+        raiders: {
+            totalUploaded: number,
+            totalCompleted: number,
+        },
+        moderators: {
+            totalUploaded: number,
+            totalCompleted: number,
+        },
+        chatEngagers: {
+            totalUploaded: number,
+            totalCompleted: number,
+        },
+        collabManagers: {
+            totalUploaded: number,
+            totalCompleted: number,
+        },
+        totalUploaded: number,
+        totalCompleted: number,
     }
 }
 export interface IUserRegister {

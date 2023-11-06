@@ -82,10 +82,11 @@ export const TotalCard = styled.div`
         align-items: center;
         display: flex;
         font-weight: 500;
+        font-size: 14px;
     }
 
     div.price {
-        font-size: 1.375rem;
+        font-size: 18px;
         font-weight: 700;
         margin-top: 0.94rem;
     }
@@ -143,7 +144,7 @@ export const MobileTotalCard = styled.div`
 
 export const Amount = styled.p`
     margin-top: 0.6rem;
-    font-size: 2.5rem;
+    font-size: 28px;
     font-weight: 700;
 `;
 
@@ -222,7 +223,7 @@ export const HistoryDetails = styled.div`
     border: 1px solid #818181;
     padding: 0.625rem;
     padding-left: 1.3rem;
-    margin: 0.94rem;
+    margin: 0.94rem 0;
     font-weight: 500;
 
     div:first-of-type {

@@ -1,5 +1,7 @@
 "use client";
 
+import chart from "../../../../public/chart.svg";
+
 import HeadingCard from "@/app/components/heading-card/heading-card";
 import {
     ArrowDownIcon,
@@ -14,8 +16,10 @@ import {
     Buttons,
     History,
     HistoryDetails,
+    TotalCard,
     MobileBalanceCard,
     MobileTotalCard,
+    WalletMobileTotalCard,
 } from "@/app/styles/client-wallet.style";
 import { Container } from "@/app/styles/dashboard.style";
 import Image from "next/image";
@@ -23,10 +27,10 @@ import React, { useEffect, useState } from "react";
 
 import dropdown_icon from "../../../../public/dropdown.svg";
 import { getUser, setUser, useDispatch, useSelector } from "@/lib/redux";
-import { getUserProfile } from "@/app/api/auth";
 import { getUserTransactionHistory } from "@/app/api/wallet";
+import { getUserProfile } from "@/app/api/auth";
 
-const ClientWallet = () => {
+const Wallet = () => {
     const [changeCurrency, setChangeCurrency] = useState<boolean>(false);
     const [history, setHistory] = useState<any>([]);
     const dispatch = useDispatch();
@@ -41,7 +45,7 @@ const ClientWallet = () => {
         })
       }
     const fetchHistory = () => {
-        getUserTransactionHistory()
+        getUserTransactionHistory(10, 1)
         .then((res) => {
           setHistory(res.data.data.transactions)
         })
@@ -52,6 +56,7 @@ const ClientWallet = () => {
     useEffect(() => {
       fetchHistory();
     }, [])
+    
     return (
         <Container>
             <HeadingCard heading={"Wallet"} />
@@ -60,14 +65,14 @@ const ClientWallet = () => {
                     <div className="top">
                         <div>
                             <p>Wallet Balance</p>
-                            <h1>{user?.wallet?.balance?.totalBalance}</h1>
+                            <h1>${Number(user?.wallet?.balance?.totalBalance).toFixed(2)}</h1>
                         </div>
                         <button>
-                            <span>USD</span>
+                            <span>BMT</span>
                             <ArrowDownIcon />
                         </button>
                     </div>
-                    <p>BMT Value: 12,345.50</p>
+                    <p>BMT Value: {(Number(user?.wallet?.balance?.totalBalance ?? "0") * 1000).toFixed(2)}</p>
                 </MobileBalanceCard>
 
                 <BalanceCards>
@@ -75,7 +80,7 @@ const ClientWallet = () => {
                         <p>USD</p>
                         <div>
                             <p>Available Balance</p>
-                            <Amount>${user?.wallet?.balance?.walletBalance}</Amount>
+                            <Amount>${Number(user?.wallet?.balance?.totalBalance).toFixed(2)}</Amount>
                         </div>
                     </BalanceCard>
 
@@ -83,23 +88,30 @@ const ClientWallet = () => {
                         <p>BMT</p>
                         <div>
                             <p>Available Balance</p>
-                            <Amount>0 BMT</Amount>
+                            <Amount>{(Number(user?.wallet?.balance?.totalBalance ?? "0") * 1000).toFixed(2)} BMT</Amount>
                         </div>
                     </BalanceCard>
-
-                    <BalanceCard>
-                        <div className="button">
-                            <p>BMT</p>
-                            <button>
-                                <span>BMT</span>
-                                <ArrowDownIcon />
-                            </button>
-                        </div>
+                    <TotalCard>
                         <div>
-                            <p>Total Amount Spent</p>
-                            <Amount>0 BMT</Amount>
+                            <div className="content">
+                                <Image src={chart} alt="chart icon" />
+                                Total Income
+                            </div>
+
+                            <div className="price">$0</div>
                         </div>
-                    </BalanceCard>
+
+                        <div className="stroke"></div>
+
+                        <div>
+                            <div className="content">
+                                <Image src={chart} alt="chart icon" />
+                                Total Withdrawn
+                            </div>
+
+                            <div className="price">$0</div>
+                        </div>
+                    </TotalCard>
                 </BalanceCards>
 
                 <Buttons>
@@ -111,10 +123,27 @@ const ClientWallet = () => {
                     </button>
                 </Buttons>
 
-                <MobileTotalCard>
-                    <p>Total Amount Spent</p>
-                    <p className="bold">0 BMT</p>
-                </MobileTotalCard>
+                <WalletMobileTotalCard>
+                    <div>
+                        <div className="content">
+                            <Image src={chart} alt="chart icon" />
+                            Total Income
+                        </div>
+
+                        <div className="price">$0</div>
+                    </div>
+
+                    <div className="stroke"></div>
+
+                    <div>
+                        <div className="content">
+                            <Image src={chart} alt="chart icon" />
+                            Total Withdrawn
+                        </div>
+
+                        <div className="price">$0</div>
+                    </div>
+                </WalletMobileTotalCard>
             </BalanceContainer>
 
             <History>
@@ -127,7 +156,7 @@ const ClientWallet = () => {
                 </div>
                 <HistoryDetails>
                     <div>
-                        <p className="tittle">Transaction</p>
+                        <p className="tittle">Type</p>
                         <p className="date">Date</p>
                         <p className="hidden-mobile">Status</p>
                         <p
@@ -145,19 +174,18 @@ const ClientWallet = () => {
                             Amount in USD
                         </p>
                     </div>
-
                     {
                         history.map((val: any, i: number) => (
                             <div key={i}>
-                                <p className="tittle">{val?.name}</p>
+                                <p className="tittle">{val?.transactionType}</p>
                                 <p className="date">{(new Date(val?.createdAt)).toDateString()}</p>
-                                <p className="hidden-mobile">{val?.status}</p>
+                                <p className="hidden-mobile">{val?.transactionStatus}</p>
                                 <p
                                     className={`bmt ${
                                         changeCurrency ? "none" : "block"
                                     } `}
                                 >
-                                    ${val?.amount}
+                                    {Number(val?.amount) * 1000 } BMT
                                 </p>
                                 <p
                                     className={`usd ${
@@ -175,4 +203,4 @@ const ClientWallet = () => {
     );
 };
 
-export default ClientWallet;
+export default Wallet;
