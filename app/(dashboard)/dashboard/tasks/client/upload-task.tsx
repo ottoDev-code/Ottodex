@@ -22,6 +22,8 @@ interface Props {
     refetch: boolean;
 }
 
+type ActionType = "Create a Tweet" | "Comment on Post" | "Follow Account" | "Retweet Post" | "Like Post" | "Raid";
+
 const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
     const [taskType, setTaskType] = useState<string>("twitter-raider");
     const [raidersNumber, setRaidersNumber] = useState("");
@@ -30,7 +32,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
     const [startDate, setStartDate] = useState("");
     const [raidLink, setRaidLink] = useState("");
     const [actions, setActions] = useState<string[]>([]);
-    const [action, setAction] = useState("Follow Account")
+    const [action, setAction] = useState<ActionType>("Follow Account")
     const [caption, setCaption] = useState("");
     const [mediaLink, setMediaLink] = useState("");
     const toggleAction = (action: string) => {
@@ -55,7 +57,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
     
     const handleCreateTask = () => {
         if(taskType === "twitter-raider") {
-            if(!raidersNumber || !weeks || !dailyPost || !startDate) {
+            if(!raidersNumber || !raidLink || !action || !startDate) {
               toast.error("Fill in required fields", {
                 position: toast.POSITION.TOP_RIGHT
               });
@@ -65,8 +67,6 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
             createRaidTask({
                 taskType: "raider",
                 numbers: raidersNumber,
-                weeks,
-                dailyPost,
                 startDate,
                 raidLink,
                 campaignCaption: caption,
@@ -99,6 +99,25 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
         }
     }
 
+    const getPrice = (type: ActionType): number => {
+        switch (type) {
+            case "Comment on Post":
+                return Number(raidersNumber) * 0.045
+            case "Create a Tweet":
+                return Number(raidersNumber) * 0.25
+            case "Like Post":
+                return Number(raidersNumber) * 0.01
+            case "Raid":
+                return Number(raidersNumber) * 0.3
+            case "Follow Account":
+                return Number(raidersNumber) * 0.015
+            case "Retweet Post":
+                return Number(raidersNumber) * 0.18
+            default:
+                return 0;
+        }
+    }
+
     return (
         <Wrapper>
             <div>
@@ -121,7 +140,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
                                             Collab Manager
                                         </option> */}
                                         <option value="twitter-raider">
-                                            Twitter Raider
+                                            Raider
                                         </option>
                                         {/* <option value="moderator">
                                             Moderator
@@ -404,11 +423,13 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
                                         <h4>Actions</h4>
 
                                         <div className="select">
-                                            <select value={action} onChange={(e) => setAction(e.target.value)}>
+                                            <select value={action} onChange={(e) => setAction(e.target.value as ActionType)}>
                                                 <option value="Follow Account">Follow Account</option>
                                                 <option value="Like Post">Like Post</option>
                                                 <option value="Retweet Post">Retweet Post</option>
-                                                <option value="Comment On Post">Comment On Post</option>
+                                                <option value="Comment on Post">Comment on Post</option>
+                                                <option value="Create a Tweet">Create a Tweet</option>
+                                                <option value="Raid">Raid</option>
                                             </select>
                                         </div>
                                     </label>
@@ -509,20 +530,8 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
                                     </label>
                                 </div> */}
                                 <div>
-                                    <label htmlFor="raid-weeks">
-                                        <h4>Raid Weeks</h4>
-                                        <input
-                                            id="raid-weeks"
-                                            type="text"
-                                            placeholder=""
-                                            value={weeks}
-                                            onChange={(e) => {
-                                                (e.target.value === "") ? setWeeks(e.target.value) : Number(e.target.value) && setWeeks(e.target.value) 
-                                            }}
-                                        />
-                                    </label>
                                     <label htmlFor="raiders-count">
-                                        <h4>{action === "Follow Account" ? "No of followers" : action === "Like Post" ? "No of likes" : action === "Retweet Post"? "No of retweets" : "No of comments" }</h4>
+                                        <h4>{action === "Follow Account" ? "No of followers" : action === "Like Post" ? "No of likes" : action === "Retweet Post"? "No of retweets" : action === "Comment on Post" ? "No of comments" : action === "Create a Tweet" ? "No of tweets" : "No of raids" }</h4>
                                         <input
                                             id="raiders-count"
                                             type="text"
@@ -533,8 +542,6 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
                                             }}
                                         />
                                     </label>
-                                </div>
-                                <div>
                                     <label htmlFor="raid-start">
                                         <h4>Start date</h4>
                                         <input
@@ -545,22 +552,10 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
                                             onChange={(e) => setStartDate(e.target.value)}
                                         />
                                     </label>
-                                    <label htmlFor="post-count">
-                                        <h4>No of posts per day</h4>
-                                        <input
-                                            id="post-count"
-                                            type="text"
-                                            placeholder=""
-                                            value={dailyPost}
-                                            onChange={(e) => {
-                                                (e.target.value === "") ? setDailyPost(e.target.value) : Number(e.target.value) && setDailyPost(e.target.value) 
-                                            }}
-                                        />
-                                    </label>
                                 </div>
                                 <div>
                                     <label htmlFor="" className="full-width">
-                                        <h4>Raid Link</h4>
+                                        <h4>Link</h4>
 
                                         <input
                                             id=""
@@ -571,7 +566,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
                                         />
                                     </label>
                                 </div>
-                                <div>
+                                { ((action === "Comment on Post") || (action === "Create a Tweet") || (action === "Raid")) && <div>
                                     <label htmlFor="" className="full-width">
                                         <h4>Media URL</h4>
 
@@ -584,6 +579,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
                                         />
                                     </label>
                                 </div>
+                                }
                                 {/* <div>
                                     <label htmlFor="" className="full-width">
                                         <h4>
@@ -604,7 +600,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
                                     </label>
                                 </div> */}
 
-                                <div>
+                               { ((action === "Comment on Post") || (action === "Create a Tweet") || (action === "Raid")) && <div>
                                     <label
                                         htmlFor="campaign-caption"
                                         className="full-width"
@@ -619,6 +615,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
                                         />
                                     </label>
                                 </div>
+                                }
                             </>
                         )}
 
@@ -716,14 +713,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
 
                     <LastItem>
                         <div>
-                            <p>Service Cost</p>
-                            <p className="right">10,000 BMT</p>
-                        </div>
-                        <div>
-                            <p>Transaction Fee</p> <p className="right">2%</p>
-                        </div>
-                        <div>
-                            <p>Total</p> <p className="right">10,200 BMT</p>
+                            <p>Service cost</p> <p className="right">$ {getPrice(action)}</p>
                         </div>
                     </LastItem>
 

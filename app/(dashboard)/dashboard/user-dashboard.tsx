@@ -23,7 +23,7 @@ const UserDashboard = () => {
           <div className="top">
             <div>
               <p>Wallet Balance</p>
-              <h1>${Number(user?.wallet?.balance?.totalBalance).toFixed(2)}</h1>
+              <h1>${Number(user?.wallet?.balance?.totalBalance ?? "0").toFixed(2)}</h1>
             </div>
             <button>
               <span>BMT</span>

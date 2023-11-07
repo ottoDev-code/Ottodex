@@ -150,7 +150,7 @@ export const History = styled.div`
     @media screen and (max-width: 654px) {
         h2 {
             margin-bottom: 0;
-            padding-left: 0.875rem;
+            padding-left: 0;
         }
 
         button.dashboard {
@@ -200,6 +200,9 @@ export const HistoryCardItem = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr) 0.5fr;
     padding: 0.875rem;
+    p {
+        font-size: 15px;
+    }
     p.title {
         span {
             display: inline-block;
@@ -214,7 +217,7 @@ export const HistoryCardItem = styled.div`
         p.title {
             font-weight: 500;
             grid-area: 1/1/2/2;
-            min-width: 150px;
+            min-width: 160px;
         }
 
         p.date {

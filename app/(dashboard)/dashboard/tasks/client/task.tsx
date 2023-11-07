@@ -167,7 +167,7 @@ const ClientTasks = () => {
                             <HistoryCard>
                                 <HistoryCardItem>
                                     <p className="title">
-                                        <span>#</span> Task
+                                        <span>#</span> Action
                                     </p>
                                     <p className="date">Date</p>
                                     <p className="status">Raid Link</p>
@@ -177,7 +177,7 @@ const ClientTasks = () => {
                                     tasks.map((task: any, i: number) => (
                                         <HistoryCardItem key={i}>
                                             <p className="title">
-                                                <span>{i + 1}</span> Twitter Raider
+                                                <span>{i + 1}</span> {task?.raidInformation?.action}
                                             </p>
                                             <p className="date">{(new Date(task?.createdAt)).toDateString()}</p>
                                             <p className="status">{`${task?.raidInformation?.raidLink.substring(0, 10)}${task?.raidInformation?.raidLink.length > 10 ? "..." : ""}` }</p>

@@ -252,7 +252,6 @@ export const HistoryDetails = styled.div`
         h3 {
             padding-left: 1.3rem;
         }
-
         div {
             grid-template-columns: repeat(2, 2fr);
 
@@ -273,6 +272,8 @@ export const HistoryDetails = styled.div`
 
         .date {
             grid-area: 2/1/3/2;
+            font-size: 14px;
+            font-weight: 500;
         }
 
         .bmt,

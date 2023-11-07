@@ -139,6 +139,10 @@ export const MAuth = styled.div`
     row-gap: 20px;
     flex-direction: column;
     width: 100%;
+    left: 0;
+    padding: 0 60px;
+    position: fixed;
+    bottom: 20px;
     a {
         font-weight: 500;
         border: 1px solid ${colors.primaryColor};

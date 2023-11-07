@@ -44,6 +44,8 @@ const Wallet = () => {
     const limit = 10;
     const [currentPage, setCurrentPage] = useState(1);
     const [refetch, setRefetch] = useState(false);
+    const [showWithdraw, setShowWithdraw] = useState(false);
+    const [showDeposit, setShowDeposit] = useState(false);
     const handleChangePage = (page: number) => {
         if((page !== currentPage) && (page > 0) && (page <= numberOfPages)) {
             setCurrentPage(page);
@@ -73,7 +75,7 @@ const Wallet = () => {
                     <div className="top">
                         <div>
                             <p>Wallet Balance</p>
-                            <h1>${Number(user?.wallet?.balance?.totalBalance).toFixed(2)}</h1>
+                            <h1>${Number(user?.wallet?.balance?.totalBalance ?? "0").toFixed(2)}</h1>
                         </div>
                         <button>
                             <span>BMT</span>
@@ -88,7 +90,7 @@ const Wallet = () => {
                         <p>USD</p>
                         <div>
                             <p>Available Balance</p>
-                            <Amount>${Number(user?.wallet?.balance?.totalBalance).toFixed(2)}</Amount>
+                            <Amount>${Number(user?.wallet?.balance?.totalBalance ?? "0").toFixed(2)}</Amount>
                         </div>
                     </BalanceCard>
 
@@ -228,6 +230,16 @@ const Wallet = () => {
                     </div>
                 </Pagination>
             </History>
+            {
+                showWithdraw && (
+                    <></>
+                )
+            }
+            {
+                showDeposit && (
+                    <></>
+                )
+            }
         </Container>
     );
 };

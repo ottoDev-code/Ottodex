@@ -6,6 +6,7 @@ import { Auth, Container, Dropdown, Links, Logo, MAuth, MLinks, NavButton, Wrapp
 import { useRouter, usePathname } from 'next/navigation'
 import { SubNavButton, SubNavWrapper } from '../sidebar/style'
 import { ArrowDownIcon, BookIcon, DocumentIcon, HomeIcon, LogoutIcon, UserIcon, UsersIcon, WalletIcon } from '../svg-icons'
+import { getUser, useSelector } from '@/lib/redux'
 
 const Nav = () => {
   const path = usePathname();
@@ -14,7 +15,11 @@ const Nav = () => {
   const [show, setShow] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
-
+  const user = useSelector(getUser);
+  const handleLogout = () => {
+    localStorage.clear();
+    router.replace("/login");
+  }
 
   // Track if the page is scrolled then the styling of the nav is updated
   const handleScroll = (e: Event) => {
@@ -55,13 +60,14 @@ const Nav = () => {
                     <span>Dashboard</span>
                   </div>
               </NavButton>
-              <NavButton onClick={() => setShow(!show)} $isActive={pathname.includes("/dashboard/tasks")}>
+              {  user.accountType === "user" && <NavButton onClick={() => setShow(!show)} $isActive={pathname.includes("/dashboard/tasks")}>
                   <div>
                     <DocumentIcon />
                     <span>Tasks</span>
                   </div>
                   <ArrowDownIcon />
-              </NavButton>
+                </NavButton>
+              }
               {
                 show ? (
                   <SubNavWrapper>
@@ -92,6 +98,14 @@ const Nav = () => {
                   </SubNavWrapper>
                 ) : null
               }
+              {user.accountType === "client" && 
+                <NavButton $isActive={pathname.includes("/dashboard/tasks/client")} onClick={() => handleRouting("/dashboard/tasks/client")}>
+                  <div>
+                    <DocumentIcon />
+                    <span>Tasks</span>
+                  </div>
+                </NavButton>
+              }
               <NavButton $isActive={pathname === ("/dashboard/wallet")} onClick={() => handleRouting("/dashboard/wallet")}>
                   <div>
                     <WalletIcon />
@@ -104,21 +118,23 @@ const Nav = () => {
                     <span>Profile</span>
                   </div>
               </NavButton>
-              <NavButton $isActive={pathname === "/dashboard/academy"}  onClick={() => handleRouting("/dashboard/academy")}>
+              { user.accountType === "user" && <NavButton $isActive={pathname === "/dashboard/academy"}  onClick={() => handleRouting("/dashboard/academy")}>
                   <div>
                     <BookIcon />
                     <span>Academy</span>
                   </div>
               </NavButton>
-              <NavButton $isActive={pathname === "/dashboard/referral"}  onClick={() => handleRouting("/dashboard/referral")}>
+              }
+              { user.accountType === "user" && <NavButton $isActive={pathname === "/dashboard/referral"}  onClick={() => handleRouting("/dashboard/referral")}>
                   <div>
                     <UsersIcon />
                     <span>Referral</span>
                   </div>
               </NavButton>
+              }
             </MLinks>
             <MAuth>
-              <NavButton>
+              <NavButton onClick={handleLogout}>
                   <div>
                     <LogoutIcon />
                     <span>Logout</span>
