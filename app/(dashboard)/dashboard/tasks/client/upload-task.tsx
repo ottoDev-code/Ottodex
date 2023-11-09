@@ -529,7 +529,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
                                     </label>
                                 </div> */}
                                 <div>
-                                    <label htmlFor="raiders-count">
+                                    <label htmlFor="raiders-count" className="full-width">
                                         <h4>{action === "Follow Account" ? "No of followers" : action === "Like Post" ? "No of likes" : action === "Retweet Post"? "No of retweets" : action === "Comment on Post" ? "No of comments" : action === "Create a Tweet" ? "No of tweets" : "No of raids" }</h4>
                                         <input
                                             id="raiders-count"
@@ -541,7 +541,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
                                             }}
                                         />
                                     </label>
-                                    <label htmlFor="raid-start">
+                                    <label htmlFor="raid-start" className="full-width">
                                         <h4>Start date</h4>
                                         <input
                                             id="raid-start"
