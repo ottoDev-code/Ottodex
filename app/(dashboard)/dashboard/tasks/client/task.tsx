@@ -167,7 +167,7 @@ const ClientTasks = () => {
                             <HistoryCard>
                                 <HistoryCardItem>
                                     <p className="title">
-                                        <span>#</span> Action
+                                        Action
                                     </p>
                                     <p className="date">Date</p>
                                     <p className="status">Raid Link</p>
