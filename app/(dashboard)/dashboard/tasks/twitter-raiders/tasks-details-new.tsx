@@ -12,6 +12,7 @@ import {
     Tasks,
     Wrapper,
 } from "@/app/styles/task-details.styles";
+import { getUser, useSelector } from "@/lib/redux";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -20,6 +21,7 @@ const TaskDetailsNew = () => {
     const [raids, setRaids] = useState<any>([]);
     const [currentTask, setCurrentTask] = useState(2);
     const router = useRouter();
+    const user = useSelector(getUser);
 
     const fetchTasks = () => {
         getAllRaidTask()
@@ -48,9 +50,9 @@ const TaskDetailsNew = () => {
         <Wrapper>
             <LeftColumn>
                 <TaskWrapper>
-                    <TaskBox heading={"Available Tasks"} tasksNub={1} />
-                    <TaskBox heading={"Pending Tasks"} tasksNub={5} />
-                    <TaskBox heading={"Completed Tasks"} tasksNub={50} />
+                    <TaskBox heading={"Available Tasks"} tasksNub={user?.raiderService?.analytics.availableTask ?? 0} />
+                    <TaskBox heading={"Pending Tasks"} tasksNub={user?.raiderService?.analytics.pendingTask ?? 0} />
+                    <TaskBox heading={"Completed Tasks"} tasksNub={user?.raiderService?.analytics.completedTask ?? 0} />
                 </TaskWrapper>
             </LeftColumn>
 
@@ -87,7 +89,7 @@ const TaskDetailsNew = () => {
                        currentTask === 2 && tasks.map((task: any) => (
                             <Task>
                                 <div>
-                                    <h3>Raider</h3>
+                                    <h3>{task?.raidInformation?.action}</h3>
                                     <p className="task-text">
                                        {task?.raidInformation?.campaignCaption}
                                     </p>

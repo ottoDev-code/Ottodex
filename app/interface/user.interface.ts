@@ -25,6 +25,11 @@ export interface IUser {
         subscriptionDate: number,
         isVerified: boolean,
         work_timeout: number,
+        analytics: {
+            availableTask: number;
+            pendingTask: number;
+            completedTask: number;
+        }
     };
     analytics?: {
         raiders: {

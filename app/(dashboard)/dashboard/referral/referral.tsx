@@ -1,12 +1,40 @@
 "use client"
+import { getUserProfileRefferal } from '@/app/api/auth'
 import HeadingCard from '@/app/components/heading-card'
 import { CopyIcon } from '@/app/components/svg-icons'
 import { Container, CopyContainer, StatsContainer } from '@/app/styles/dashboard.style'
 import { Left, MRow, MTable, Right, TBody, THead, TRow, Table, Top, UserImage, Wrapper } from '@/app/styles/referral.style'
+import { getUser, useSelector } from '@/lib/redux'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 const Dashboard = () => {
+    const user = useSelector(getUser);
+    const [level, setLevel] = useState("1");
+    const [referal, setReferal] = useState<any>(null);
+    const [referrals, setReferrals] = useState([])
+    const handleLinkCopy = (content: string) => {
+        navigator.clipboard.writeText(content);
+        toast.success("Referral Link copied to clipboard", {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    }
+    const fetchReferral = () => {
+        getUserProfileRefferal(level)
+        .then((res) => {
+          console.log(res.data.data);
+          const data = res.data.data;
+          setReferrals(data.referals);
+          setReferal(data.referal)
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+      }
+    useEffect(() => {
+      fetchReferral();
+    }, [level])
   return (
     <Container>
       <HeadingCard heading={"Referral"} />
@@ -14,10 +42,10 @@ const Dashboard = () => {
         <Left>
             <Top>
                 <h2>Referrals</h2>
-                <select>
-                    <option>Level 1</option>
-                    <option>Level 2</option>
-                    <option>Level 3</option>
+                <select value={level} onChange={(e) => setLevel(e.target.value)}>
+                    <option value="1">Level 1</option>
+                    <option value="2">Level 2</option>
+                    <option value="3">Level 3</option>
                 </select>
             </Top>
             <Table>
@@ -27,112 +55,42 @@ const Dashboard = () => {
                     <p>Earnings</p>
                 </THead>
                 <TBody>
-                    <TRow>
-                        <p>
-                            <UserImage>
-                                <Image src={"/user-1.png"} alt="user"  objectFit="cover" objectPosition="center" layout="fill" />
-                            </UserImage>
-                            <span>Gemma Sandra</span>
-                        </p>
-                        <p>Level 1</p>
-                        <p>500 BMT</p>
-                    </TRow>
-                    <TRow>
-                        <p>
-                            <UserImage>
-                                <Image src={"/user-1.png"} alt="user"  objectFit="cover" objectPosition="center" layout="fill" />
-                            </UserImage>
-                            <span>Gemma Sandra</span>
-                        </p>
-                        <p>Level 1</p>
-                        <p>500 BMT</p>
-                    </TRow>
-                    <TRow>
-                        <p>
-                            <UserImage>
-                                <Image src={"/user-1.png"} alt="user"  objectFit="cover" objectPosition="center" layout="fill" />
-                            </UserImage>
-                            <span>Gemma Sandra</span>
-                        </p>
-                        <p>Level 1</p>
-                        <p>500 BMT</p>
-                    </TRow>
-                    <TRow>
-                        <p>
-                            <UserImage>
-                                <Image src={"/user-1.png"} alt="user"  objectFit="cover" objectPosition="center" layout="fill" />
-                            </UserImage>
-                            <span>Gemma Sandra</span>
-                        </p>
-                        <p>Level 1</p>
-                        <p>500 BMT</p>
-                    </TRow>
-                    <TRow>
-                        <p>
-                            <UserImage>
-                                <Image src={"/user-1.png"} alt="user"  objectFit="cover" objectPosition="center" layout="fill" />
-                            </UserImage>
-                            <span>Gemma Sandra</span>
-                        </p>
-                        <p>Level 1</p>
-                        <p>500 BMT</p>
-                    </TRow>
-                    <TRow>
-                        <p>
-                            <UserImage>
-                                <Image src={"/user-1.png"} alt="user"  objectFit="cover" objectPosition="center" layout="fill" />
-                            </UserImage>
-                            <span>Gemma Sandra</span>
-                        </p>
-                        <p>Level 1</p>
-                        <p>500 BMT</p>
-                    </TRow>
+                    {
+                        referrals.map((val: any, i: number) => (
+                            <TRow key={i}>
+                                <p>
+                                    <UserImage>
+                                        <Image src={"/user-1.png"} alt="user"  objectFit="cover" objectPosition="center" layout="fill" />
+                                    </UserImage>
+                                    <span>{val.name}</span>
+                                </p>
+                                <p>Level {level}</p>
+                                <p>${val.referal.analytics.totalEarned}</p>
+                            </TRow>
+                        ))
+                    }
                 </TBody>
             </Table>
             <MTable>
-              <MRow>
-                  <div>
-                      <p>Gemma Sandra</p>
-                      <p>Level 1</p>
-                  </div>
-                  <p>500 BMT</p>
-              </MRow>
-              <MRow>
-                  <div>
-                      <p>Gemma Sandra</p>
-                      <p>Level 1</p>
-                  </div>
-                  <p>500 BMT</p>
-              </MRow>
-              <MRow>
-                  <div>
-                      <p>Gemma Sandra</p>
-                      <p>Level 1</p>
-                  </div>
-                  <p>500 BMT</p>
-              </MRow>
-              <MRow>
-                  <div>
-                      <p>Gemma Sandra</p>
-                      <p>Level 1</p>
-                  </div>
-                  <p>500 BMT</p>
-              </MRow>
-              <MRow>
-                  <div>
-                      <p>Gemma Sandra</p>
-                      <p>Level 1</p>
-                  </div>
-                  <p>500 BMT</p>
-              </MRow>
+                {
+                    referrals.map((val: any, i: number) => (
+                        <MRow key={i}>
+                            <div>
+                                <p>{val.name}</p>
+                                <p>Level {level}</p>
+                            </div>
+                            <p>${val.referal.analytics.totalEarned}</p>
+                        </MRow>
+                    ))
+                }
             </MTable>
         </Left>
         <Right>
           <CopyContainer>
             <p className='label'>Share your referral link</p>
             <div>
-              <p>https://BMDAO.io/r/Bab28ndm</p>
-              <button>
+              <p>{window?.location?.host}/register?code={user.referal?.myReferalCode ?? ""}</p>
+              <button onClick={() => handleLinkCopy(`${window?.location?.host}/register?code=${user.referal?.myReferalCode}` ?? "")}>
                   <CopyIcon />
                   <span>Copy</span>
               </button>
@@ -142,19 +100,15 @@ const Dashboard = () => {
           <StatsContainer>
             <div>
               <p>Referral Level</p>
-              <p>Level 3</p>
+              <p>Level {level}</p>
             </div>
             <div>
-              <p>Direct Referral</p>
-              <p>32</p>
-            </div>
-            <div>
-              <p>Indirect Referral</p>
-              <p>32</p>
+              <p>Total Referrals</p>
+              <p>{referal?.analytics.totalAmount}</p>
             </div>
             <div>
               <p>Total Earnings</p>
-              <p>$75 (380 BMT)</p>
+              <p>${referal?.analytics.totalEarned} ({Number(referal?.analytics.totalEarned ?? "0") * 1000 } BMT)</p>
             </div>
           </StatsContainer>
           <h2>How Referral works</h2>

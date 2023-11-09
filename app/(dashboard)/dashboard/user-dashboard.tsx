@@ -1,20 +1,35 @@
 "use client"
+import { getUserTransactionHistory } from '@/app/api/wallet'
 import HeadingCard from '@/app/components/heading-card'
 import { ArrowDownIcon, CopyIcon, DocumentIcon } from '@/app/components/svg-icons'
 import { ActivityCard, ActivityWrapper, BalanceCard, BottomWrapper, Card, CardWrapper, Container, CopyContainer, StatsCard, StatsContainer, StreakBox, StreakCard, TaskCard } from '@/app/styles/dashboard.style'
 import { getUser, useSelector } from '@/lib/redux'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 
 const UserDashboard = () => {
   const user = useSelector(getUser);
   const handleLinkCopy = (content: string) => {
-    navigator.clipboard.writeText(content);
-    toast.success("Referral Link copied to clipboard", {
-        position: toast.POSITION.TOP_RIGHT
-    });
-}
+      navigator.clipboard.writeText(content);
+      toast.success("Referral Link copied to clipboard", {
+          position: toast.POSITION.TOP_RIGHT
+      });
+  }
+  const [history, setHistory] = useState<any>([]);
+  const router = useRouter();
+  const fetchHistory = () => {
+      getUserTransactionHistory(10, 1)
+      .then((res) => {
+        setHistory(res.data.data.transactions)
+      })
+      .catch((e) => {
+        console.log(e)
+      })
+    }
+  useEffect(() => {
+    fetchHistory();
+  }, [])
   return (
     <Container>
       <HeadingCard heading={`Hello, ${user.name ?? ""} 👋`} sub={"Perform daily tasks and track your records!"} notShow={true}/>
@@ -58,7 +73,7 @@ const UserDashboard = () => {
             </StatsCard>
           </div>
         </TaskCard>
-        <StreakCard>
+        {/* <StreakCard>
           <div className="left">
             <h2>Task Streak</h2>
             <div className="field">
@@ -103,87 +118,31 @@ const UserDashboard = () => {
               <StreakBox $isCompleted={true} />
             </div>
           </div>
-        </StreakCard>
+        </StreakCard> */}
       </CardWrapper>
       <BottomWrapper>
         <Card>
-          <h2>Recent Activities</h2>
+          <h2>Recent Transactions</h2>
           <ActivityWrapper>
-            <ActivityCard>
-              <div className="left">
-                <div className="icon">
-                  <DocumentIcon />
-                </div>
-                <div>
-                  <h3>Twitter Raiding</h3>
-                  <p>Task</p>
-                </div>
-              </div>
-              <div className="right">
-                <p>26 June, 2023</p>
-                <p>20 BMT</p>
-              </div>
-            </ActivityCard>
-            <ActivityCard>
-              <div className="left">
-                <div className="icon">
-                  <DocumentIcon />
-                </div>
-                <div>
-                  <h3>Twitter Raiding</h3>
-                  <p>Task</p>
-                </div>
-              </div>
-              <div className="right">
-                <p>26 June, 2023</p>
-                <p>20 BMT</p>
-              </div>
-            </ActivityCard>
-            <ActivityCard>
-              <div className="left">
-                <div className="icon">
-                  <DocumentIcon />
-                </div>
-                <div>
-                  <h3>Twitter Raiding</h3>
-                  <p>Task</p>
-                </div>
-              </div>
-              <div className="right">
-                <p>26 June, 2023</p>
-                <p>20 BMT</p>
-              </div>
-            </ActivityCard>
-            <ActivityCard>
-              <div className="left">
-                <div className="icon">
-                  <DocumentIcon />
-                </div>
-                <div>
-                  <h3>Twitter Raiding</h3>
-                  <p>Task</p>
-                </div>
-              </div>
-              <div className="right">
-                <p>26 June, 2023</p>
-                <p>20 BMT</p>
-              </div>
-            </ActivityCard>
-            <ActivityCard>
-              <div className="left">
-                <div className="icon">
-                  <DocumentIcon />
-                </div>
-                <div>
-                  <h3>Twitter Raiding</h3>
-                  <p>Task</p>
-                </div>
-              </div>
-              <div className="right">
-                <p>26 June, 2023</p>
-                <p>20 BMT</p>
-              </div>
-            </ActivityCard>
+            {
+              history.map((val: any, i: number) => (
+                <ActivityCard>
+                  <div className="left">
+                    <div className="icon">
+                      <DocumentIcon />
+                    </div>
+                    <div>
+                      <h3>{val?.transactionType}</h3>
+                      <p>{val?.transactionStatus}</p>
+                    </div>
+                  </div>
+                  <div className="right">
+                    <p>{(new Date(val?.createdAt)).toDateString()}</p>
+                    <p>${Number(val?.amount)}</p>
+                  </div>
+                </ActivityCard>
+              ))
+            }
           </ActivityWrapper>
         </Card>
         <Card>
@@ -201,20 +160,12 @@ const UserDashboard = () => {
           <StatsContainer>
             <h2>Your Rewards</h2>
             <div>
-              <p>Total Referral</p>
-              <p>32</p>
-            </div>
-            <div>
-              <p>Direct Referral</p>
-              <p>32</p>
-            </div>
-            <div>
-              <p>Indirect Referral</p>
-              <p>32</p>
+              <p>Total Referrals</p>
+              <p>{(user as any)?.referal?.analytics.totalAmount}</p>
             </div>
             <div>
               <p>Total Earnings</p>
-              <p>$75 (380 BMT)</p>
+              <p>${(user as any)?.referal?.analytics.totalEarned} ({Number((user as any)?.referal?.analytics.totalEarned ?? "0") * 1000 } BMT)</p>
             </div>
           </StatsContainer>
         </Card>
