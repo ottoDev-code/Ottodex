@@ -120,7 +120,6 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
 
     return (
         <Wrapper>
-            <div>
                 <UploadContainer>
                     <h3>Upload Task</h3>
                     <form>
@@ -724,7 +723,6 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
                         <ColoredButton type="submit" onClick={handleCreateTask}>Pay</ColoredButton>
                     </Buttons>
                 </UploadContainer>
-            </div>
         </Wrapper>
     );
 };

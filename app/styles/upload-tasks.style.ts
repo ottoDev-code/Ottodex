@@ -13,7 +13,6 @@ export const Wrapper = styled.div`
     right: 0;
     top: 0;
     min-width: 100vw;
-    overflow-y: scroll;
     z-index: 999999;
     scrollbar-color: ${colors.primaryColor} ${colors.primaryColor}11;
     &::-webkit-scrollbar-thumb {
@@ -33,23 +32,22 @@ export const Wrapper = styled.div`
     }
 
     @media screen and (max-width: 565px) {
-        background-color: transparent;
         z-index: 111;
-        > div {
-            width: 100%;
-        }
     }
 `;
 
 export const UploadContainer = styled.div`
     background-color: ${colors.cardBg};
+    max-height: 80vh;
+    overflow-y: scroll;
     border-radius: 0.625rem;
     display: flex;
     flex-direction: column;
     padding: 1.5rem 1.1875rem 1.5rem 1.3125rem;
-    min-width: 34.5rem;
-    max-height: 95vh;
+    max-width: 500px;
+    width: 90%;
     overflow-y: scroll;
+    margin: 0 auto;
     h3 {
         font-size: 1.25rem;
         font-weight: 600;
@@ -67,6 +65,7 @@ export const UploadContainer = styled.div`
         align-items: center;
         column-gap: 0.625rem;
         display: flex;
+        row-gap: 15px;
     }
 
     .actions {
@@ -186,7 +185,6 @@ export const UploadContainer = styled.div`
 
     @media screen and (max-width: 565px) {
         margin-top: 60px;
-        min-width: auto;
         form > div {
             flex-direction: column;
         }
