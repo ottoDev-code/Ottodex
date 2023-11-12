@@ -138,7 +138,7 @@ const UserDashboard = () => {
                   </div>
                   <div className="right">
                     <p>{(new Date(val?.createdAt)).toDateString()}</p>
-                    <p>${Number(val?.amount)}</p>
+                    <p style={{ textAlign: "right", width: "100%"}}>${Number(val?.amount)}</p>
                   </div>
                 </ActivityCard>
               ))

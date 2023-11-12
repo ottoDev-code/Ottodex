@@ -280,6 +280,7 @@ export const HistoryDetails = styled.div`
         .usd {
             grid-area: 1/2/2/3;
             justify-self: end;
+            font-size: 14px;
         }
 
         .none {
