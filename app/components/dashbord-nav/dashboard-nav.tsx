@@ -77,24 +77,24 @@ const Nav = () => {
                       </div>
                       <span>Moderators</span>
                     </SubNavButton>
-                    <SubNavButton onClick={() => handleRouting("/dashboard/tasks/collab-managers")}>
+                    {/* <SubNavButton onClick={() => handleRouting("/dashboard/tasks/collab-managers")}>
                       <div>
                         <Image src="/mapper.svg" alt="" height={50} width={24}/>
                       </div>
                       <span>Collab Managers</span>
-                    </SubNavButton>
+                    </SubNavButton> */}
                     <SubNavButton onClick={() => handleRouting("/dashboard/tasks/twitter-raiders")}>
                       <div>
                         <Image src="/mapper.svg" alt="" height={50} width={24}/>
                       </div>
                       <span>Twitter Raiders</span>
                     </SubNavButton>
-                    <SubNavButton  onClick={() => handleRouting("/dashboard/tasks/chat-engagers")}>
+                    {/* <SubNavButton  onClick={() => handleRouting("/dashboard/tasks/chat-engagers")}>
                       <div>
                         <Image src="/mapper.svg" alt="" height={50} width={24}/>
                       </div>
                       <span>Chat Engagers</span>
-                    </SubNavButton>
+                    </SubNavButton> */}
                   </SubNavWrapper>
                 ) : null
               }

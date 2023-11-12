@@ -13,7 +13,7 @@ export const startRaidTask = (body: any) => {
     return axiosInstance().post("/user/worker/raider/raid/start_raid", body);
 }
 export const completeRaidTask = (body: any) => {
-    return axiosInstance().post("/user/worker/raider/raid/complete_task", body);
+    return axiosInstance().post("/user/worker/raider/raid/complete_raid", body);
 }
 export const getSingleTask = (taskId: string) => {
     return axiosInstance().get(`/user/worker/raider/task/single_task/${taskId}`);

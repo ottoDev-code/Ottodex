@@ -45,6 +45,7 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
     const user = useSelector(getUser);
     const dispatch = useDispatch();
     const router = useRouter();
+    const [proof, setProof] = useState("");
 
     const addUrl = () => {
         if (url === "") {
@@ -71,10 +72,17 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
         }
     };
     const handleCompleteRaid = () => {
+            if(!proof) {
+                toast.error("Proof required", {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+                return;
+            }
             dispatch(setLoading(true));
             completeRaidTask({
                 raidId: raid?.id,
                 serviceId: user.raiderService?._id,
+                proofs: [proof]
             }).then((res) => {
                 toast.success("Raid completed successfully", {
                     position: toast.POSITION.TOP_RIGHT
@@ -82,10 +90,22 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
                 dispatch(setLoading(false));
                 router.push("/dashboard/tasks/twitter-raiders")
             }).catch((e: any) => {
-                toast.error(e.response.data.error[0].message, {
-                  position: toast.POSITION.TOP_RIGHT
-                });
+                if(e?.response?.data?.error[0].message) { 
+                    toast.error(e.response.data.error[0].message, {
+                        position: toast.POSITION.TOP_RIGHT
+                    });
+                    dispatch(setLoading(false));
+                    return
+                }
+                if(e?.message) { 
+                    toast.error(e.message, {
+                        position: toast.POSITION.TOP_RIGHT
+                    });
+                    dispatch(setLoading(false));
+                    return
+                }
                 dispatch(setLoading(false));
+                return
             })
     }
     const fetchRaid = () => {
@@ -106,9 +126,9 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
         <Wrapper>
             <LeftColumn>
                 <TaskWrapper style={{ top: "30px" }}>
-                    <TaskBox heading={"Available Raids"} tasksNub={1} />
-                    <TaskBox heading={"Pending Raids"} tasksNub={5} />
-                    <TaskBox heading={"Completed Raids"} tasksNub={50} />
+                <TaskBox heading={"Available Tasks"} tasksNub={user?.raiderService?.analytics.availableTask ?? 0} />
+                    <TaskBox heading={"Pending Tasks"} tasksNub={user?.raiderService?.analytics.pendingTask ?? 0} />
+                    <TaskBox heading={"Completed Tasks"} tasksNub={user?.raiderService?.analytics.completedTask ?? 0} />
                 </TaskWrapper>
             </LeftColumn>
 
@@ -138,7 +158,7 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
                         <p>Actions</p>
                         <BoldP>
                             {
-                                raid?.task?.raidInformation?.actions.map((val: any) => val + ", ")
+                                raid?.task?.raidInformation?.action
                             }
                         </BoldP>
                     </div>
@@ -148,12 +168,16 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
                         <BoldP>#NFT #CRYPTOWORLD</BoldP>
                     </div>
                 </Details>
-                <Instructions>
-                        <h4>Caption</h4>
-                        <div className="instruction-grid">
-                            <p>{raid?.task?.raidInformation?.campaignCaption}</p>
-                        </div>
-                </Instructions>
+                {
+                    raid?.task?.raidInformation?.campaignCaption && (
+                        <Instructions>
+                                <h4>Caption</h4>
+                                <div className="instruction-grid">
+                                    <p>{raid?.task?.raidInformation?.campaignCaption}</p>
+                                </div>
+                        </Instructions>
+                    )
+                }
                 {/* {startTask || (
                     <Instructions>
                         <h4>Task Instruction</h4>
@@ -201,6 +225,19 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
                         </div>
                     </Instructions>
                 )} */}
+                 <div>
+                    <h4>Proof Link</h4>
+                    <TextInput style={{ marginTop: "10px" }}>
+                        <input
+                            type="text"
+                            placeholder="Enter proof image link"
+                            value={proof}
+                            onChange={(event) =>
+                                setProof(event.target.value)
+                            }
+                        />
+                    </TextInput>
+                </div>
                 <StartButton onClick={handleCompleteRaid}>
                     Complete Raid
                 </StartButton>

@@ -67,7 +67,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
             createRaidTask({
                 taskType: "raider",
                 numbers: raidersNumber,
-                startDate,
+                startDate: (new Date(startDate)).toISOString(),
                 raidLink,
                 campaignCaption: caption,
                 action,

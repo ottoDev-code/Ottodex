@@ -106,9 +106,9 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
         <Wrapper>
             <LeftColumn>
                 <TaskWrapper style={{ top: "30px" }}>
-                    <TaskBox heading={"Available Tasks"} tasksNub={1} />
-                    <TaskBox heading={"Pending Tasks"} tasksNub={5} />
-                    <TaskBox heading={"Completed Tasks"} tasksNub={50} />
+                    <TaskBox heading={"Available Tasks"} tasksNub={user.raiderService?.analytics.availableTask ?? 0} />
+                    <TaskBox heading={"Pending Tasks"} tasksNub={user.raiderService?.analytics.pendingTask ?? 0} />
+                    <TaskBox heading={"Completed Tasks"} tasksNub={user.raiderService?.analytics.completedTask ?? 0} />
                 </TaskWrapper>
             </LeftColumn>
 
@@ -131,11 +131,9 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
                     </div>
 
                     <div>
-                        <p>Actions</p>
+                        <p>Action</p>
                         <BoldP>
-                            {
-                                task?.raidInformation?.actions.map((val: any) => val + ", ")
-                            }
+                            {task?.raidInformation?.action }
                         </BoldP>
                     </div>
 
@@ -198,7 +196,7 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
                     </Instructions>
                 )} */}
                 <StartButton onClick={handleStartTask}>
-                    Start Raid
+                    Start Task
                 </StartButton>
 
                 {/* {startTask && (
