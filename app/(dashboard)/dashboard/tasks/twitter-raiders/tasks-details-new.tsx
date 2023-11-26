@@ -58,9 +58,9 @@ const TaskDetailsNew = () => {
 
             <RightColumn>
                 <TaskNav>
-                    <TaskNavItem isActive={currentTask === 1} onClick={() => setCurrentTask(1)}>Raids</TaskNavItem>
-                    <TaskNavItem isActive={currentTask === 2} onClick={() => setCurrentTask(2)}>Major Tasks</TaskNavItem>
-                    <TaskNavItem isActive={currentTask === 3} onClick={() => setCurrentTask(3)}>Minor Tasks</TaskNavItem>
+                    <TaskNavItem isActive={currentTask === 1} onClick={() => setCurrentTask(1)}>Pending Tasks</TaskNavItem>
+                    <TaskNavItem isActive={currentTask === 2} onClick={() => setCurrentTask(2)}>Available Tasks</TaskNavItem>
+                    <TaskNavItem isActive={currentTask === 3} onClick={() => setCurrentTask(3)}>Completed Tasks</TaskNavItem>
                 </TaskNav>
 
                 <Tasks>
@@ -78,7 +78,6 @@ const TaskDetailsNew = () => {
                                         </p>
                                     </div>
                                 </div>
-        
                                 <div className="claim">
                                     <button onClick={() => router.push(`/dashboard/tasks/twitter-raiders/raid/${raid?.id}`)}>View</button>
                                 </div>

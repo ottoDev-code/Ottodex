@@ -2,13 +2,15 @@
 import HeadingCard from '@/app/components/heading-card/heading-card'
 import { InputContainer, InputWrapper } from '@/app/styles/auth.style'
 import { Container } from '@/app/styles/dashboard.style'
-import { Form, InputFlex, RoleCapsule, RoleWrapper, UserCard, UserDetails, UserImage, UserSection, UserWrap, Wrapper } from '@/app/styles/profile.style'
+import { Form, InputFlex, RoleCapsule, RoleWrapper, ServiceBtn, TaskNav, UserCard, UserDetails, UserImage, UserSection, UserWrap, Wrapper } from '@/app/styles/profile.style'
 import Image from 'next/image'
 import { Country, ICountry }  from 'country-state-city';
 import React, { useEffect, useState } from 'react'
 import { getUserProfile, updateProfile } from '@/app/api/auth'
 import { toast } from 'react-toastify'
 import { getUser, setLoading, setUser, useDispatch, useSelector } from '@/lib/redux'
+import { Task, TaskNavItem, Tasks } from '@/app/styles/task-details.styles'
+import { getAllRaiderServices, resubscribeToServiceRaider, subscribeToServiceRaider } from '@/app/api/service'
 
 const Profile = () => {
   const [countryList] = useState<ICountry[]>(Country.getAllCountries());
@@ -17,6 +19,8 @@ const Profile = () => {
   const user = useSelector(getUser);
   const [country, setCountry] = useState("");
   const [phone, setPhone] = useState("");
+  const [currentTask, setCurrentTask] = useState(1);
+  const [services, setServices] = useState([]);
   const dispatch = useDispatch();
   const fetchProfile = () => {
     getUserProfile()
@@ -27,6 +31,7 @@ const Profile = () => {
       setCountry(resData.country);
       setPhone(resData.phoneNumber ?? "");
       dispatch(setUser(res.data.data));
+      dispatch(setLoading(false));
     })
     .catch((e) => {
       console.log(e)
@@ -50,15 +55,68 @@ const Profile = () => {
       fetchProfile();
       dispatch(setLoading(false));
     }).catch((e: any) => {
-      toast.error(e.response.data.error[0].message, {
+      toast.error(e?.response?.data.error[0].message, {
         position: toast.POSITION.TOP_RIGHT
       });
       dispatch(setLoading(false));
     })
   }
-
+  const fetchRaiderServices = () => {
+    getAllRaiderServices()
+    .then((res) => {
+      setServices(res.data.data.userServices);
+      dispatch(setLoading(false));
+    }).catch((e: any) => {
+      toast.error(e?.response?.data.error[0].message, {
+        position: toast.POSITION.TOP_RIGHT
+      });
+      dispatch(setLoading(false));
+    })
+  }
+  const subscribeToService = () => {
+        dispatch(setLoading(true));
+        if(currentTask === 1) {
+          subscribeToServiceRaider({
+              accountType: "raider"
+          })
+          .then(() => {
+              fetchRaiderServices();
+              dispatch(setLoading(false));
+              toast.success("Subscribed to new raider service successfully", {
+                position: toast.POSITION.TOP_RIGHT
+              });
+          })
+          .catch((e) => {
+            toast.error(e?.response?.data.error[0].message, {
+              position: toast.POSITION.TOP_RIGHT
+            });
+            dispatch(setLoading(false));
+          })
+        }
+  }
+  const resubscribeToService = (id: string) => {
+    if(currentTask === 1) {
+      resubscribeToServiceRaider({
+        userServiceId: id
+      })
+      .then(() => {
+        fetchRaiderServices();
+        dispatch(setLoading(false));
+        toast.error("Service resubscribed successfully", {
+          position: toast.POSITION.TOP_RIGHT
+        });
+      })
+      .catch((e) => {
+        toast.error(e?.response?.data.error[0].message, {
+          position: toast.POSITION.TOP_RIGHT
+        });
+        dispatch(setLoading(false));
+      })
+    }
+}
   useEffect(() => {
     fetchProfile();
+    fetchRaiderServices();
   }, [])
   
   return (
@@ -100,56 +158,42 @@ const Profile = () => {
               </select>
             </InputContainer>
           </InputWrapper>
-          {/* <h3>Role</h3>
-          <InputWrapper>
-            <label>Moderator</label>
-            <InputContainer>
-              <input type="text" placeholder="Level 1"/>
-              <button className={'level'}>Level Up</button>
-            </InputContainer>
-          </InputWrapper>
-          <InputWrapper>
-            <label>Collab Manager</label>
-            <InputContainer>
-              <input type="text" placeholder="Level 1"/>
-              <button className={'level'}>Level Up</button>
-            </InputContainer>
-          </InputWrapper>
-          <InputWrapper>
-            <label>Chat Engager</label>
-            <InputContainer>
-              <input type="text" placeholder="Level 1"/>
-              <button className={'level'}>Level Up</button>
-            </InputContainer>
-          </InputWrapper>
-          <InputWrapper>
-            <label>Twitter Raider</label>
-            <InputContainer>
-              <input type="text" placeholder="Level 1"/>
-              <button className={'level'}>Level Up</button>
-            </InputContainer>
-          </InputWrapper>
-          <h3>Payment Method</h3>
-          <InputWrapper>
-            <label>Full Name</label>
-            <InputContainer>
-              <input type="text" placeholder="Enter fullname"/>
-            </InputContainer>
-          </InputWrapper>
-          <InputFlex>
-            <InputWrapper>
-              <label>Binance Pay ID</label>
-              <InputContainer>
-                <input type="text" placeholder="Enter your Binance pay ID"/>
-              </InputContainer>
-            </InputWrapper>
-            <InputWrapper>
-              <label>BEP-20 Wallet Address</label>
-              <InputContainer>
-                <input type="tel" placeholder="Enter your wallet address"/>
-              </InputContainer>
-            </InputWrapper>
-          </InputFlex> */}
+          <h3>Sevices</h3>
+                <TaskNav>
+                    <TaskNavItem isActive={currentTask === 1} onClick={() => setCurrentTask(1)}>Raider Services</TaskNavItem>
+                    <TaskNavItem isActive={currentTask === 2} onClick={() => setCurrentTask(2)}>Moderator Services</TaskNavItem>
+                    <TaskNavItem isActive={currentTask === 3} onClick={() => setCurrentTask(3)}>Chatter Services</TaskNavItem>
+                </TaskNav>
+
+                <Tasks style={{ marginBottom: "20px" }}>
+                    {
+                       currentTask === 1 && services.filter((s: any) => s.accountType === "raider").map((raid: any, i: number) => (
+                            <Task style={{ alignItems: "center"}} key={i}>
+                                <div>
+                                    <h3 style={{ marginBottom: "0px"}}>Raider Service</h3>
+                                    <p className="task-text">
+                                        <span>Subscribed on: </span>{(new Date(raid?.createdAt)).toDateString()}
+                                    </p>
+                                    <div className="reward">
+                                      <p>
+                                          <span style={{ marginRight: "10px" }}>Subscription status: </span>{raid?.subscriptionStatus}
+                                      </p>
+                                    </div>
+                                </div>
+                                {
+                                  (raid?.subscriptionStatus !== "ACTIVE") &&  (
+                                    <div className="claim">
+                                        <button onClick={() => resubscribeToService(raid?.id)}>Resubscribe</button>
+                                    </div>
+                                  )
+                                }
+                            </Task>
+                        ))
+                    }
+                </Tasks>
+                {currentTask === 1 && (<ServiceBtn onClick={subscribeToService}>New Raider Service</ServiceBtn>)}
+                {currentTask === 2 && (<ServiceBtn>New Moderator Service</ServiceBtn>)}
+                {currentTask === 3 && (<ServiceBtn>New Chatter Service</ServiceBtn>)}
         </Form>
         <UserSection>
           <UserWrap>

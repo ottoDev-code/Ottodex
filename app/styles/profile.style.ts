@@ -111,3 +111,24 @@ export const InputFlex = styled.div`
         flex-direction: column;
     }
 `;
+export const TaskNav = styled.div`
+    background: #fff1bb;
+    border-radius: 10px;
+    display: flex;
+    padding: 10px;
+    column-gap: 10px;
+    text-align: center;
+    width: 100%;
+`;
+export const ServiceBtn = styled.div`
+    border-radius: 10px;
+    padding: 10px 15px;
+    background: ${colors.primaryColor};
+    outline: none;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    margin: 0 auto;
+    max-width: max-content;
+`;

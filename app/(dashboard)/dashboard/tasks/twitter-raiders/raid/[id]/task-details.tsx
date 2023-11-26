@@ -91,7 +91,7 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
                 router.push("/dashboard/tasks/twitter-raiders")
             }).catch((e: any) => {
                 if(e?.response?.data?.error[0].message) { 
-                    toast.error(e.response.data.error[0].message, {
+                    toast.error(e?.response?.data.error[0].message, {
                         position: toast.POSITION.TOP_RIGHT
                     });
                     dispatch(setLoading(false));
@@ -225,7 +225,8 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
                         </div>
                     </Instructions>
                 )} */}
-                 <div>
+                {
+                    (raid?.taskStatus === "ACTIVE") && ( <div>
                     <h4>Proof Link</h4>
                     <TextInput style={{ marginTop: "10px" }}>
                         <input
@@ -238,9 +239,14 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
                         />
                     </TextInput>
                 </div>
-                <StartButton onClick={handleCompleteRaid}>
-                    Complete Raid
-                </StartButton>
+                )}
+                {
+                    (raid?.taskStatus === "ACTIVE") && (
+                        <StartButton onClick={handleCompleteRaid}>
+                            Complete Raid
+                        </StartButton>
+                    )
+                }
 
                 {/* {startTask && (
                     <UploadContainer>

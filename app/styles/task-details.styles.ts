@@ -188,11 +188,11 @@ export const TextInput = styled.div`
     justify-content: space-between;
     padding: 0.7rem;
     form,
-    input {
+    input, select {
         width: 100%;
     }
 
-    input {
+    input, select {
         background: transparent;
         color: #cacaca;
         display: block;
@@ -201,6 +201,9 @@ export const TextInput = styled.div`
         font-size: 1rem;
         font-weight: 500;
         outline: none;
+    }
+    select {
+        color: #333 !important;
     }
 
     input:focus {
@@ -426,6 +429,7 @@ export const Task = styled.div`
     column-gap: 1rem;
     display: flex;
     font-weight: 400;
+    align-items: center;
     justify-content: space-between;
     padding: 0.625rem;
 
@@ -454,7 +458,9 @@ export const Task = styled.div`
         padding: 0.75rem 2rem;
         margin-bottom: 0.625rem;
     }
-
+    .claim {
+        text-align: right;
+    }
     @media screen and (max-width: 536px) {
         h3 {
             font-size: 16px;

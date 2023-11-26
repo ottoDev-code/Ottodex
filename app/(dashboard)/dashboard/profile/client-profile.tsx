@@ -62,7 +62,7 @@ const ClientProfile = () => {
         fetchProfile();
         dispatch(setLoading(false));
       }).catch((e: any) => {
-        toast.error(e.response.data.error[0].message, {
+        toast.error(e?.response?.data.error[0].message, {
             position: toast.POSITION.TOP_RIGHT
         });
         dispatch(setLoading(false));

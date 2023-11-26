@@ -31,6 +31,7 @@ import { getSingleTask, startRaidTask } from "@/app/api/task";
 import { getUser, setLoading, useDispatch, useSelector } from "@/lib/redux";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { getAllRaiderServices } from "@/app/api/service";
 
 interface IProps {
     id: string
@@ -39,6 +40,8 @@ interface IProps {
 const TaskDetails: React.FC<IProps> = ({ id }) => {
     const [startTask, setStartTask] = useState<boolean>(false);
     const [uploadedProofs, setUploadedProofs] = useState<File[]>([]);
+    const [services, setServices] = useState<any[]>([]);
+    const [currentService, setCurrentService] = useState("");
     const [url, setUrl] = useState<string>("");
     const [uploadedUrl, setUploadedUrl] = useState<string[]>([]);
     const [task, setTask] = useState<any>(null);
@@ -71,10 +74,17 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
         }
     };
     const handleStartTask = () => {
+            if(!currentService) {
+                toast.error("Please select a service to use for this task.", {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+                return;
+            }
+            
             dispatch(setLoading(true));
             startRaidTask({
                 taskId: id,
-                serviceId: user.raiderService?._id,
+                serviceId: currentService,
             }).then((res) => {
                 toast.success("Raid started successfully", {
                     position: toast.POSITION.TOP_RIGHT
@@ -82,7 +92,7 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
                 dispatch(setLoading(false));
                 router.push("/dashboard/tasks/twitter-raiders")
             }).catch((e: any) => {
-                toast.error(e.response.data.error[0].message, {
+                toast.error(e?.response?.data.error[0].message, {
                   position: toast.POSITION.TOP_RIGHT
                 });
                 dispatch(setLoading(false));
@@ -97,8 +107,21 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
             console.log(e)
         })
     }
+    const fetchRaiderServices = () => {
+        getAllRaiderServices()
+        .then((res) => {
+          setServices(res.data.data.userServices);
+          dispatch(setLoading(false));
+        }).catch((e: any) => {
+          toast.error(e?.response?.data.error[0].message, {
+            position: toast.POSITION.TOP_RIGHT
+          });
+          dispatch(setLoading(false));
+        })
+      }
     useEffect(() => {
-      fetchTask()
+      fetchTask();
+      fetchRaiderServices();
     }, [])
     
 
@@ -142,12 +165,34 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
                         <BoldP>#NFT #CRYPTOWORLD</BoldP>
                     </div>
                 </Details>
-                <Instructions>
-                        <h4>Caption</h4>
-                        <div className="instruction-grid">
-                            <p>{task?.raidInformation?.campaignCaption}</p>
-                        </div>
-                </Instructions>
+                {
+                    task?.raidInformation?.campaignCaption && (
+                        <Instructions>
+                                <h4>Caption</h4>
+                                <div className="instruction-grid">
+                                    <p>{task?.raidInformation?.campaignCaption}</p>
+                                </div>
+                        </Instructions>
+                    )
+                }
+                <div>
+                    <h4>Select Service</h4>
+                    <TextInput style={{ marginTop: "10px" }}>
+                        <select
+                            value={currentService}
+                            onChange={(event) =>
+                                setCurrentService(event.target.value)
+                            }
+                        >
+                            <option value={""}>Select a service</option>
+                            {
+                                services.filter((s: any) => (s.accountType === "raider") && (s?.subscriptionStatus === "ACTIVE")).map((raid: any, i: number) => (
+                                    <option key={i} value={raid.id}>Raider Service {i + 1}</option>
+                                ))
+                            }
+                        </select>
+                    </TextInput>
+                </div>
                 {/* {startTask || (
                     <Instructions>
                         <h4>Task Instruction</h4>

@@ -47,15 +47,15 @@ const Login = () => {
         router.push("/dashboard");
         dispatch(setLoading(false));
       }).catch((e: any) => {
-        if(e.response.data.error[0].message) {
-          toast.error(e.response.data.error[0].message, {
+        if(e?.response?.data.error[0].message) {
+          toast.error(e?.response?.data.error[0].message, {
             position: toast.POSITION.TOP_RIGHT
           });
           dispatch(setLoading(false));
           return;
         }
-        if(e.message) {
-          toast.error(e.message, {
+        if(e?.message) {
+          toast.error(e?.message, {
             position: toast.POSITION.TOP_RIGHT
           });
           dispatch(setLoading(false));
