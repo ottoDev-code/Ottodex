@@ -58,9 +58,9 @@ const TaskDetailsNew = () => {
 
             <RightColumn>
                 <TaskNav>
-                    <TaskNavItem isActive={currentTask === 1} onClick={() => setCurrentTask(1)}>Pending Tasks</TaskNavItem>
-                    <TaskNavItem isActive={currentTask === 2} onClick={() => setCurrentTask(2)}>Available Tasks</TaskNavItem>
-                    <TaskNavItem isActive={currentTask === 3} onClick={() => setCurrentTask(3)}>Completed Tasks</TaskNavItem>
+                    <TaskNavItem isActive={currentTask === 1} onClick={() => setCurrentTask(1)}>Pending</TaskNavItem>
+                    <TaskNavItem isActive={currentTask === 2} onClick={() => setCurrentTask(2)}>Available</TaskNavItem>
+                    <TaskNavItem isActive={currentTask === 3} onClick={() => setCurrentTask(3)}>Completed</TaskNavItem>
                 </TaskNav>
 
                 <Tasks>

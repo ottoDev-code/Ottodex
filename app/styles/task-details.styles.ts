@@ -410,6 +410,7 @@ export const TaskNavItem = styled.div<{ isActive: boolean }>`
     font-size: 0.875rem;
     font-weight: 500;
     padding: 0.875rem 2rem;
+    width: 100%;
     @media screen and (max-width: 536px) {
         font-size: 12px;
         padding: 10px 15px;

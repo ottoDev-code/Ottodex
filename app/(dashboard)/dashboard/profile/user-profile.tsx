@@ -2,7 +2,7 @@
 import HeadingCard from '@/app/components/heading-card/heading-card'
 import { InputContainer, InputWrapper } from '@/app/styles/auth.style'
 import { Container } from '@/app/styles/dashboard.style'
-import { Form, InputFlex, RoleCapsule, RoleWrapper, ServiceBtn, TaskNav, UserCard, UserDetails, UserImage, UserSection, UserWrap, Wrapper } from '@/app/styles/profile.style'
+import { Form, InputFlex, Modal, ModalCard, RoleCapsule, RoleWrapper, ServiceBtn, TaskNav, UserCard, UserDetails, UserImage, UserSection, UserWrap, Wrapper } from '@/app/styles/profile.style'
 import Image from 'next/image'
 import { Country, ICountry }  from 'country-state-city';
 import React, { useEffect, useState } from 'react'
@@ -22,6 +22,7 @@ const Profile = () => {
   const [currentTask, setCurrentTask] = useState(1);
   const [services, setServices] = useState([]);
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
   const fetchProfile = () => {
     getUserProfile()
     .then((res) => {
@@ -160,9 +161,9 @@ const Profile = () => {
           </InputWrapper>
           <h3>Sevices</h3>
                 <TaskNav>
-                    <TaskNavItem isActive={currentTask === 1} onClick={() => setCurrentTask(1)}>Raider Services</TaskNavItem>
-                    <TaskNavItem isActive={currentTask === 2} onClick={() => setCurrentTask(2)}>Moderator Services</TaskNavItem>
-                    <TaskNavItem isActive={currentTask === 3} onClick={() => setCurrentTask(3)}>Chatter Services</TaskNavItem>
+                    <TaskNavItem isActive={currentTask === 1} onClick={() => setCurrentTask(1)}>Raider</TaskNavItem>
+                    <TaskNavItem isActive={currentTask === 2} onClick={() => setCurrentTask(2)}>Moderator</TaskNavItem>
+                    <TaskNavItem isActive={currentTask === 3} onClick={() => setCurrentTask(3)}>Chatter</TaskNavItem>
                 </TaskNav>
 
                 <Tasks style={{ marginBottom: "20px" }}>
@@ -191,7 +192,7 @@ const Profile = () => {
                         ))
                     }
                 </Tasks>
-                {currentTask === 1 && (<ServiceBtn onClick={subscribeToService}>New Raider Service</ServiceBtn>)}
+                {currentTask === 1 && (<ServiceBtn onClick={() => setShowModal(true)}>New Raider Service</ServiceBtn>)}
                 {currentTask === 2 && (<ServiceBtn>New Moderator Service</ServiceBtn>)}
                 {currentTask === 3 && (<ServiceBtn>New Chatter Service</ServiceBtn>)}
         </Form>
@@ -216,6 +217,18 @@ const Profile = () => {
           </UserWrap>
         </UserSection>
       </Wrapper>
+      {
+        showModal &&
+        (<Modal>
+          <ModalCard>
+            <p>You are about to subscribe for a {(currentTask === 1) && "raid"} package for $10</p>
+            <div>
+              <button onClick={() => setShowModal(false)}>Cancel</button>
+              <button onClick={subscribeToService}>Confirm</button>
+            </div>
+          </ModalCard>
+        </Modal>)
+      }
     </Container>
   )
 }

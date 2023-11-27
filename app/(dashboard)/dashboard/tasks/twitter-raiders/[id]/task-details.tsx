@@ -159,11 +159,6 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
                             {task?.raidInformation?.action }
                         </BoldP>
                     </div>
-
-                    <div>
-                        <p>Hashtag Suggestions</p>
-                        <BoldP>#NFT #CRYPTOWORLD</BoldP>
-                    </div>
                 </Details>
                 {
                     task?.raidInformation?.campaignCaption && (

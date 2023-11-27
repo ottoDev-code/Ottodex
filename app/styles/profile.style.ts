@@ -132,3 +132,41 @@ export const ServiceBtn = styled.div`
     margin: 0 auto;
     max-width: max-content;
 `;
+export const Modal = styled.div`
+    height: 100dvh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+`;
+export const ModalCard = styled.div`
+    height: max-content;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    text-align: center;
+    color: #333;
+    width: 95%;
+    max-width: 350px;
+    div {
+        display: flex;
+        padding: 30px 0 10px 0;
+        justify-content: space-between;
+    }
+    button {
+        width: 40%;
+        border-radius: 10px;
+        padding: 12px 0;
+        background: ${colors.primaryColor};
+        outline: none;
+        border: none;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+`;

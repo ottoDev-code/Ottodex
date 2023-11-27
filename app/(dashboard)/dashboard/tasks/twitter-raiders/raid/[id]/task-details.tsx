@@ -155,17 +155,12 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
                     </div>
 
                     <div>
-                        <p>Actions</p>
+                        <p>Action</p>
                         <BoldP>
                             {
                                 raid?.task?.raidInformation?.action
                             }
                         </BoldP>
-                    </div>
-
-                    <div>
-                        <p>Hashtag Suggestions</p>
-                        <BoldP>#NFT #CRYPTOWORLD</BoldP>
                     </div>
                 </Details>
                 {
@@ -226,7 +221,7 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
                     </Instructions>
                 )} */}
                 {
-                    (raid?.taskStatus === "ACTIVE") && ( <div>
+                    (raid?.timeLine !== "EXPIRED") && ( <div>
                     <h4>Proof Link</h4>
                     <TextInput style={{ marginTop: "10px" }}>
                         <input
@@ -241,7 +236,7 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
                 </div>
                 )}
                 {
-                    (raid?.taskStatus === "ACTIVE") && (
+                    (raid?.timeLine !== "EXPIRED") && (
                         <StartButton onClick={handleCompleteRaid}>
                             Complete Raid
                         </StartButton>

@@ -5,13 +5,14 @@ import {
     Wrapper,
 } from "@/app/components/not-registered/not-registered.styles";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 import image from "../../../public/not-registered.png";
 import { subscribeToServiceRaider } from "@/app/api/service";
 import { setUser } from "@/lib/redux";
 import { getUserProfile } from "@/app/api/auth";
 import { useDispatch } from "react-redux";
+import { Modal, ModalCard } from "@/app/styles/profile.style";
 
 interface Props {
     taskSub: string;
@@ -19,6 +20,7 @@ interface Props {
 
 const NotRegistered: React.FC<Props> = ({ taskSub }) => {
     const dispatch = useDispatch();
+    const [showModal, setShowModal] = useState(false);
     const fetchProfile = () => {
         getUserProfile()
         .then((res) => {
@@ -51,6 +53,18 @@ const NotRegistered: React.FC<Props> = ({ taskSub }) => {
                 Dashboard
             </Text>
             <Button onClick={handleSubscribeToService}>Register</Button>
+            {
+                showModal &&
+                (<Modal>
+                    <ModalCard>
+                        <p>You are about to subscribe for a {(taskSub === "Twitter Raiders") && "raid"} package for $10</p>
+                        <div>
+                        <button onClick={() => setShowModal(false)}>Cancel</button>
+                        <button onClick={handleSubscribeToService}>Confirm</button>
+                        </div>
+                    </ModalCard>
+                </Modal>)
+            }
         </Wrapper>
     );
 };
