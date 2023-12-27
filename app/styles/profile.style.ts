@@ -152,10 +152,12 @@ export const ModalCard = styled.div`
     text-align: center;
     color: #333;
     width: 95%;
-    max-width: 350px;
-    div {
+    max-width: 400px;
+    max-height: 70dvh;
+    overflow-y: scroll;
+    .btn-wrapper {
         display: flex;
-        padding: 30px 0 10px 0;
+        padding: 10px 0;
         justify-content: space-between;
     }
     button {

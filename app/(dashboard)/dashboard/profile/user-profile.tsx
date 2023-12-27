@@ -10,7 +10,7 @@ import { getUserProfile, updateProfile } from '@/app/api/auth'
 import { toast } from 'react-toastify'
 import { getUser, setLoading, setUser, useDispatch, useSelector } from '@/lib/redux'
 import { Task, TaskNavItem, Tasks } from '@/app/styles/task-details.styles'
-import { getAllRaiderServices, resubscribeToServiceRaider, subscribeToServiceRaider } from '@/app/api/service'
+import { getAllModeratorServices, getAllRaiderServices, resubscribeToServiceModerator, resubscribeToServiceRaider, subscribeToServiceModerator, subscribeToServiceRaider } from '@/app/api/service'
 
 const Profile = () => {
   const [countryList] = useState<ICountry[]>(Country.getAllCountries());
@@ -21,8 +21,17 @@ const Profile = () => {
   const [phone, setPhone] = useState("");
   const [currentTask, setCurrentTask] = useState(1);
   const [services, setServices] = useState([]);
+  const [modServices, setModServices] = useState([]);
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
+  const [twitter, setTwitter] = useState("");
+  const [youtube, setYoutube] = useState("");
+  const [reddit, setReddit] = useState("");
+  const [discord, setDiscord] = useState("");
+  const [instagram, setInstagram] = useState("");
+  const [thread, setThread] = useState("");
+  const [telegram, setTelegram] = useState("");
+  const [tiktok, setTiktok] = useState("");
   const fetchProfile = () => {
     getUserProfile()
     .then((res) => {
@@ -74,16 +83,57 @@ const Profile = () => {
       dispatch(setLoading(false));
     })
   }
+  const fetchModeratorServices = () => {
+    getAllModeratorServices()
+    .then((res) => {
+      setModServices(res.data.data.userServices);
+      dispatch(setLoading(false));
+    }).catch((e: any) => {
+      toast.error(e?.response?.data.error[0].message, {
+        position: toast.POSITION.TOP_RIGHT
+      });
+      dispatch(setLoading(false));
+    })
+  }
   const subscribeToService = () => {
         dispatch(setLoading(true));
         if(currentTask === 1) {
           subscribeToServiceRaider({
-              accountType: "raider"
+              accountType: "raider",
+              handles: {
+                twitter,
+                reddit,
+                tiktok,
+                instagram,
+                telegram,
+                thread,
+                discord,
+                youtube,
+            }
           })
           .then(() => {
               fetchRaiderServices();
               dispatch(setLoading(false));
+              setShowModal(false);
               toast.success("Subscribed to new raider service successfully", {
+                position: toast.POSITION.TOP_RIGHT
+              });
+          })
+          .catch((e) => {
+            toast.error(e?.response?.data.error[0].message, {
+              position: toast.POSITION.TOP_RIGHT
+            });
+            dispatch(setLoading(false));
+          })
+        }
+        if(currentTask === 2) {
+          subscribeToServiceModerator({
+              accountType: "moderator"
+          })
+          .then(() => {
+              fetchModeratorServices();
+              dispatch(setLoading(false));
+              toast.success("Subscribed to new moderator service successfully", {
                 position: toast.POSITION.TOP_RIGHT
               });
           })
@@ -114,10 +164,29 @@ const Profile = () => {
         dispatch(setLoading(false));
       })
     }
+    if(currentTask === 2) {
+      resubscribeToServiceModerator({
+        userServiceId: id
+      })
+      .then(() => {
+        fetchRaiderServices();
+        dispatch(setLoading(false));
+        toast.error("Service resubscribed successfully", {
+          position: toast.POSITION.TOP_RIGHT
+        });
+      })
+      .catch((e) => {
+        toast.error(e?.response?.data.error[0].message, {
+          position: toast.POSITION.TOP_RIGHT
+        });
+        dispatch(setLoading(false));
+      })
+    }
 }
   useEffect(() => {
     fetchProfile();
     fetchRaiderServices();
+    fetchModeratorServices();
   }, [])
   
   return (
@@ -191,9 +260,33 @@ const Profile = () => {
                             </Task>
                         ))
                     }
+                    {
+                       currentTask === 2 && modServices.filter((s: any) => s.accountType === "moderators").map((raid: any, i: number) => (
+                            <Task style={{ alignItems: "center"}} key={i}>
+                                <div>
+                                    <h3 style={{ marginBottom: "0px"}}>Moderator Service</h3>
+                                    <p className="task-text">
+                                        <span>Subscribed on: </span>{(new Date(raid?.createdAt)).toDateString()}
+                                    </p>
+                                    <div className="reward">
+                                      <p>
+                                          <span style={{ marginRight: "10px" }}>Subscription status: </span>{raid?.subscriptionStatus}
+                                      </p>
+                                    </div>
+                                </div>
+                                {
+                                  (raid?.subscriptionStatus !== "ACTIVE") &&  (
+                                    <div className="claim">
+                                        <button onClick={() => resubscribeToService(raid?.id)}>Resubscribe</button>
+                                    </div>
+                                  )
+                                }
+                            </Task>
+                        ))
+                    }
                 </Tasks>
                 {currentTask === 1 && (<ServiceBtn onClick={() => setShowModal(true)}>New Raider Service</ServiceBtn>)}
-                {currentTask === 2 && (<ServiceBtn>New Moderator Service</ServiceBtn>)}
+                {currentTask === 2 && !modServices.length && (<ServiceBtn onClick={() => setShowModal(true)}>New Moderator Service</ServiceBtn>)}
                 {currentTask === 3 && (<ServiceBtn>New Chatter Service</ServiceBtn>)}
         </Form>
         <UserSection>
@@ -221,8 +314,58 @@ const Profile = () => {
         showModal &&
         (<Modal>
           <ModalCard>
-            <p>You are about to subscribe for a {(currentTask === 1) && "raid"} package for $10</p>
-            <div>
+            <p>You are about to subscribe for a {(currentTask === 1) && "raid"}{(currentTask === 2) && "moderator"} package for $10</p>
+            <div style={{ display: "flex", flexDirection: "column", margin: "20px 0", textAlign: "left" }}>
+              <InputWrapper>
+                <label>Twitter</label>
+                <InputContainer>
+                  <input type="text" value={twitter}  onChange={(e) => setTwitter(e.target.value)} placeholder="Enter your twitter handle"/>
+                </InputContainer>
+              </InputWrapper>
+              <InputWrapper>
+                <label>Instagram</label>
+                <InputContainer>
+                  <input type="text" value={instagram}  onChange={(e) => setInstagram(e.target.value)} placeholder="Enter your instagram handle"/>
+                </InputContainer>
+              </InputWrapper>
+              <InputWrapper>
+                <label>TikTok</label>
+                <InputContainer>
+                  <input type="text" value={tiktok}  onChange={(e) => setTiktok(e.target.value)} placeholder="Enter your tiktok handle"/>
+                </InputContainer>
+              </InputWrapper>
+              <InputWrapper>
+                <label>Reddit</label>
+                <InputContainer>
+                  <input type="text" value={reddit}  onChange={(e) => setReddit(e.target.value)} placeholder="Enter your reddit handle"/>
+                </InputContainer>
+              </InputWrapper>
+              <InputWrapper>
+                <label>Thread</label>
+                <InputContainer>
+                  <input type="text" value={thread}  onChange={(e) => setThread(e.target.value)} placeholder="Enter your thread handle"/>
+                </InputContainer>
+              </InputWrapper>
+              <InputWrapper>
+                <label>Telegram</label>
+                <InputContainer>
+                  <input type="text" value={telegram}  onChange={(e) => setTelegram(e.target.value)} placeholder="Enter your telegram handle"/>
+                </InputContainer>
+              </InputWrapper>
+              <InputWrapper>
+                <label>Discord</label>
+                <InputContainer>
+                  <input type="text" value={discord}  onChange={(e) => setDiscord(e.target.value)} placeholder="Enter your discord handle"/>
+                </InputContainer>
+              </InputWrapper>
+              <InputWrapper>
+                <label>Youtube</label>
+                <InputContainer>
+                  <input type="text" value={youtube}  onChange={(e) => setYoutube(e.target.value)} placeholder="Enter your youtube handle"/>
+                </InputContainer>
+              </InputWrapper>
+            </div>
+            <div className="btn-wrapper">
               <button onClick={() => setShowModal(false)}>Cancel</button>
               <button onClick={subscribeToService}>Confirm</button>
             </div>

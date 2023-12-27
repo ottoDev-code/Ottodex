@@ -31,6 +31,7 @@ export interface IUser {
             completedTask: number;
         }
     };
+    moderatorService?: any;
     analytics?: {
         raiders: {
             totalUploaded: number,

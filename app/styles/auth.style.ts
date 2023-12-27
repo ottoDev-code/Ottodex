@@ -83,9 +83,10 @@ export const InputContainer = styled.div`
         background: transparent;
         outline: none;
         border: none;
-        padding: 10px 20px;
+        padding: 10px 20px !important;
         font-size: 15px;
         font-weight: 500; 
+        
         &::placeholder {
             color: ${colors.lightGrey};
         }
