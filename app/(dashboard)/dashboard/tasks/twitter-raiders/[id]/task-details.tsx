@@ -32,6 +32,8 @@ import { getUser, setLoading, useDispatch, useSelector } from "@/lib/redux";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { getAllRaiderServices } from "@/app/api/service";
+import { formatLink } from "@/lib/utils";
+import Link from "next/link";
 
 interface IProps {
     id: string
@@ -150,7 +152,9 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
 
                     <div>
                         <p>Raid Link</p>
-                        <BoldP>{task?.raidInformation?.raidLink}</BoldP>
+                        <Link href={formatLink(task?.raidInformation?.raidLink ?? "")} legacyBehavior>
+                            <a style={{ color: "#f1c618", fontWeight: 500 }} target="_blank" href={formatLink(task?.raidInformation?.raidLink ?? "")} title={task?.raidInformation?.raidLink}>{(task?.raidInformation?.raidLink ?? "").substring(0, 20)}</a>
+                        </Link>
                     </div>
 
                     <div>

@@ -20,6 +20,8 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { acceptRaidTask, rejectRaidTask } from "@/app/api/moderator";
 import { relative } from "path";
+import Link from "next/link";
+import { formatLink } from "@/lib/utils";
 
 interface IProps {
     id: string
@@ -163,7 +165,9 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
 
                     <div>
                         <p>Raid Link</p>
-                        <BoldP>{raid?.task?.raidInformation?.raidLink}</BoldP>
+                        <Link href={formatLink(raid?.task?.raidInformation?.raidLink ?? "")} legacyBehavior>
+                            <a style={{ color: "#f1c618", fontWeight: 500 }} target="_blank" href={formatLink(raid?.task?.raidInformation?.raidLink ?? "")} title={raid?.task?.raidInformation?.raidLink}>{(raid?.task?.raidInformation?.raidLink ?? "").substring(0, 20)}</a>
+                        </Link>
                     </div>
 
                     <div>

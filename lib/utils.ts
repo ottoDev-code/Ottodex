@@ -32,3 +32,6 @@ export const generatePages = (totalItems: number, limit: number, currentPage: nu
         }
     }
 }
+export const formatLink = (link: string) => {
+    return link.match(/^(http(s)?:\/\/)/) ? link : "https://" + link;
+}
