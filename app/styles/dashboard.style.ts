@@ -11,6 +11,7 @@ export const Container = styled.div`
     max-width: calc(100vw - 290px);
     ${breakpoints.lg} {
         max-width: 100%;
+        padding: 40px 0 30px 0;
     }
 `;
 export const CardWrapper = styled.div`

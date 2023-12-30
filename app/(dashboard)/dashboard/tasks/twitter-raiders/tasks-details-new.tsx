@@ -100,7 +100,7 @@ const TaskDetailsNew = () => {
                                 </div>
         
                                 <div className="claim">
-                                    <button onClick={() => router.push(`/dashboard/tasks/twitter-raiders/${task?.id}`)}>Claim</button>
+                                    <button onClick={() => router.push(`/dashboard/tasks/twitter-raiders/${task?.id}`)} style={{ marginBottom: "5px" }}>Claim</button>
                                     <p>{task?.completedRaids}/{task?.totalRaids} left</p>
                                 </div>
                             </Task>

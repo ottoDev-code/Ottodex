@@ -35,3 +35,6 @@ export const generatePages = (totalItems: number, limit: number, currentPage: nu
 export const formatLink = (link: string) => {
     return link.match(/^(http(s)?:\/\/)/) ? link : "https://" + link;
 }
+export const getAvailableHandle = (handles: any) => {
+    return handles.twitter || handles.discord || handles.telegram || handles.reddit || handles.tiktok || handles.youtube || handles.instagram || handles.thread || "No social handle"
+}

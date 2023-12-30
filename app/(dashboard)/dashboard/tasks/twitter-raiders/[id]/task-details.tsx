@@ -32,7 +32,7 @@ import { getUser, setLoading, useDispatch, useSelector } from "@/lib/redux";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { getAllRaiderServices } from "@/app/api/service";
-import { formatLink } from "@/lib/utils";
+import { formatLink, getAvailableHandle } from "@/lib/utils";
 import Link from "next/link";
 
 interface IProps {
@@ -186,7 +186,7 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
                             <option value={""}>Select a service</option>
                             {
                                 services.filter((s: any) => (s.accountType === "raider") && (s?.subscriptionStatus === "ACTIVE")).map((raid: any, i: number) => (
-                                    <option key={i} value={raid.id}>Raider Service {i + 1}</option>
+                                    <option key={i} value={raid.id}>@{getAvailableHandle(raid.handles)}</option>
                                 ))
                             }
                         </select>

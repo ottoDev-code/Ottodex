@@ -24,3 +24,6 @@ export const getAllModeratorTaskRaids = (taskId: string) => {
 export const unsubscribeToServiceModerator = (data: any) => {
     return axiosInstance().post("/user/worker/moderator/service/unsubscribe", data);
 }
+export const updateServiceHandleReq = (data: any) => {
+    return axiosInstance().post("/user/worker/raider/service/updatehandle", data);
+}

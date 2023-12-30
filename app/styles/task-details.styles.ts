@@ -454,10 +454,10 @@ export const Task = styled.div`
         background-color: ${colors.primaryColor};
         border-radius: 0.625rem;
         font-family: inherit;
-        font-size: 1rem;
+        font-size: 14px;
         font-weight: 500;
-        padding: 0.75rem 2rem;
-        margin-bottom: 0.625rem;
+        padding: 8px 15px;
+        width: 120px;
     }
     .claim {
         text-align: right;

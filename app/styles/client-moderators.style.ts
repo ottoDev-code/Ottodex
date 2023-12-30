@@ -7,8 +7,7 @@ const { colors } = theme;
 export const ModWrapper = styled.div`
     display: flex;
     column-gap: 1.25rem;
-    margin-top: 3.125rem;
-
+    margin-top: 20px;
     @media screen and (max-width: 1165px) {
         flex-direction: column;
         row-gap: 25px;
@@ -33,7 +32,7 @@ export const TaskCard = styled.div`
     background: #f2f2f2;
     border-radius: 10px;
     padding: 10px;
-    min-height: 160px;
+    min-height: 130px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
