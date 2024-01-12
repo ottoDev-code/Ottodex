@@ -1,6 +1,7 @@
 "use client"
 import { styled } from "styled-components";
 import theme from "./theme";
+import { motion } from "framer-motion";
 const { colors, breakpoints } = theme;
 
 interface IServiceProps {
@@ -10,8 +11,9 @@ interface IServiceProps {
 }
 
 export const Container = styled.div`
+    overflow: hidden;
 `;
-export const SectionOne = styled.section`
+export const SectionOne = styled(motion.section)`
     padding-top: 100px;
     background: url("/bg-1.svg");
     background-position: top center;
@@ -84,7 +86,7 @@ export const SectionTwo = styled.section`
         margin-bottom: 20px;
     }
 `;
-export const GridContainer = styled.div`
+export const GridContainer = styled(motion.div)`
     display: grid;
     column-gap: 16px;
     row-gap: 16px;
@@ -127,8 +129,9 @@ export const ServiceCard = styled.div<IServiceProps>`
         }
     }
 `;
-export const SectionThree = styled.section`
+export const SectionThree = styled(motion.section)`
     padding: 102px 0;
+    position: relative;
     h2 {
         font-size: 24px;
         font-weight: 600;
@@ -242,8 +245,9 @@ export const UserImage = styled.div`
     overflow: hidden;
     border-radius: 50%;
 `;
-export const SectionFive = styled.section`
+export const SectionFive = styled(motion.section)`
      padding: 102px 0;
+     position: relative;
     h2 {
         font-size: 24px;
         font-weight: 600;
@@ -256,7 +260,7 @@ export const SectionFive = styled.section`
         text-align: center;
     }
 `;
-export const SectionWrapper = styled.div`
+export const SectionWrapper = styled(motion.div)`
     display: flex;
     column-gap: 100px;
     margin-top: 50px;

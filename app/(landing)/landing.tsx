@@ -8,7 +8,18 @@ import Image from "next/image";
 const LandingPage = () => {
  return (
   <Container>
-    <SectionOne>
+    <SectionOne 
+      // initial={{ marginTop: "100px", opacity: 0 }}
+      // whileInView={{ 
+      //   marginTop: "0px",
+      //   opacity: 1,
+      //   transition: {
+      //     type: "tween",
+      //     duration: 1.5
+      //   }
+      // }}
+      // viewport={{ once: true }}
+    >
       <TagHeading>Unlock the Power of Community with BM DAO</TagHeading>
       <h1>Empowering Crypto and NFT Projects with Comprehensive Community Support and Strategic Promotion</h1>
       <p>We are decentralized autonomous organization that provides a range of services to help you build, grow and promote your crypto and NFT project. Whether you need Collab Managers, Chat Engagers, Moderators or Twitter Raiders, we have the expertise and experience to revolutionize your community engagement.</p>
@@ -16,7 +27,19 @@ const LandingPage = () => {
     </SectionOne>
     <SectionTwo>
       <h2>Services</h2>
-      <GridContainer>
+      <GridContainer
+        initial={{ gap: "50px", opacity: 0, transform: "rotate(-10deg)" }}
+        whileInView={{ 
+          gap: "16px",
+          opacity: 1,
+          transform: "rotate(0deg)",
+          transition: {
+            type: "tween",
+            duration: 1
+          }
+        }}
+        viewport={{ amount: 0.3, once: true }}
+      >
         <ServiceCard $imgSrc={"/bg-one.svg"} $bgPosition={"right"} $gridArea={"one"} >
           <div>
             <h4>Moderators</h4>
@@ -43,11 +66,33 @@ const LandingPage = () => {
         </ServiceCard>
       </GridContainer>
     </SectionTwo>
-    <SectionThree>
+    <SectionThree
+      initial={{ left: "-500px", opacity: 0 }}
+      whileInView={{ 
+        left: "0px",
+        opacity: 1,
+        transition: {
+          type: "tween",
+          duration: 1
+        }
+      }}
+      viewport={{ once: true, amount: 0.1, }}
+    >
       <h2>BM TOKEN: THE CURRENCY OF BM DAO</h2>
       <p>BM Token (BMT) is the native cryptocurrency of BM DAO, a utility token that empowers collaboration, incentivizes participation, and unlocks rewards. With a fixed supply of 10 Billion BMT, BM Token provides a seamless and efficient medium of exchange for members.
         BM Token supports various use cases, such as:</p>
-      <SectionWrapper>
+      <SectionWrapper
+        initial={{ paddingTop: "150px", opacity: 0 }}
+        whileInView={{ 
+          paddingTop: "0px",
+          opacity: 1,
+          transition: {
+            type: "tween",
+            duration: 1
+          }
+        }}
+        viewport={{ once: true, amount: 0.3}}
+      >
         <OutlineWrapper>
           <OutlineCard>
             <h1>01</h1>
@@ -71,7 +116,18 @@ const LandingPage = () => {
         </ImageWrapper>
       </SectionWrapper>
     </SectionThree>
-    <SectionFive>
+    <SectionFive
+      initial={{ left: "500px", opacity: 0 }}
+      whileInView={{ 
+        left: "0px",
+        opacity: 1,
+        transition: {
+          type: "tween",
+          duration: 1
+        }
+      }}
+      viewport={{ amount: 0.3, once: true }}
+    >
       <h2>BM DAO ACADEMY: LEARN AND GROW WITH US</h2>
       <p>The BM DAO Academy provides comprehensive learning resources and training opportunities for our members who are interested inn Crypto and NFTs. By joining the BM DAO Academy you will benefit from:</p>
       <SectionWrapperT>

@@ -169,7 +169,6 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
                             <a style={{ color: "#f1c618", fontWeight: 500 }} target="_blank" href={formatLink(raid?.task?.raidInformation?.raidLink ?? "")} title={raid?.task?.raidInformation?.raidLink}>{(raid?.task?.raidInformation?.raidLink ?? "").substring(0, 20)}</a>
                         </Link>
                     </div>
-
                     <div>
                         <p>Action</p>
                         <BoldP>
@@ -179,6 +178,52 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
                         </BoldP>
                     </div>
                 </Details>
+                <Instructions>
+                    <h4>Social Handles</h4>
+                    <div style={{ display: "flex", flexWrap: "wrap", columnGap: "20px", rowGap: "10px" }}>
+                        
+                        { raid?.service?.handles.twitter && (
+                            <Link href={`https://twitter.com/${raid?.service?.handles.twitter}`} legacyBehavior>
+                                <a style={{ color: "#f1c618", fontWeight: 500 }} target="_blank" title={`@${raid?.service?.handles.twitter}`}>Twitter: @{ raid?.service?.handles.twitter}</a>
+                            </Link>
+                        )}
+                        { raid?.service?.handles.discord && (
+                            <Link href={`https://discord.com/${raid?.service?.handles.discord}`} legacyBehavior>
+                                <a style={{ color: "#f1c618", fontWeight: 500 }} target="_blank" title={`@${raid?.service?.handles.discord}`}>Discord: @{ raid?.service?.handles.discord}</a>
+                            </Link>
+                        )}
+                        { raid?.service?.handles.youtube && (
+                            <Link href={`https://youtube.com/${raid?.service?.handles.youtube}`} legacyBehavior>
+                                <a style={{ color: "#f1c618", fontWeight: 500 }} target="_blank" title={`@${raid?.service?.handles.youtube}`}>Youtube: @{ raid?.service?.handles.youtube}</a>
+                            </Link>
+                        )}
+                        { raid?.service?.handles.instagram && (
+                            <Link href={`https://instagram.com/${raid?.service?.handles.instagram}`} legacyBehavior>
+                                <a style={{ color: "#f1c618", fontWeight: 500 }} target="_blank" title={`@${raid?.service?.handles.instagram}`}>Instagram: @{ raid?.service?.handles.instagram}</a>
+                            </Link>
+                        )}
+                        { raid?.service?.handles.thread && (
+                            <Link href={`https://thread.com/${raid?.service?.handles.thread}`} legacyBehavior>
+                                <a style={{ color: "#f1c618", fontWeight: 500 }} target="_blank" title={`@${raid?.service?.handles.thread}`}>Thread: @{raid?.service?.handles.thread}</a>
+                            </Link>
+                        )}
+                        { raid?.service?.handles.telegram && (
+                            <Link href={`https://telegram.com/${raid?.service?.handles.telegram}`} legacyBehavior>
+                                <a style={{ color: "#f1c618", fontWeight: 500 }} target="_blank" title={`@${raid?.service?.handles.telegram}`}>Telegram: @{raid?.service?.handles.telegram}</a>
+                            </Link>
+                        )}
+                        { raid?.service?.handles.reddit && (
+                            <Link href={`https://reddit.com/u/${raid?.service?.handles.reddit}`} legacyBehavior>
+                                <a style={{ color: "#f1c618", fontWeight: 500 }} target="_blank" title={`@${raid?.service?.handles.reddit}`}>Reddit: @{raid?.service?.handles.reddit}</a>
+                            </Link>
+                        )}
+                        { raid?.service?.handles.tiktok && (
+                            <Link href={`https://tiktok.com/${raid?.service?.handles.tiktok}`} legacyBehavior>
+                                <a style={{ color: "#f1c618", fontWeight: 500 }} target="_blank" title={`@${raid?.service?.handles.tiktok}`}>TikTok: @{raid?.service?.handles.tiktok}</a>
+                            </Link>
+                        )}
+                    </div>
+                </Instructions>
                 {
                     raid?.task?.raidInformation?.campaignCaption && (
                         <Instructions>

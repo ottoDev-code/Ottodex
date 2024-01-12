@@ -545,7 +545,7 @@ const UploadTask: React.FC<Props> = ({ setShowModal, setRefetch, refetch }) => {
                                         <h4>Start date</h4>
                                         <input
                                             id="raid-start"
-                                            type="date"
+                                            type="datetime-local"
                                             placeholder=""
                                             value={startDate}
                                             onChange={(e) => setStartDate(e.target.value)}

@@ -51,6 +51,7 @@ export interface IUser {
         },
         totalUploaded: number,
         totalCompleted: number,
+        totalPending: number,
     }
 }
 export interface IUserRegister {

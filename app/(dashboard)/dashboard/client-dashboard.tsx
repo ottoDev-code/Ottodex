@@ -80,7 +80,7 @@ const Dashboard = () => {
                                         <DocumentIcon />
                                         <p>Completed</p>
                                     </div>
-                                    <h2>{user.analytics?.totalCompleted}</h2>
+                                    <h2>{user.analytics?.totalCompleted ?? "0"}</h2>
                                 </StatsCard>
                                 <div className="divider"></div>
                                 <StatsCard>
@@ -88,7 +88,7 @@ const Dashboard = () => {
                                         <DocumentIcon />
                                         <p>Uploaded</p>
                                     </div>
-                                    <h2>{user.analytics?.totalUploaded}</h2>
+                                    <h2>{user.analytics?.totalUploaded ?? "0"}</h2>
                                 </StatsCard>
                             </div>
                         </ClientTaskCard>

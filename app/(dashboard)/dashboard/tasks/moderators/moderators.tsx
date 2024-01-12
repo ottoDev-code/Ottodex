@@ -5,12 +5,11 @@ import { Container } from "@/app/styles/dashboard.style";
 import React, { useEffect, useState } from "react";
 import NotRegistered from "../../../../components/not-registered/not-registered";
 import TaskDetailsNew from "./task-details";
-import { getIsLoading, getUser, setLoading, useDispatch, useSelector } from "@/lib/redux";
+import { getIsLoading, setLoading, useDispatch, useSelector } from "@/lib/redux";
 import { getAllModeratorServices } from "@/app/api/service";
 import { toast } from "react-toastify";
 
 const TwitterRaiders = () => {
-    const user = useSelector(getUser);
     const dispatch = useDispatch();
     const [hasModService, setHasModService] = useState(false);
     const loading = useSelector(getIsLoading);
@@ -34,7 +33,7 @@ const TwitterRaiders = () => {
         <Container>
             <HeadingCard heading={"Tasks"} sub={"Moderators"} />
             {
-                !loading && hasModService ? <TaskDetailsNew /> : <NotRegistered taskSub={"Moderators"} />
+                !loading && hasModService ? <TaskDetailsNew /> : <NotRegistered taskSub={"Moderators"} update={fetchModeratorServices} />
             }
         </Container>
     );

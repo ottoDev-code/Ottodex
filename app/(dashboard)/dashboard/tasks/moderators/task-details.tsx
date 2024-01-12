@@ -1,6 +1,6 @@
 "use client";
 
-import { getAllModeratorOngoingTask, getAllModeratorTask } from "@/app/api/moderator";
+import { getAllModeratorCompletedTask, getAllModeratorOngoingTask, getAllModeratorTask } from "@/app/api/moderator";
 import { getAllRaidTask, getAllRaids } from "@/app/api/task";
 import TaskBox from "@/app/components/taskbox/TaskBox";
 import {
@@ -20,6 +20,7 @@ import React, { useEffect, useState } from "react";
 const TaskDetailsNew = () => {
     const [tasks, setTasks] = useState<any>([]);
     const [raids, setRaids] = useState<any>([]);
+    const [completedRaids, setCompletedRaids] = useState<any>([]);
     const [currentTask, setCurrentTask] = useState(2);
     const router = useRouter();
     const user = useSelector(getUser);
@@ -41,9 +42,18 @@ const TaskDetailsNew = () => {
         .catch((res) => {
         })
     }
+    const fetchCompletedRaids = () => {
+        getAllModeratorCompletedTask(20, 1)
+        .then((res) => {
+            setCompletedRaids(res.data.data.tasks);
+        })
+        .catch((res) => {
+        })
+    }
     useEffect(() => {
       fetchRaids();
       fetchTasks();
+      fetchCompletedRaids();
     }, [])
     
     return (
@@ -101,7 +111,24 @@ const TaskDetailsNew = () => {
         
                                 <div className="claim">
                                     <button onClick={() => router.push(`/dashboard/tasks/moderators/${task?.id}`)}>Moderate</button>
-                                    <p>{task?.completedRaids}/{task?.totalRaids} left</p>
+                                    <p style={{ paddingTop: "10px" }}>{task?.completedRaids}/{task?.totalRaids} left</p>
+                                </div>
+                            </Task>
+                        ))
+                    }
+                    {
+                       currentTask === 3 && completedRaids?.map((task: any) => (
+                            <Task>
+                                <div>
+                                    <h3>{task?.raidInformation?.action}</h3>
+                                    <p className="task-text">
+                                       {task?.raidInformation?.campaignCaption}
+                                    </p>
+                                    <div className="reward">
+                                        <p>
+                                            <span>Completed raids: </span>{task?.completedRaids}
+                                        </p>
+                                    </div>
                                 </div>
                             </Task>
                         ))

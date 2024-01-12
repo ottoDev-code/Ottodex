@@ -61,15 +61,15 @@ const UserDashboard = () => {
                 <DocumentIcon />
                 <p>Completed</p>
               </div>
-              <h2>232</h2>
+              <h2>{user.analytics?.totalCompleted ?? 0}</h2>
             </StatsCard>
             <div className='divider'></div>
             <StatsCard>
               <div>
                 <DocumentIcon />
-                <p>In Progress</p>
+                <p>Pending</p>
               </div>
-              <h2>20</h2>
+              <h2>{user.analytics?.totalPending ?? 0}</h2>
             </StatsCard>
           </div>
         </TaskCard>

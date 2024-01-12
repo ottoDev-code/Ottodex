@@ -65,18 +65,18 @@ const Login = () => {
     }
   return (
     <Container>
-      <FormContainer>
+      <FormContainer onSubmit={(e: any) => { e.preventDefault()}}>
         <LogoWrapper onClick={handleGoHome}>
           <Image src={"./logo-i.svg"} alt="logo" width={44} height={36} />
         </LogoWrapper>
         <h1>Welcome Back</h1>
         <p>Please Enter your details to Sign in</p>
-        <GoogleBtn>
+        {/* <GoogleBtn>
             <Image src={"./google.svg"} alt="logo" width={24} height={24} />
             <span>Sign in with Google</span>
         </GoogleBtn>
-        <Or />
-        <InputWrapper>
+        <Or /> */}
+        <InputWrapper style={{ marginTop: "15px" }}>
           <label>Email Address</label>
           <InputContainer>
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your Email Address"/>
