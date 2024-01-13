@@ -23,8 +23,8 @@ export const SectionOne = styled(motion.section)`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    min-height: 700px;
+    height: 100dvh;
+    min-height: 400px;
     h1 {
         font-size: 40px; 
         font-weight: 500;
