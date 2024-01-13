@@ -9,9 +9,9 @@ const LandingPage = () => {
  return (
   <Container>
     <SectionOne 
-      initial={{ translateY: "20%", opacity: 0 }}
+      initial={{ filter: "blur(5px)", opacity: 0.5 }}
       whileInView={{ 
-        translateY: "0",
+        filter: "blur(0)",
         opacity: 1,
         transition: {
           type: "tween",
