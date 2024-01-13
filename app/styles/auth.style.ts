@@ -5,7 +5,9 @@ const { colors, breakpoints } = theme;
 export const Container = styled.div`
     padding: 50px 0;
     background: #FBFBFB; 
-    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
     ${breakpoints.sm} {
         padding: 20px 0;
     }
