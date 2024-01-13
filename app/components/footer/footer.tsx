@@ -40,7 +40,7 @@ const Footer = () => {
           </SectionWrapper>
         </Top>
         <Bottom>
-          <p>&copy; COPYRIGHT -BM DAO 2023</p>
+          <p>&copy;Copyright 2024 BM DAO</p>
         </Bottom>
       </Wrapper>
     </Container>
