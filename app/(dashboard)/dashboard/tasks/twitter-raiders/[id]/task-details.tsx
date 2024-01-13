@@ -130,7 +130,7 @@ const TaskDetails: React.FC<IProps> = ({ id }) => {
     return (
         <Wrapper>
             <LeftColumn>
-                <TaskWrapper style={{ top: "30px" }}>
+                <TaskWrapper style={{ marginTop: "60px" }}>
                     <TaskBox heading={"Available Tasks"} tasksNub={user.raiderService?.analytics.availableTask ?? 0} />
                     <TaskBox heading={"Pending Tasks"} tasksNub={user.raiderService?.analytics.pendingTask ?? 0} />
                     <TaskBox heading={"Completed Tasks"} tasksNub={user.raiderService?.analytics.completedTask ?? 0} />

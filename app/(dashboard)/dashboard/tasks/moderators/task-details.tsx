@@ -111,7 +111,7 @@ const TaskDetailsNew = () => {
         
                                 <div className="claim">
                                     <button onClick={() => router.push(`/dashboard/tasks/moderators/${task?.id}`)}>Moderate</button>
-                                    <p style={{ paddingTop: "10px" }}>{task?.completedRaids}/{task?.totalRaids} left</p>
+                                    <p style={{ paddingTop: "10px" }}>{task?.completedRaids} raids completed</p>
                                 </div>
                             </Task>
                         ))
