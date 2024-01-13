@@ -11,7 +11,7 @@ interface IServiceProps {
 }
 
 export const Container = styled.div`
-    overflow: hidden;
+    overflow-x: hidden;
 `;
 export const SectionOne = styled(motion.section)`
     padding-top: 100px;
@@ -101,7 +101,7 @@ export const GridContainer = styled(motion.div)`
        height: auto;
     }
 `;
-export const ServiceCard = styled.div<IServiceProps>`
+export const ServiceCard = styled(motion.div)<IServiceProps>`
     grid-area: ${({$gridArea}) => $gridArea};
     border-radius: 10px;
     background: url(${({$imgSrc}) => $imgSrc}), ${colors.lightPrimaryColor};
@@ -131,7 +131,6 @@ export const ServiceCard = styled.div<IServiceProps>`
 `;
 export const SectionThree = styled(motion.section)`
     padding: 102px 0;
-    position: relative;
     h2 {
         font-size: 24px;
         font-weight: 600;
@@ -153,9 +152,10 @@ export const OutlineWrapper = styled.div`
     min-width: calc(50% - 50px);
     border-right: 1px solid #D9D9D9;
 `;
-export const OutlineCard = styled.div`
+export const OutlineCard = styled(motion.div)`
     display: flex;
     column-gap: 8px;
+     background: ${colors.bgGrey}; 
     border-bottom: 1px solid #D9D9D9;
     margin: 13px 0;
     align-items: center;
@@ -221,7 +221,7 @@ export const ReviewLine = styled.div`
         border-bottom: 1px solid black;
     }
 `;
-export const ReviewCard = styled.div`
+export const ReviewCard = styled(motion.div)`
     max-width: 474px;
     p {
         font-weight: 500;
@@ -283,7 +283,7 @@ export const OutlineWrapperT = styled.div`
     flex-direction: column;
     row-gap: 30px;
 `;
-export const OutlineCardT = styled.div`
+export const OutlineCardT = styled(motion.div)`
     border-radius: 15px;
     border: 1px solid ${colors.primaryColor};
     background: ${colors.bgGrey};
@@ -397,7 +397,7 @@ export const Td = styled.div`
         cursor: pointer;
     }
 `;
-export const SectionNine = styled.section`
+export const SectionNine = styled(motion.section)`
     padding: 102px 0;
     h2 {
         font-size: 24px;
@@ -423,7 +423,7 @@ export const CardWrapper = styled.div`
     column-gap: 13px;
     row-gap: 13px;
 `;
-export const CategoryCard = styled.div`
+export const CategoryCard = styled(motion.div)`
     padding: 15px;
     border-radius: 10px;
     border: 1px solid #D9D9D9;
@@ -478,7 +478,7 @@ export const StepMapWrapper = styled.div`
     align-items: center;
     justify-content: center;
 `;
-export const StepMap = styled.div`
+export const StepMap = styled(motion.div)`
     width: 25%;
     min-width: 25%;
     display: flex;
@@ -498,7 +498,7 @@ export const StepMap = styled.div`
         justify-content: center;
     }
 `;
-export const StepLine = styled.div`
+export const StepLine = styled(motion.div)`
     background: ${colors.primaryColor};
     position: absolute;
     height: 2px;

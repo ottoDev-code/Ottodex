@@ -391,8 +391,7 @@ export const TaskNav = styled.div`
     align-items: center;
     background: #fff1bb;
     border-radius: 0.625rem;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     padding: 0.1875rem;
     text-align: center;
     width: 80%;
@@ -411,6 +410,7 @@ export const TaskNavItem = styled.div<{ isActive: boolean }>`
     font-weight: 500;
     padding: 0.875rem 2rem;
     width: 100%;
+    flex: 1;
     @media screen and (max-width: 536px) {
         font-size: 12px;
         padding: 10px 15px;

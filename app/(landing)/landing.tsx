@@ -9,16 +9,15 @@ const LandingPage = () => {
  return (
   <Container>
     <SectionOne 
-      // initial={{ marginTop: "100px", opacity: 0 }}
-      // whileInView={{ 
-      //   marginTop: "0px",
-      //   opacity: 1,
-      //   transition: {
-      //     type: "tween",
-      //     duration: 1.5
-      //   }
-      // }}
-      // viewport={{ once: true }}
+      initial={{ translateY: "20%", opacity: 0 }}
+      whileInView={{ 
+        translateY: "0",
+        opacity: 1,
+        transition: {
+          type: "tween",
+          duration: 1.5
+        }
+      }}
     >
       <TagHeading>Unlock the Power of Community with BM DAO</TagHeading>
       <h1>Empowering Crypto and NFT Projects with Comprehensive Community Support and Strategic Promotion</h1>
@@ -27,38 +26,69 @@ const LandingPage = () => {
     </SectionOne>
     <SectionTwo>
       <h2>Services</h2>
-      <GridContainer
-        initial={{ gap: "50px", opacity: 0, transform: "rotate(-10deg)" }}
-        whileInView={{ 
-          gap: "16px",
-          opacity: 1,
-          transform: "rotate(0deg)",
-          transition: {
-            type: "tween",
-            duration: 1
-          }
-        }}
-        viewport={{ amount: 0.3, once: true }}
-      >
-        <ServiceCard $imgSrc={"/bg-one.svg"} $bgPosition={"right"} $gridArea={"one"} >
+      <GridContainer>
+        <ServiceCard $imgSrc={"/bg-one.svg"} $bgPosition={"right"} $gridArea={"one"}
+          initial={{ translateX: "-100%", opacity: 0 }}
+          whileInView={{ 
+            gap: "16px",
+            opacity: 1,
+            translateX: "0",
+            transition: {
+              type: "tween",
+              duration: 1.5,
+            }
+          }}
+        >
           <div>
             <h4>Moderators</h4>
             <p>They maintain a safe and productive community resolving disputes, moderating discussions and fostering a positive atmosphere.</p>
           </div>
         </ServiceCard>
-        <ServiceCard $imgSrc={"/bg-two.svg"} $gridArea={"two"}>
+        <ServiceCard $imgSrc={"/bg-two.svg"} $gridArea={"two"}
+          initial={{ translateX: "-100%", opacity: 0 }}
+          whileInView={{ 
+            gap: "16px",
+            opacity: 1,
+            translateX: "0",
+            transition: {
+              type: "tween",
+              duration: 1.5,
+            }
+          }}
+        >
           <div>
             <h4>Collab Managers</h4>
             <p>They find and facilitate strategic partnerships for your project using their industry knowledge and connections.</p>
           </div>
         </ServiceCard>
-        <ServiceCard $imgSrc={"/bg-three.svg"} $gridArea={"three"}>
+        <ServiceCard $imgSrc={"/bg-three.svg"} $gridArea={"three"}
+          initial={{ translateX: "-100%", opacity: 0 }}
+          whileInView={{ 
+            gap: "16px",
+            opacity: 1,
+            translateX: "0",
+            transition: {
+              type: "tween",
+              duration: 1.5,
+            }
+          }}
+        >
           <div>
             <h4>Twitter Raiders</h4>
             <p>They use the power of social media to promote your project, create buzz, attract followers, and amplify your visibility</p>
           </div>
         </ServiceCard>
-        <ServiceCard $imgSrc={"/bg-four.svg"} $gridArea={"four"}>
+        <ServiceCard $imgSrc={"/bg-four.svg"} $gridArea={"four"}
+          initial={{ translateX: "-100%", opacity: 0 }}
+          whileInView={{ 
+            opacity: 1,
+            translateX: "0",
+            transition: {
+              type: "tween",
+              duration: 1.5,
+            }
+          }}
+        >
           <div>
             <h4>Chat Engagers</h4>
             <p>They participate in your project&apos;s community, spark conversations, share insights and initiate fun and engaging activities.</p>
@@ -67,46 +97,88 @@ const LandingPage = () => {
       </GridContainer>
     </SectionTwo>
     <SectionThree
-      initial={{ left: "-500px", opacity: 0 }}
+      initial={{ translateX: "-100%", opacity: 0 }}
       whileInView={{ 
-        left: "0px",
         opacity: 1,
+        translateX: "0",
         transition: {
           type: "tween",
-          duration: 1
+          duration: 1.5,
         }
       }}
-      viewport={{ once: true, amount: 0.1, }}
     >
       <h2>BM TOKEN: THE CURRENCY OF BM DAO</h2>
       <p>BM Token (BMT) is the native cryptocurrency of BM DAO, a utility token that empowers collaboration, incentivizes participation, and unlocks rewards. With a fixed supply of 10 Billion BMT, BM Token provides a seamless and efficient medium of exchange for members.
         BM Token supports various use cases, such as:</p>
       <SectionWrapper
-        initial={{ paddingTop: "150px", opacity: 0 }}
-        whileInView={{ 
-          paddingTop: "0px",
-          opacity: 1,
-          transition: {
-            type: "tween",
-            duration: 1
-          }
-        }}
-        viewport={{ once: true, amount: 0.3}}
+         initial={{ translateX: "100%", opacity: 0 }}
+         whileInView={{ 
+           opacity: 1,
+           translateX: "0",
+           transition: {
+             type: "tween",
+             duration: 1.5,
+           }
+         }}
       >
         <OutlineWrapper>
-          <OutlineCard>
+          <OutlineCard
+            initial={{ translateX: "100%", opacity: 0 }}
+            whileInView={{ 
+              opacity: 1,
+              translateX: "0",
+              transition: {
+                type: "tween",
+                duration: 1.5,
+                delay: 0.4
+              }
+            }}
+          >
             <h1>01</h1>
             <p>Payment Currency: Use BMT to pay for services within the BM DAO ecosystem.</p>
           </OutlineCard>
-          <OutlineCard>
+          <OutlineCard
+            initial={{ translateX: "100%", opacity: 0 }}
+            whileInView={{ 
+              opacity: 1,
+              translateX: "0",
+              transition: {
+                type: "tween",
+                duration: 1.5,
+                delay: 0.6
+              }
+            }}
+          >
             <h1>02</h1>
             <p>Upgrade Levels: Use BMT to unlock higher rewards and exclusive opportunities.</p>
           </OutlineCard>
-          <OutlineCard>
+          <OutlineCard
+            initial={{ translateX: "100%", opacity: 0 }}
+            whileInView={{ 
+              opacity: 1,
+              translateX: "0",
+              transition: {
+                type: "tween",
+                duration: 1.5,
+                delay: 0.8
+              }
+            }}
+          >
             <h1>03</h1>
             <p>Reward System: Earn BMT for completing tasks, participating in initiatives and achieving milestones. Redeem BMT cash in the BM DAO P2P Market</p>
           </OutlineCard>
-          <OutlineCard>
+          <OutlineCard
+            initial={{ translateX: "100%", opacity: 0 }}
+            whileInView={{ 
+              opacity: 1,
+              translateX: "0",
+              transition: {
+                type: "tween",
+                duration: 1.5,
+                delay: 1
+              }
+            }}
+          >
             <h1>04</h1>
             <p>P2P Marketplace and Trading: Trade BM Tokens directly with other members.</p>
           </OutlineCard>
@@ -117,16 +189,15 @@ const LandingPage = () => {
       </SectionWrapper>
     </SectionThree>
     <SectionFive
-      initial={{ left: "500px", opacity: 0 }}
+      initial={{ translateX: "-100%", opacity: 0 }}
       whileInView={{ 
-        left: "0px",
         opacity: 1,
+        translateX: "0",
         transition: {
           type: "tween",
-          duration: 1
+          duration: 1.5,
         }
       }}
-      viewport={{ amount: 0.3, once: true }}
     >
       <h2>BM DAO ACADEMY: LEARN AND GROW WITH US</h2>
       <p>The BM DAO Academy provides comprehensive learning resources and training opportunities for our members who are interested inn Crypto and NFTs. By joining the BM DAO Academy you will benefit from:</p>
@@ -135,11 +206,32 @@ const LandingPage = () => {
           <Image src={"/side2.svg"} alt="user_holding_card" objectFit="contain" objectPosition="center" layout="fill"/>
         </ImageWrapper>
         <OutlineWrapperT>
-          <OutlineCardT>
+          <OutlineCardT
+            initial={{ translateX: "100%", opacity: 0 }}
+            whileInView={{ 
+              opacity: 1,
+              translateX: "0",
+              transition: {
+                type: "tween",
+                duration: 1.5
+              }
+            }}
+          >
             <h1>01</h1>
             <p>Learn from our experts and mentors who have extensive experience and insights in the blockchain space.</p>
           </OutlineCardT>
-          <OutlineCardT>
+          <OutlineCardT
+            initial={{ translateX: "100%", opacity: 0 }}
+            whileInView={{ 
+              opacity: 1,
+              translateX: "0",
+              transition: {
+                type: "tween",
+                duration: 1.5,
+                delay: 0.2
+              }
+            }}
+          >
             <h1>02</h1>
             <p>Getting access to exclusive rewards, incentives, and opportunities as you progress through the academy</p>
           </OutlineCardT>
@@ -150,11 +242,60 @@ const LandingPage = () => {
       <h2>How to start earning</h2>
       <StepWrapper>
         <StepMapWrapper>
-          <StepLine></StepLine>
-          <StepMap><span>1</span></StepMap>
-          <StepMap><span>2</span></StepMap>
-          <StepMap><span>3</span></StepMap>
-          <StepMap><span>4</span></StepMap>
+          <StepLine
+            initial={{ width: "0%" }}
+            whileInView={{ 
+              opacity: 1,
+              width: "75%",
+              transition: {
+                type: "tween",
+                duration: 1.9,
+              }
+            }}
+          ></StepLine>
+          <StepMap
+             initial={{ opacity: 0 }}
+             whileInView={{ 
+               opacity: 1,
+               transition: {
+                 type: "tween",
+                 duration: 1.5,
+               }
+             }}
+          ><span>1</span></StepMap>
+          <StepMap
+             initial={{ opacity: 0 }}
+             whileInView={{ 
+               opacity: 1,
+               transition: {
+                 type: "tween",
+                 duration: 1.5,
+                 delay: 0.2
+               }
+             }}
+          ><span>2</span></StepMap>
+          <StepMap
+             initial={{ opacity: 0 }}
+             whileInView={{ 
+               opacity: 1,
+               transition: {
+                 type: "tween",
+                 duration: 1.5,
+                 delay: 0.4
+               }
+             }}
+          ><span>3</span></StepMap>
+          <StepMap
+             initial={{ opacity: 0 }}
+             whileInView={{ 
+               opacity: 1,
+               transition: {
+                 type: "tween",
+                 duration: 1.5,
+                 delay: 0.6
+               }
+             }}
+          ><span>4</span></StepMap>
         </StepMapWrapper>
         <Step>
           <StepText>Create an Account</StepText>
@@ -167,7 +308,17 @@ const LandingPage = () => {
     <SectionSix id="jobs">
       <h2>Join us and make Money as a</h2>
       <CardWrapper>
-        <CategoryCard>
+        <CategoryCard
+           initial={{ translateX: "100%", opacity: 0 }}
+          whileInView={{ 
+            opacity: 1,
+            translateX: "0",
+            transition: {
+              type: "tween",
+              duration: 1.5,
+            }
+          }}
+        >
           <div className="icon">
             <Image src={"/group.svg"} alt="user" height={36} width={36}/>
           </div>
@@ -179,7 +330,18 @@ const LandingPage = () => {
             <button><span>Learn more</span> <Image src={"/arrow-right.svg"} alt="arrow_right" width={24} height={24}/></button>
           </div>
         </CategoryCard>
-        <CategoryCard>
+        <CategoryCard
+           initial={{ translateX: "100%", opacity: 0 }}
+           whileInView={{ 
+             opacity: 1,
+             translateX: "0",
+             transition: {
+               type: "tween",
+               duration: 1.5,
+               delay: 0.2
+             }
+           }}
+        >
           <div className="icon">
             <Image src={"/group.svg"} alt="user" height={36} width={36}/>
           </div>
@@ -191,7 +353,18 @@ const LandingPage = () => {
             <button><span>Learn more</span> <Image src={"/arrow-right.svg"} alt="arrow_right" width={24} height={24}/></button>
           </div>
         </CategoryCard>
-        <CategoryCard>
+        <CategoryCard
+           initial={{ translateX: "100%", opacity: 0 }}
+           whileInView={{ 
+             opacity: 1,
+             translateX: "0",
+             transition: {
+               type: "tween",
+               duration: 1.5,
+               delay: 0.4
+             }
+           }}
+        >
           <div className="icon">
             <Image src={"/group.svg"} alt="user" height={36} width={36}/>
           </div>
@@ -203,7 +376,18 @@ const LandingPage = () => {
             <button><span>Learn more</span> <Image src={"/arrow-right.svg"} alt="arrow_right" width={24} height={24}/></button>
           </div>
         </CategoryCard>
-        <CategoryCard>
+        <CategoryCard
+           initial={{ translateX: "100%", opacity: 0 }}
+           whileInView={{ 
+             opacity: 1,
+             translateX: "0",
+             transition: {
+               type: "tween",
+               duration: 1.5,
+               delay: 0.6
+             }
+           }}
+        >
           <div className="icon">
             <Image src={"/group.svg"} alt="user" height={36} width={36}/>
           </div>
@@ -274,7 +458,17 @@ const LandingPage = () => {
      <SectionFour>
       <h2>What they say about us</h2>
       <ReviewWrapper>
-        <ReviewCard>
+        <ReviewCard
+          initial={{ translateX: "100%", opacity: 0 }}
+          whileInView={{ 
+            opacity: 1,
+            translateX: "0",
+            transition: {
+              type: "tween",
+              duration: 1.5,
+            }
+          }}
+        >
           <ReviewLine>
             <Image src={"/quote.svg"} alt="user" width={33} height={20} />
             <div></div>
@@ -287,7 +481,18 @@ const LandingPage = () => {
             <h3>Gemma Sandra</h3>
           </UserCard>
         </ReviewCard>
-        <ReviewCard>
+        <ReviewCard
+          initial={{ translateX: "100%", opacity: 0 }}
+          whileInView={{ 
+            opacity: 1,
+            translateX: "0",
+            transition: {
+              type: "tween",
+              duration: 1.5,
+              delay: 0.3
+            }
+          }}
+        >
           <ReviewLine>
             <Image src={"/quote.svg"} alt="user" width={33} height={20} />
             <div></div>
@@ -302,7 +507,17 @@ const LandingPage = () => {
         </ReviewCard>
       </ReviewWrapper>
     </SectionFour>
-    <SectionNine>
+    <SectionNine
+       initial={{ scale: 0, opacity: 0 }}
+       whileInView={{ 
+         opacity: 1,
+         scale: 1,
+         transition: {
+           type: "tween",
+           duration: 1,
+         }
+       }}
+    >
       <h2>Join our Community</h2>
       <p>Get access to 24/7 support from our community managers, chatters, moderators, and twitter raiders, as well as ouir panel of experts and mentors.</p>
       <SocialCardWrap>
