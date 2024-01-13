@@ -41,6 +41,24 @@ const TaskDetailsNew = () => {
 
         })
     }
+    const getActionReward = (action: string) => {
+        switch (action) {
+            case "Comment on Post":
+                return 0.05
+            case "Create a Tweet":
+                return 0.1
+            case "Like Post":
+                return 0.005
+            case "Raid":
+                return 0.15
+            case "Follow Account":
+                return 0.007
+            case "Retweet Post":
+                return 0.1
+            default:
+                return 0;
+        }
+    }
     useEffect(() => {
       fetchRaids();
       fetchTasks();
@@ -91,7 +109,7 @@ const TaskDetailsNew = () => {
                                     <p className="task-text">
                                        {task?.raidInformation?.campaignCaption}
                                     </p>
-                                    <div className="reward">
+                                    <div>
                                         <p>
                                             <span>Raiders needed: </span>{task?.raidInformation?.amount}
                                         </p>
@@ -100,7 +118,7 @@ const TaskDetailsNew = () => {
         
                                 <div className="claim">
                                     <button onClick={() => router.push(`/dashboard/tasks/twitter-raiders/${task?.id}`)} style={{ marginBottom: "5px" }}>Claim</button>
-                                    <p>{task?.completedRaids}/{task?.totalRaids} left</p>
+                                    <p>Reward: <span style={{ fontWeight: "600" }}>${getActionReward(task?.raidInformation?.action)}</span></p>
                                 </div>
                             </Task>
                         ))

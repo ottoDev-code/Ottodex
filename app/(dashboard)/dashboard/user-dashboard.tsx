@@ -52,7 +52,7 @@ const UserDashboard = () => {
             <h2>Tasks</h2>
             <div>
               <span></span>
-              <p>20 new available tasks</p>
+              <p>{user.analytics?.totalUploaded ?? 0} new available tasks</p>
             </div>
           </div>
           <div className="bottom">
@@ -137,7 +137,7 @@ const UserDashboard = () => {
                     </div>
                   </div>
                   <div className="right">
-                    <p>{(new Date(val?.createdAt)).toDateString()}</p>
+                    <p style={{ textAlign: "right", width: "100%"}}>{(new Date(val?.createdAt)).toDateString()}</p>
                     <p style={{ textAlign: "right", width: "100%"}}>${Number(val?.amount)}</p>
                   </div>
                 </ActivityCard>
