@@ -28,13 +28,19 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 import dropdown_icon from "../../../../public/dropdown.svg";
-import { getUser, setUser, useDispatch, useSelector } from "@/lib/redux";
+import { getUser, setUser,getIsLoading, setLoading, useDispatch, useSelector } from "@/lib/redux";
 import { getUserTransactionHistory } from "@/app/api/wallet";
 import { getUserProfile } from "@/app/api/auth";
 import { Pagination } from "@/app/styles/client-moderators.style";
 import { generatePages } from "@/lib/utils";
+import Transaction from "@/app/components/transaction/transaction";
+import { getAllChatterServices } from "@/app/api/service";
+import { toast } from "react-toastify";
 
 const Wallet = () => {
+    
+    const [showModal, setShowModal] = useState(false);
+    const [transactionType, setTransactionType] = useState('')
     const [changeCurrency, setChangeCurrency] = useState<boolean>(false);
     const [history, setHistory] = useState<any>([]);
     const dispatch = useDispatch();
@@ -51,7 +57,16 @@ const Wallet = () => {
             setCurrentPage(page);
         }
     }
-
+    const cancel = () => {
+        setTransactionType('')
+        setShowModal(false)
+    }
+    const handleTransaction = (transactionType: string) => {
+        setTransactionType(transactionType)
+        setShowModal(true)
+    }
+    
+    
     const fetchHistory = () => {
         getUserTransactionHistory(limit, currentPage)
         .then((res) => {
@@ -66,7 +81,19 @@ const Wallet = () => {
     useEffect(() => {
       fetchHistory();
     }, [])
-    
+
+     const fetchChatterServices = () => {
+        getAllChatterServices()
+        .then((res) => {
+          setHasChatService(!!res.data.data.userServices.filter((s: any) => s.accountType === "moderators").length);
+          dispatch(setLoading(false));
+        }).catch((e: any) => {
+          toast.error(e?.response?.data.error[0].message, {
+            position: toast.POSITION.TOP_RIGHT
+          });
+          dispatch(setLoading(false));
+        })
+      }
     return (
         <Container>
             <HeadingCard heading={"Wallet"} />
@@ -125,10 +152,10 @@ const Wallet = () => {
                 </BalanceCards>
 
                 <Buttons>
-                    <button>
+                    <button onClick={()=>{handleTransaction('withdraw')}}>
                         <WithdrawIcon /> Withdraw
                     </button>
-                    <button>
+                    <button onClick={()=>{handleTransaction('deposit')}}>
                         <DepositIcon /> Deposit
                     </button>
                 </Buttons>
@@ -231,17 +258,17 @@ const Wallet = () => {
                 </Pagination>
             </History>
             {
-                showWithdraw && (
-                    <></>
+                showModal && (
+                    <> <Transaction transactionType={"withdraw"} cancel={cancel}/></>
                 )
             }
-            {
-                showDeposit && (
-                    <></>
-                )
-            }
+            
         </Container>
     );
 };
 
 export default Wallet;
+function setHasChatService(arg0: boolean) {
+    throw new Error("Function not implemented.");
+}
+

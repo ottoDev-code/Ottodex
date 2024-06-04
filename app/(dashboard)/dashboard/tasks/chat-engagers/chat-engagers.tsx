@@ -30,9 +30,10 @@ const ChatEngagers = () => {
     return (
         <Container>
             <HeadingCard heading={"Tasks"} sub={"Chat Engagers"} />
-            {
+            {/* {
                 !loading ? <TaskDetails /> : <NotRegistered taskSub={"Moderators"} update={fetchChatterServices} />
-            }
+            } */}
+            <NotRegistered taskSub={"Moderators"} update={fetchChatterServices} />
         </Container>
     );
 };
